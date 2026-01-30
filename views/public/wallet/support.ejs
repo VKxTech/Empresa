@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - VKX Wallet</title>
+    <link rel="stylesheet" href="/css/output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <header class="fixed top-0 left-0 right-0 z-50 glass h-16 flex items-center">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                VKX Wallet
+            </a>
+            <a href="/" class="text-sm font-bold text-gray-600 flex items-center gap-1 hover:text-blue-600">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Home
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 pt-32 pb-20">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">Support Center</h1>
+                <p class="text-xl text-gray-600">Need help with VKX Wallet? We are here for you.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                    <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
+                        <i data-lucide="mail"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Email Support</h3>
+                    <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                        For official inquiries, bug reports, or technical issues, please send us an email. We typically respond within 24-48 hours.
+                    </p>
+                    <a href="mailto:contato@vkxtech.com.br" class="inline-flex items-center gap-2 text-blue-600 font-bold hover:underline">
+                        contato@vkxtech.com.br
+                    </a>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                    <div class="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 text-blue-600">
+                        <i data-lucide="message-circle"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Community Support</h3>
+                    <p class="text-gray-600 mb-6 text-sm leading-relaxed">
+                        Join our Telegram community to discuss features, get quick help from other users, and stay updated on the latest releases.
+                    </p>
+                    <a href="https://t.me/feelipw1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-blue-600 font-bold hover:underline">
+                        Join Telegram
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-blue-50 rounded-3xl p-8 md:p-12 border border-blue-100/50">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                    <i data-lucide="help-circle" class="text-blue-600"></i>
+                    Frequently Asked Questions
+                </h3>
+                <div class="grid gap-8">
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-3">How do I recover my wallet?</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">VKX is non-custodial. You can only recover your wallet using your 12-word seed phrase. We cannot help you if you lose it as we do not have a copy of your keys.</p>
+                    </div>
+                    <div class="pt-6 border-t border-blue-200/30">
+                        <h4 class="font-bold text-gray-800 mb-3">Which networks are supported?</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Currently, we support BSC, Ethereum, Arbitrum, Base, Polygon and Avalanche. Linea support is under development and coming soon.</p>
+                    </div>
+                    <div class="pt-6 border-t border-blue-200/30">
+                        <h4 class="font-bold text-gray-800 mb-3">Is there a desktop version?</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed">Currently, VKX Wallet is optimized for mobile (Android). We are focusing on providing the most secure and convenient mobile experience first.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-gray-100 py-12 text-center">
+        <div class="container mx-auto px-6 text-center text-gray-400 text-[10px] uppercase tracking-widest font-bold">
+            <p>&copy; 2026 VKX Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

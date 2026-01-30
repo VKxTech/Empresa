@@ -1,0 +1,315 @@
+<section class="min-h-screen flex items-center justify-center relative overflow-hidden px-6">
+    <div class="max-w-5xl text-center z-10">
+        <div class="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-8">
+            <%= t.hero.tagline %>
+        </div>
+        <h1 class="text-6xl md:text-8xl font-extrabold mb-8 leading-[1.1] tracking-tight">
+            <%= t.hero.title_start %> <br>
+            <span class="text-gradient"><%= t.hero.title_end %></span>
+        </h1>
+        <p class="text-xl md:text-2xl text-white/60 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+            <%= t.hero.description %>
+        </p>
+        <div class="flex flex-col md:flex-row gap-6 justify-center">
+            <a href="/request" class="btn-primary text-lg"><%= t.hero.btn_request %></a>
+            <a href="/services" class="btn-outline text-lg"><%= t.hero.btn_solutions %></a>
+        </div>
+        <p class="mt-12 text-[10px] text-white/30 uppercase tracking-[0.2em] font-bold">
+            <%= t.hero.fiscal_note %>
+        </p>
+    </div>
+</section>
+
+<!-- Flagship Product Teaser -->
+<section class="py-20 bg-primary/5 border-y border-primary/10">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+            <div class="inline-block px-3 py-1 mb-6 rounded-full bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest">
+                Flagship Product
+            </div>
+            <h2 class="text-4xl font-extrabold mb-6"><%= t.wallet.title %></h2>
+            <p class="text-white/60 text-lg mb-8 leading-relaxed">
+                <%= t.wallet.description %>
+            </p>
+            <ul class="space-y-4 mb-8">
+                <% t.wallet.features.forEach(feature => { %>
+                <li class="flex items-center gap-3 text-sm text-white/80">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    <%= feature.title %>
+                </li>
+                <% }) %>
+            </ul>
+            <a href="/wallet" class="btn-outline border-primary text-primary hover:bg-primary hover:text-dark">Conhecer o Produto</a>
+        </div>
+        <div class="relative">
+             <!-- Placeholder for App Image or Abstract Graphic -->
+             <div class="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-transparent border border-white/5 flex items-center justify-center">
+                <div class="text-center">
+                    <div class="text-6xl mb-4">📱</div>
+                    <div class="text-xs uppercase tracking-widest text-white/30 font-bold">Secure Interface</div>
+                </div>
+             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Approach -->
+<section class="py-32 container mx-auto px-6 border-b border-white/5">
+    <div class="grid md:grid-cols-2 gap-20 items-center">
+        <div>
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-8"><%= t.approach.title %></h2>
+            <p class="text-white/60 text-lg mb-8 leading-relaxed">
+                <%= t.approach.description %>
+            </p>
+            <div class="space-y-6">
+                <% t.approach.items.forEach((item, index) => { %>
+                <div class="flex gap-4">
+                    <div class="text-primary font-bold">0<%= index + 1 %></div>
+                    <div>
+                        <h4 class="font-bold"><%= item.title %></h4>
+                        <p class="text-sm text-white/40"><%= item.desc %></p>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+        <div class="glass-card p-12 bg-primary/5 border-primary/20">
+            <h3 class="text-2xl font-bold mb-6"><%= t.approach.security_title %></h3>
+            <p class="text-white/60 mb-6 leading-relaxed text-sm">
+                <%= t.approach.security_desc %>
+            </p>
+            <ul class="text-xs text-white/40 space-y-3 uppercase tracking-wider">
+                <% t.approach.security_items.forEach(item => { %>
+                <li>• <%= item %></li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Method -->
+<section class="py-32 container mx-auto px-6">
+    <h2 class="text-4xl font-extrabold text-center mb-20"><%= t.method.title %></h2>
+    <div class="grid md:grid-cols-5 gap-8">
+        <% t.method.steps.forEach((step, index) => { %>
+        <div class="text-center">
+            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-6 font-bold text-primary"><%= index + 1 %></div>
+            <h4 class="font-bold mb-2"><%= step.title %></h4>
+            <p class="text-xs text-white/40 leading-relaxed text-center"><%= step.desc %></p>
+        </div>
+        <% }) %>
+    </div>
+</section>
+
+<!-- Support -->
+<section class="py-32 bg-dark-surface border-y border-white/5">
+    <div class="container mx-auto px-6 max-w-4xl text-center">
+        <h2 class="text-3xl font-bold mb-8">Suporte e Continuidade</h2>
+        <p class="text-white/60 leading-relaxed mb-12">
+            Entendemos que a entrega é apenas o início do ciclo de vida de um software. Oferecemos pacotes de manutenção e suporte técnico via contrato, garantindo que seu sistema permaneça atualizado e seguro frente às ameaças e mudanças tecnológicas.
+        </p>
+        <a href="/contact" class="btn-outline">Consultar Modalidades de Suporte</a>
+    </div>
+</section>
+
+<!-- Stats Grid -->
+<section class="py-32 container mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-12 text-center">
+        <div class="glass-card p-12">
+            <h3 class="text-5xl font-extrabold text-primary mb-4"><%= stats.negocios %></h3>
+            <p class="text-white/50 font-medium">NEGÓCIOS APOIADOS</p>
+        </div>
+        <div class="glass-card p-12">
+            <h3 class="text-5xl font-extrabold text-primary mb-4"><%= stats.projetos %></h3>
+            <p class="text-white/50 font-medium">PROJETOS ENTREGUES</p>
+        </div>
+        <div class="glass-card p-12">
+            <h3 class="text-5xl font-extrabold text-primary mb-4"><%= stats.operacoes %></h3>
+            <p class="text-white/50 font-medium">EM OPERAÇÕES ACOMPANHADAS</p>
+        </div>
+    </div>
+    <p class="text-center text-white/20 text-xs mt-12 italic">Indicadores demonstrativos de portfólio de parceiros desde 2019.</p>
+</section>
+
+<!-- Partners Disclaimer -->
+<section class="py-20 container mx-auto px-6 border-t border-white/5">
+    <h5 class="text-center text-white/30 uppercase tracking-[0.3em] text-xs mb-12">Experiência em Ambientes Corporativos</h5>
+    <div class="flex flex-wrap justify-center gap-x-12 gap-y-8 text-xl font-bold text-white/20 grayscale opacity-50">
+        <span>BANCO DO BRASIL</span>
+        <span>SANTANDER</span>
+        <span>ELECTROLUX</span>
+        <span>C&A</span>
+        <span>SODEXO</span>
+        <span>CACAU SHOW</span>
+        <span>TITANIUM TELECOM</span>
+    </div>
+    <p class="text-center text-white/10 text-[10px] mt-12 max-w-2xl mx-auto">
+        Atuações realizadas por meio de parceiros e contratos indiretos. Marcas pertencem a seus respectivos proprietários. Não configura vínculo comercial direto.
+    </p>
+</section>
+
+</section>
+
+<!-- Flagship Product Teaser -->
+<section class="py-20 bg-primary/5 border-y border-primary/10">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+            <div class="inline-block px-3 py-1 mb-6 rounded-full bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest">
+                Flagship Product
+            </div>
+            <h2 class="text-4xl font-extrabold mb-6">VKX Wallet</h2>
+            <p class="text-white/60 text-lg mb-8 leading-relaxed">
+                Nossa solução de custódia própria para o ecossistema Web3. Uma carteira multi-chain (BNB, Base, Solana) focada em segurança e experiência do usuário.
+            </p>
+            <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-sm text-white/80">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    Non-Custodial Architecture
+                </li>
+                <li class="flex items-center gap-3 text-sm text-white/80">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    Mobile-First Design
+                </li>
+                <li class="flex items-center gap-3 text-sm text-white/80">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    Hardware Wallet Ready (Em breve)
+                </li>
+            </ul>
+            <a href="/wallet" class="btn-outline border-primary text-primary hover:bg-primary hover:text-dark">Conhecer o Produto</a>
+        </div>
+        <div class="relative">
+             <!-- Placeholder for App Image or Abstract Graphic -->
+             <div class="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-transparent border border-white/5 flex items-center justify-center">
+                <div class="text-center">
+                    <div class="text-6xl mb-4">📱</div>
+                    <div class="text-xs uppercase tracking-widest text-white/30 font-bold">Secure Interface</div>
+                </div>
+             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Approach -->
+<section class="py-32 container mx-auto px-6 border-b border-white/5">
+    <div class="grid md:grid-cols-2 gap-20 items-center">
+        <div>
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-8">Nossa abordagem técnica</h2>
+            <p class="text-white/60 text-lg mb-8 leading-relaxed">
+                Cada projeto é tratado como um ativo crítico de negócio. Priorizamos a robustez da arquitetura para garantir a continuidade operacional.
+            </p>
+            <div class="space-y-6">
+                <div class="flex gap-4">
+                    <div class="text-primary font-bold">01</div>
+                    <div>
+                        <h4 class="font-bold">Arquitetura Escalável</h4>
+                        <p class="text-sm text-white/40">Sistemas preparados para o crescimento de demanda sem perda de performance.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="text-primary font-bold">02</div>
+                    <div>
+                        <h4 class="font-bold">Observabilidade</h4>
+                        <p class="text-sm text-white/40">Monitoramento constante e logs detalhados para antecipação de falhas.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="text-primary font-bold">03</div>
+                    <div>
+                        <h4 class="font-bold">Manutenibilidade</h4>
+                        <p class="text-sm text-white/40">Código limpo e documentado para facilitar a evolução futura do produto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="glass-card p-12 bg-primary/5 border-primary/20">
+            <h3 class="text-2xl font-bold mb-6">Segurança e Governança</h3>
+            <p class="text-white/60 mb-6 leading-relaxed text-sm">
+                Adotamos boas práticas de segurança da informação, com criptografia, controle de acesso e conformidade com a LGPD em todos os fluxos de dados.
+            </p>
+            <ul class="text-xs text-white/40 space-y-3 uppercase tracking-wider">
+                <li>• Ambientes de desenvolvimento segregados</li>
+                <li>• Backup e recuperação de desastres</li>
+                <li>• Validação de integridade de dados</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Method -->
+<section class="py-32 container mx-auto px-6">
+    <h2 class="text-4xl font-extrabold text-center mb-20">Como Trabalhamos</h2>
+    <div class="grid md:grid-cols-5 gap-8">
+        <div class="text-center">
+            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-6 font-bold text-primary">1</div>
+            <h4 class="font-bold mb-2">Diagnóstico</h4>
+            <p class="text-xs text-white/40 leading-relaxed text-center">Entendimento profundo dos desafios do negócio.</p>
+        </div>
+        <div class="text-center">
+            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-6 font-bold text-primary">2</div>
+            <h4 class="font-bold mb-2">Proposta</h4>
+            <p class="text-xs text-white/40 leading-relaxed">Definição técnica e comercial detalhada.</p>
+        </div>
+        <div class="text-center">
+            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-6 font-bold text-primary">3</div>
+            <h4 class="font-bold mb-2">Arquitetura</h4>
+            <p class="text-xs text-white/40 leading-relaxed">Planejamento da estrutura e fluxos de dados.</p>
+        </div>
+        <div class="text-center">
+            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-6 font-bold text-primary">4</div>
+            <h4 class="font-bold mb-2">Execução</h4>
+            <p class="text-xs text-white/40 leading-relaxed">Desenvolvimento com validações por etapa.</p>
+        </div>
+        <div class="text-center">
+            <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-6 font-bold text-primary">5</div>
+            <h4 class="font-bold mb-2">Evolução</h4>
+            <p class="text-xs text-white/40 leading-relaxed">Suporte contínuo e manutenção evolutiva.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Support -->
+<section class="py-32 bg-dark-surface border-y border-white/5">
+    <div class="container mx-auto px-6 max-w-4xl text-center">
+        <h2 class="text-3xl font-bold mb-8">Suporte e Continuidade</h2>
+        <p class="text-white/60 leading-relaxed mb-12">
+            Entendemos que a entrega é apenas o início do ciclo de vida de um software. Oferecemos pacotes de manutenção e suporte técnico via contrato, garantindo que seu sistema permaneça atualizado e seguro frente às ameaças e mudanças tecnológicas.
+        </p>
+        <a href="/contact" class="btn-outline">Consultar Modalidades de Suporte</a>
+    </div>
+</section>
+
+<!-- Stats Grid -->
+<section class="py-32 container mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-12 text-center">
+        <div class="glass-card p-12">
+            <h3 class="text-5xl font-extrabold text-primary mb-4"><%= stats.negocios %></h3>
+            <p class="text-white/50 font-medium">NEGÓCIOS APOIADOS</p>
+        </div>
+        <div class="glass-card p-12">
+            <h3 class="text-5xl font-extrabold text-primary mb-4"><%= stats.projetos %></h3>
+            <p class="text-white/50 font-medium">PROJETOS ENTREGUES</p>
+        </div>
+        <div class="glass-card p-12">
+            <h3 class="text-5xl font-extrabold text-primary mb-4"><%= stats.operacoes %></h3>
+            <p class="text-white/50 font-medium">EM OPERAÇÕES ACOMPANHADAS</p>
+        </div>
+    </div>
+    <p class="text-center text-white/20 text-xs mt-12 italic">Indicadores demonstrativos de portfólio de parceiros desde 2019.</p>
+</section>
+
+<!-- Partners Disclaimer -->
+<section class="py-20 container mx-auto px-6 border-t border-white/5">
+    <h5 class="text-center text-white/30 uppercase tracking-[0.3em] text-xs mb-12">Experiência em Ambientes Corporativos</h5>
+    <div class="flex flex-wrap justify-center gap-x-12 gap-y-8 text-xl font-bold text-white/20 grayscale opacity-50">
+        <span>BANCO DO BRASIL</span>
+        <span>SANTANDER</span>
+        <span>ELECTROLUX</span>
+        <span>C&A</span>
+        <span>SODEXO</span>
+        <span>CACAU SHOW</span>
+        <span>TITANIUM TELECOM</span>
+    </div>
+    <p class="text-center text-white/10 text-[10px] mt-12 max-w-2xl mx-auto">
+        Atuações realizadas por meio de parceiros e contratos indiretos. Marcas pertencem a seus respectivos proprietários. Não configura vínculo comercial direto.
+    </p>
+</section>

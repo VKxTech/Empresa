@@ -1,0 +1,23 @@
+<section class="min-h-[80vh] flex items-center justify-center px-6">
+    <div class="max-w-xl text-center">
+        <div class="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-12">
+            <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+        <h2 class="text-4xl font-extrabold mb-6">Pedido enviado com sucesso.</h2>
+        <p class="text-xl text-white/60 mb-8 leading-relaxed">
+            Nossa equipe analisa solicitações técnicas antes do contato. 
+            Caso o projeto esteja alinhado ao nosso perfil de atuação, entraremos em contato.
+        </p>
+        
+        <div class="space-y-6">
+            <% 
+                const waMessage = encodeURIComponent(`Olá, sou ${lead.name}. Solicitei uma consultoria para ${data.projectType}.\nObjetivo: ${data.message}\nInvestimento: ${data.investmentRange}`);
+            %>
+            <a href="https://wa.me/5589999307197?text=<%= waMessage %>" 
+               class="block btn-primary py-4 text-xl">
+                Contactar desenvolvedor responsável
+            </a>
+            <a href="/" class="block text-white/40 hover:text-white transition-colors text-sm uppercase tracking-widest font-bold">Voltar para a Home</a>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2EF2C8;
+  --color-primary-dark: #0E3A34;
+  --color-secondary: #1FD1A1;
+  --color-dark: #050808;
+  --color-dark-surface: #0A1412;
+  --color-dark-border: #142824;
+  
+  --font-outfit: "Outfit", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  --animate-glow: glow 4s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@layer base {
+  body {
+    @apply bg-dark text-white font-inter selection:bg-primary/30 selection:text-primary leading-relaxed;
+    background-image: radial-gradient(circle at 50% 0%, #0E3A34 0%, #050808 50%);
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-outfit tracking-tight;
+  }
+}
+
+@utility glass-card {
+  @apply bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl transition-all duration-500;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+@utility glass-card-hover {
+  @apply hover:bg-white/[0.06] hover:border-primary/30 hover:-translate-y-2;
+  box-shadow: 0 30px 60px rgba(0, 242, 200, 0.1);
+}
+
+@utility btn-primary {
+  @apply bg-gradient-to-r from-primary to-secondary text-dark font-black px-10 py-4 rounded-full transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/20 hover:shadow-primary/40 uppercase tracking-widest text-xs;
+}
+
+@utility btn-outline {
+  @apply border border-primary/20 text-primary font-bold px-10 py-4 rounded-full transition-all hover:bg-primary/5 active:scale-95 uppercase tracking-widest text-xs;
+}
+
+@utility text-gradient {
+  @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+}
+
+#hero-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.noise-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.02;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.teal-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(46, 242, 200, 0.05) 0%, transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(80px);
+}

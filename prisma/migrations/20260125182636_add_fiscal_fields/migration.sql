@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Lead" ADD COLUMN "nfIssuedAt" DATETIME;
+ALTER TABLE "Lead" ADD COLUMN "nfNumber" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "nfStatus" TEXT;

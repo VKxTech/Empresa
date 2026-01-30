@@ -1,0 +1,39 @@
+<div class="mb-8 flex justify-end">
+    <a href="/admin/invoices/new" class="btn-primary py-2 px-6 text-sm">Novo Link</a>
+</div>
+
+<div class="bg-dark rounded-2xl border border-white/5 overflow-hidden">
+    <table class="w-full text-left">
+        <thead class="bg-white/5 text-xs font-bold uppercase tracking-widest text-white/40">
+            <tr>
+                <th class="px-8 py-4">Cliente</th>
+                <th class="px-8 py-4">Valor</th>
+                <th class="px-8 py-4">Status</th>
+                <th class="px-8 py-4">Link Público</th>
+                <th class="px-8 py-4 text-right">Ações</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+            <% invoices.forEach(invoice => { %>
+                <tr class="hover:bg-white/5 transition-all">
+                    <td class="px-8 py-6">
+                        <div class="font-medium"><%= invoice.lead.name %></div>
+                        <div class="text-xs text-white/30"><%= invoice.description %></div>
+                    </td>
+                    <td class="px-8 py-6 font-bold text-primary">R$ <%= invoice.amount.toLocaleString('pt-BR') %></td>
+                    <td class="px-8 py-6">
+                        <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest <%= invoice.status === 'paid' ? 'bg-green-500/10 text-green-500' : 'bg-yellow-500/10 text-yellow-500' %>">
+                            <%= invoice.status %>
+                        </span>
+                    </td>
+                    <td class="px-8 py-6">
+                        <input type="text" readonly value="<%= siteUrl %>/pay/<%= invoice.token %>" class="bg-white/5 border border-white/10 rounded-lg px-3 py-1 text-xs w-48 outline-none">
+                    </td>
+                    <td class="px-8 py-6 text-right">
+                        <button class="text-white/40 hover:text-white transition-colors">Excluir</button>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>

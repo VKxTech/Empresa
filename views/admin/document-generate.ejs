@@ -1,0 +1,25 @@
+<div class="max-w-4xl glass-card p-12">
+    <div class="mb-12 border-b border-white/5 pb-8">
+        <h2 class="text-3xl font-bold mb-2">Formalização de Contratos e SLAs</h2>
+        <p class="text-white/40">Geração de documentos legais auto-preenchidos com base nos dados do lead e do projeto.</p>
+    </div>
+
+    <form action="/admin/documents/generate" method="POST" class="space-y-12">
+        <input type="hidden" name="leadId" value="<%= lead.id %>">
+        
+        <div class="space-y-8">
+            <h3 class="text-xs font-bold text-primary uppercase tracking-widest border-l-2 border-primary pl-4">1. Minuta do Contrato</h3>
+            <textarea name="contractContent" rows="12" class="w-full bg-white/5 border border-white/10 rounded-2xl p-6 text-sm text-white/70 outline-none focus:border-primary/50 font-mono"><%= contractContent %></textarea>
+        </div>
+
+        <div class="space-y-8">
+            <h3 class="text-xs font-bold text-primary uppercase tracking-widest border-l-2 border-primary pl-4">2. Acordo de Nível de Serviço (SLA)</h3>
+            <textarea name="slaContent" rows="8" class="w-full bg-white/5 border border-white/10 rounded-2xl p-6 text-sm text-white/70 outline-none focus:border-primary/50 font-mono"><%= slaContent %></textarea>
+        </div>
+
+        <div class="bg-white/5 p-8 rounded-2xl border border-white/5">
+            <p class="text-xs text-white/40 mb-6 italic">Ao clicar em gerar, o sistema criará os arquivos PDF server-side e os vinculará ao registro administrativo deste lead.</p>
+            <button type="submit" class="w-full btn-primary py-5 text-lg font-black uppercase">Gerar Kit de Documentos Legais</button>
+        </div>
+    </form>
+</div>

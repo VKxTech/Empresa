@@ -1,0 +1,123 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id             String    @id @default(uuid())
+  name           String
+  email          String    @unique
+  phone          String
+  personType     String
+  companyName    String?
+  website        String?
+  need           String?
+  consent        Boolean   @default(false)
+  consentIp      String?
+  consentAt      DateTime?
+  status         String    @default("Novo") // Novo, Em Análise, Qualificado, Proposta Enviada, Fechado, Perdido / Curioso
+  score          Int       @default(0)
+  sequenceStep   Int       @default(0)
+  nfStatus       String?   // Pendente, Emitida
+  nfNumber       String?
+  nfIssuedAt     DateTime?
+  tags           String?
+  notes          String?
+  lastEmailedAt  DateTime?
+  createdAt      DateTime  @default(now())
+  requests       Request[]
+  invoices       Invoice[]
+  quotes         Quote[]
+  commercialDocs CommercialDocument[]
+}
+
+model Request {
+  id               String   @id @default(uuid())
+  leadId           String
+  lead             Lead     @relation(fields: [leadId], references: [id])
+  projectType      String
+  investmentRange  String?
+  message          String
+  createdAt        DateTime @default(now())
+}
+
+model Invoice {
+  id            String   @id @default(uuid())
+  leadId        String
+  lead          Lead     @relation(fields: [leadId], references: [id])
+  token         String   @unique
+  amount        Float
+  currency      String   @default("BRL")
+  description   String
+  dueAt         DateTime
+  status        String   @default("pending")
+  provider      String
+  providerRef   String?
+  checkoutUrl   String?
+  pixQr         String?
+  pixCopyPaste  String?
+  createdAt     DateTime @default(now())
+  paidAt        DateTime?
+  events        PaymentEvent[]
+}
+
+model Quote {
+  id              String   @id @default(uuid())
+  leadId          String
+  lead            Lead     @relation(fields: [leadId], references: [id])
+  title           String
+  items           String   // JSON string
+  total           Float
+  pdfPath         String?
+  status          String   @default("Rascunho") // Rascunho, Gerada, Enviada, Aprovada, Rejeitada
+  estimatedWeeks  Int?
+  paymentTerms    String?
+  createdAt       DateTime @default(now())
+}
+
+model CommercialDocument {
+  id          String   @id @default(uuid())
+  leadId      String
+  lead        Lead     @relation(fields: [leadId], references: [id])
+  type        String   // CONTRATO, SLA
+  content     String   // MD or HTML content
+  pdfPath     String?
+  createdAt   DateTime @default(now())
+}
+
+model PaymentEvent {
+  id        String   @id @default(uuid())
+  invoiceId String
+  invoice   Invoice  @relation(fields: [invoiceId], references: [id])
+  provider  String
+  payload   String
+  createdAt DateTime @default(now())
+}
+
+model AdminUser {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  passwordHash String
+  createdAt    DateTime  @default(now())
+  lastLoginAt  DateTime?
+}
+
+model Unsubscribe {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  token     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model PageView {
+  id        String   @id @default(uuid())
+  ipHash    String
+  userAgent String
+  path      String
+  createdAt DateTime @default(now())
+}

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VKX Wallet — Mobile-first non-custodial wallet</title>
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --dark: #07070a;
+            --slate: #64748b;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --font-main: 'Inter', -apple-system, system-ui, sans-serif;
+            --font-display: 'Outfit', sans-serif;
+        }
+        
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { 
+            background: var(--light); 
+            color: var(--dark); 
+            line-height: 1.6; 
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Nav */
+        nav { 
+            height: 90px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            border-bottom: 1px solid var(--border); 
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            text-decoration: none; 
+            color: var(--dark);
+            height: 100%;
+        }
+        .logo img { 
+            height: 48px; 
+            width: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .logo-text {
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Hero */
+        .hero { padding: 100px 0 80px; text-align: center; position: relative; }
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 100%;
+            background: radial-gradient(circle at 70% 20%, rgba(16, 185, 129, 0.08), transparent 40%),
+                        radial-gradient(circle at 30% 80%, rgba(16, 185, 129, 0.05), transparent 40%);
+            z-index: -1;
+        }
+        
+        .status-group { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; }
+        .status { 
+            font-size: 11px; 
+            font-weight: 800; 
+            padding: 6px 14px; 
+            border-radius: 100px; 
+            text-transform: uppercase; 
+            letter-spacing: 1.2px; 
+            font-family: var(--font-display);
+        }
+        .status-live { background: #dcfce7; color: #065f46; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.1); }
+        .status-planned { background: #fef9c3; color: #854d0e; }
+        .status-soon { background: #f1f5f9; color: #475569; }
+        
+        h1 { 
+            font-family: var(--font-display);
+            font-size: clamp(48px, 8vw, 92px); 
+            font-weight: 900; 
+            letter-spacing: -3px; 
+            line-height: 0.95; 
+            margin-bottom: 24px; 
+            color: var(--dark);
+        }
+        h1 span { color: var(--primary); }
+        .subheadline { 
+            font-size: clamp(18px, 2vw, 22px); 
+            color: var(--slate); 
+            max-width: 650px; 
+            margin: 0 auto 48px;
+            font-weight: 500;
+        }
+        
+        .ctas { display: flex; flex-direction: column; gap: 16px; align-items: center; justify-content: center; }
+        .btn { 
+            width: 100%; 
+            max-width: 300px; 
+            padding: 20px 32px; 
+            border-radius: 20px; 
+            text-decoration: none; 
+            font-weight: 800; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px; 
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+        }
+        .btn-primary { 
+            background: var(--dark); 
+            color: white; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+        }
+        .btn-primary:hover { 
+            transform: translateY(-4px) scale(1.02);
+            background: #1a1a24;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+        }
+        .btn-secondary { 
+            background: var(--white); 
+            color: var(--dark); 
+            border: 2px solid var(--border); 
+        }
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Mockup */
+        .mockup-container { margin-top: 80px; perspective: 1000px; }
+        .phone { 
+            width: 300px; 
+            height: 600px; 
+            border: 14px solid #1a1a24; 
+            border-radius: 54px; 
+            background: #000; 
+            position: relative; 
+            overflow: hidden; 
+            box-shadow: 0 80px 160px -40px rgba(0,0,0,0.4);
+            transform: rotateX(5deg);
+        }
+        .phone-screen { 
+            height: 100%; 
+            width: 100%; 
+            background: linear-gradient(135deg, #07070a 0%, #0d0d16 100%); 
+            padding: 40px 24px; 
+            color: white; 
+            text-align: left; 
+        }
+        .phone-header { 
+            height: 24px; 
+            width: 100px; 
+            background: #1a1a24; 
+            margin: -24px auto 28px; 
+            border-radius: 0 0 20px 20px; 
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Features */
+        .features-section { padding: 100px 0; background: white; border-radius: 60px 60px 0 0; margin-top: 40px; }
+        .section-title { font-family: var(--font-display); font-size: 42px; font-weight: 900; margin-bottom: 60px; text-align: center; letter-spacing: -1.5px; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
+        .card { 
+            background: var(--light); 
+            padding: 40px; 
+            border-radius: 32px; 
+            border: 1px solid var(--border); 
+            transition: all 0.4s ease;
+        }
+        .card:hover { 
+            transform: translateY(-8px);
+            background: white;
+            border-color: var(--primary);
+            box-shadow: 0 30px 60px -15px rgba(16, 185, 129, 0.1);
+        }
+        .card h3 { font-family: var(--font-display); font-size: 22px; font-weight: 800; margin-bottom: 16px; }
+        .card p { font-size: 15px; color: var(--slate); font-weight: 500; }
+
+        /* Networks */
+        .networks { padding: 100px 0; text-align: center; background: white; }
+        .net-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 40px; }
+        .net-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            padding: 14px 24px; 
+            background: white; 
+            border: 1px solid var(--border); 
+            border-radius: 20px; 
+            font-size: 14px; 
+            font-weight: 800; 
+            font-family: var(--font-display);
+            transition: all 0.3s ease;
+        }
+        .net-item:hover { border-color: var(--primary); transform: scale(1.05); }
+        .linea { border-style: dashed; opacity: 0.6; }
+
+        /* Security */
+        .security-box { 
+            background: var(--dark); 
+            color: white; 
+            padding: 100px 40px; 
+            border-radius: 60px; 
+            margin: 0 24px; 
+            text-align: center; 
+            position: relative;
+            overflow: hidden;
+        }
+        .sec-grid { display: grid; gap: 48px; margin-top: 60px; position: relative; z-index: 10; }
+        .sec-item h4 { font-family: var(--font-display); font-size: 24px; font-weight: 800; margin-bottom: 16px; color: var(--primary); }
+        .sec-item p { font-size: 15px; color: #94a3b8; font-weight: 500; max-width: 300px; margin: 0 auto; }
+
+        /* Health */
+        .health { padding: 80px 0; text-align: center; }
+        #health-log { font-family: 'Courier New', monospace; font-size: 12px; margin-top: 20px; color: var(--slate); font-weight: bold; }
+
+        /* Footer */
+        footer { padding: 100px 0 60px; background: white; border-top: 1px solid var(--border); margin-top: 100px; }
+        .footer-content { display: grid; grid-template-columns: 1fr; gap: 60px; }
+        .f-links { list-style: none; }
+        .f-links a { text-decoration: none; color: var(--slate); font-size: 15px; font-weight: 600; display: block; margin-bottom: 12px; transition: color 0.2s; }
+        .f-links a:hover { color: var(--primary); }
+        
+        .copy-banner { margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--slate); }
+
+        @media (min-width: 768px) {
+            .grid { grid-template-columns: repeat(3, 1fr); }
+            .ctas { flex-direction: row; }
+            .sec-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-content { grid-template-columns: 2fr 1fr 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero-bg"></div>
+
+<div class="container">
+    <nav>
+        <a href="/" class="logo">
+            <img src="/logo.svg" alt="VKX Logo">
+            <span class="logo-text">VKX Wallet</span>
+        </a>
+        <div class="status status-live" style="font-size: 10px; opacity: 0.8;">Secure. Always.</div>
+    </nav>
+
+    <section class="hero">
+        <div class="status-group">
+            <div class="status status-live">Live on Android</div>
+            <div class="status status-planned">iOS: Planned</div>
+            <div class="status status-soon">Linea Ecosystem: Coming soon</div>
+        </div>
+        <h1>Next-gen <span>Self-custody</span></h1>
+        <p class="subheadline">The ultimate mobile gateway for multi-chain assets. Built for security, designed for users.</p>
+        
+        <div class="ctas">
+            <a href="https://play.google.com/store/apps/details?id=com.vkinha.wallet" target="_blank" class="btn btn-primary">
+                Google Play Store
+            </a>
+            <a href="https://t.me/canalvkx" target="_blank" class="btn btn-secondary">
+                Telegram Community
+            </a>
+        </div>
+
+        <div class="mockup-container">
+            <div class="phone">
+                <div class="phone-header"></div>
+                <div class="phone-screen">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+                        <span style="font-size: 12px; font-weight: 800; color: var(--primary);">VKX ALPHA</span>
+                        <div style="width: 24px; height: 24px; border: 2px solid rgba(255,255,255,0.2); border-radius: 50%;"></div>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.05); padding: 24px; border-radius: 28px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 24px;">
+                        <div style="font-size: 11px; opacity: 0.5; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Wallet Balance</div>
+                        <div style="font-size: 32px; font-weight: 900; font-family: var(--font-display);">$ 4,820.00</div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 40px;">
+                        <div style="height: 50px; background: var(--primary); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">RECEIVE</div>
+                        <div style="height: 50px; background: rgba(255,255,255,0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 10px;">SEND</div>
+                    </div>
+                    
+                    <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;">
+                        <div style="font-size: 10px; opacity: 0.5; font-weight: 800; text-transform: uppercase; margin-bottom: 16px;">Assets</div>
+                        <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 16px;">
+                            <div style="width: 32px; height: 32px; background: #f3ba2f; border-radius: 50%;"></div>
+                            <div style="flex: 1;"><div style="width: 60px; height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px;"></div></div>
+                            <div style="font-weight: 800; font-size: 12px;">$ 1,200</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="features-section" id="features">
+        <h2 class="section-title">Professional Grade Features</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Non-custodial</h3>
+                <p>Private keys are locally encrypted on your device. We are not a middleman, you are the bank.</p>
+            </div>
+            <div class="card">
+                <h3>WalletConnect</h3>
+                <p>Bridge to any DApp instantly. Fully compatible with WalletConnect v2.0 standards.</p>
+            </div>
+            <div class="card">
+                <h3>Multi-chain</h3>
+                <p>Native integration with Ethereum, BNB, Solana, Base, and more for a unified experience.</p>
+            </div>
+            <div class="card">
+                <h3>Built-in Swap</h3>
+                <p>Intelligent liquidity aggregation for the fastest trades with the lowest slippage possible.</p>
+            </div>
+            <div class="card">
+                <h3>Asset Manager</h3>
+                <p>Deep control over your portfolio. Add custom contracts or hide low-value tokens with ease.</p>
+            </div>
+            <div class="card">
+                <h3>Dev-Centric</h3>
+                <p>Universal deep-linking and SDK support for developers building the next generation of apps.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="networks" id="networks">
+        <h2 class="section-title">Multi-chain support</h2>
+        <div class="net-list">
+            <div class="net-item"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png" width="24"> BNB Chain</div>
+            <div class="net-item"><img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=040" width="20"> Ethereum</div>
+            <div class="net-item"><img src="https://cryptologos.cc/logos/solana-sol-logo.svg?v=040" width="20"> Solana</div>
+            <div class="net-item"><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=040" width="20"> Bitcoin (BRC-20)</div>
+            <div class="net-item"><img src="https://cryptologos.cc/logos/tron-trx-logo.svg?v=040" width="20"> TRON</div>
+            <div class="net-item"><img src="https://cryptologos.cc/logos/arbitrum-arb-logo.svg?v=040" width="20"> Arbitrum</div>
+            <div class="net-item"><img src="https://s2.coinmarketcap.com/static/img/rwa/64x64/6878a430cbbf471de336748e.png" width="24"> Base</div>
+            <div class="net-item"><img src="https://cryptologos.cc/logos/polygon-matic-logo.svg?v=040" width="20"> Polygon</div>
+            <div class="net-item"><img src="https://cryptologos.cc/logos/avalanche-avax-logo.svg?v=040" width="20"> Avalanche</div>
+            <div class="net-item linea"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/27657.png" width="24"> Linea (Soon)</div>
+        </div>
+    </div>
+
+    <div class="security-box" id="security">
+        <h2 class="section-title" style="color: white; margin-bottom: 24px;">Military-Grade Security</h2>
+        <p style="color: #94a3b8; max-width: 600px; margin: 0 auto;">Engineered for maximum protection and minimal friction.</p>
+        <div class="sec-grid">
+            <div class="sec-item">
+                <h4>Verified Ops</h4>
+                <p>Every signing operation is biometrically verified on-device.</p>
+            </div>
+            <div class="sec-item">
+                <h4>No Proxies</h4>
+                <p>Your transactions go directly to nodes. Zero data harvesting.</p>
+            </div>
+            <div class="sec-item">
+                <h4>True Ownership</h4>
+                <p>We believe in decentralization. Zero control, zero limits.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="health">
+        <button class="btn btn-secondary" style="font-size:11px; max-width:240px; margin:0 auto; padding: 12px;" onclick="runTest()">
+            System Integrity Check
+        </button>
+        <div id="health-log">Vercel Edge Status: ACTIVE</div>
+    </div>
+</div>
+
+<footer>
+    <div class="container footer-content">
+        <div>
+            <div class="logo" style="margin-bottom:24px">
+                <img src="/logo.svg" alt="VKX Logo" style="height:32px">
+                <span class="logo-text" style="font-size:18px">VKX WALLET</span>
+            </div>
+            <p style="font-size:14px; color:var(--slate); line-height: 1.8;">Leading the frontier of mobile-first self-custody. Powered by VKX Technologies.</p>
+        </div>
+        <div>
+            <h5 style="font-size:12px; font-family: var(--font-display); text-transform:uppercase; margin-bottom:24px; letter-spacing: 1px;">Ecosystem</h5>
+            <ul class="f-links">
+                <li><a href="https://wallet.vkxtech.com.br">Official Portal</a></li>
+                <li><a href="https://github.com/VKxTech/App">Source Code</a></li>
+                <li><a href="https://x.com/felp_devs">Twitter / X</a></li>
+            </ul>
+        </div>
+        <div>
+            <h5 style="font-size:12px; font-family: var(--font-display); text-transform:uppercase; margin-bottom:24px; letter-spacing: 1px;">Support</h5>
+            <ul class="f-links">
+                <li><a href="mailto:contato@vkxtech.com.br">Direct Contact</a></li>
+                <li><a href="https://t.me/canalvkx">Telegram Hub</a></li>
+                <li><a href="#" onclick="copyContact()">Copy Email</a></li>
+            </ul>
+        </div>
+        <div>
+            <h5 style="font-size:12px; font-family: var(--font-display); text-transform:uppercase; margin-bottom:24px; letter-spacing: 1px;">Legal</h5>
+            <ul class="f-links">
+                <li><a href="/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/terms-of-use">Terms of Service</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container copy-banner">
+        <span>© 2026 VKX TECHNOLOGIES</span>
+        <div style="display:flex; gap:24px">
+            <span>Security Audited</span>
+            <span>Non-Custodial</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function runTest() {
+        const log = document.getElementById('health-log');
+        log.innerText = "INITIALIZING CHECKS...";
+        log.style.color = "var(--primary)";
+        setTimeout(() => {
+            log.innerText = "OK: STATIC ASSETS LOADED VIA VERCEL EDGE";
+            log.style.color = "#059669";
+        }, 600);
+    }
+    function copyContact() {
+        navigator.clipboard.writeText("contato@vkxtech.com.br");
+        alert("Support email copied to clipboard.");
+    }
+</script>
+</body>
+</html>

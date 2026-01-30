@@ -1,0 +1,502 @@
+<%
+// =============================================
+// VKX Wallet - Grant-ready EJS Template
+// Place in: /views/wallet.ejs  (ou o seu arquivo do /wallet)
+// Requer: t.wallet.* no seu render (i18n/objeto).
+// =============================================
+%>
+
+<style>
+  /* Base safe tokens */
+  :root{
+    --bg: #060B14;
+    --panel: rgba(255,255,255,.045);
+    --panel2: rgba(255,255,255,.06);
+    --border: rgba(255,255,255,.10);
+    --border2: rgba(255,255,255,.14);
+    --text: rgba(255,255,255,.92);
+    --muted: rgba(255,255,255,.64);
+    --muted2: rgba(255,255,255,.45);
+    --accent: rgba(56,189,248,.95);
+    --accentSoft: rgba(56,189,248,.16);
+    --violet: rgba(167,139,250,.95);
+    --radius: 16px;
+  }
+
+  /* Layout */
+  .vkx-bg{ background: var(--bg); }
+  .vkx-container{ max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  @media (max-width:640px){ .vkx-container{ padding: 0 16px; } }
+  .vkx-section{ padding: 72px 0; position: relative; }
+  @media (max-width:768px){ .vkx-section{ padding: 52px 0; } }
+
+  /* Glow (não interfere em clique) */
+  .vkx-glow{ pointer-events:none; position:absolute; inset:0; overflow:hidden; }
+  .vkx-glow::before{
+    content:'';
+    position:absolute;
+    top:-220px;
+    left:50%;
+    transform:translateX(-50%);
+    width: 980px;
+    height: 560px;
+    background: radial-gradient(circle, rgba(56,189,248,.18) 0%, transparent 58%);
+    filter: blur(34px);
+    opacity: .75;
+  }
+  .vkx-glow::after{
+    content:'';
+    position:absolute;
+    top:-190px;
+    left:60%;
+    width: 760px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(167,139,250,.12) 0%, transparent 58%);
+    filter: blur(34px);
+    opacity: .65;
+  }
+
+  /* Cards */
+  .vkx-card{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .vkx-card:hover{ border-color: var(--border2); background: var(--panel2); }
+
+  /* Typography */
+  .vkx-h1{
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    font-size: clamp(34px, 5vw, 58px);
+    color: var(--text);
+  }
+  .vkx-h2{
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    line-height: 1.12;
+    font-size: clamp(22px, 3vw, 34px);
+    color: var(--text);
+  }
+  .vkx-p{ color: var(--muted); line-height: 1.75; }
+  .vkx-grad{
+    background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(56,189,248,.95));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+
+  /* Tag */
+  .vkx-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(56,189,248,.22);
+    background: rgba(56,189,248,.10);
+    color: rgba(56,189,248,.92);
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .vkx-dot{ width: 8px; height: 8px; border-radius: 999px; background: rgba(56,189,248,.95); }
+
+  /* Buttons */
+  .vkx-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap: 10px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    font-weight: 900;
+    font-size: 14px;
+    user-select:none;
+    transition: transform .15s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
+    white-space:nowrap;
+  }
+  .vkx-btn-primary{
+    background: rgba(56,189,248,.92);
+    color: #071018;
+  }
+  .vkx-btn-primary:hover{ transform: translateY(-1px); background: rgba(56,189,248,.82); }
+  .vkx-btn-ghost{
+    background: rgba(255,255,255,.04);
+    color: rgba(255,255,255,.88);
+    border: 1px solid rgba(255,255,255,.10);
+  }
+  .vkx-btn-ghost:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.14); }
+  .vkx-disabled{ opacity:.58; cursor:not-allowed; transform:none !important; }
+
+  /* Preview */
+  .vkx-preview{
+    margin-top: 14px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.02);
+  }
+  .vkx-preview img{ display:block; width:100%; height:auto; opacity:.96; }
+
+  /* Grids */
+  .vkx-grid-3{ display:grid; gap: 16px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 920px){ .vkx-grid-3{ grid-template-columns: 1fr; } }
+
+  /* Feature */
+  .vkx-ftitle{ display:flex; align-items:center; gap: 10px; font-weight: 900; color: var(--text); }
+  .vkx-fdot{ width: 8px; height: 8px; border-radius: 999px; background: rgba(56,189,248,.92); }
+  .vkx-fdesc{ color: rgba(255,255,255,.60); font-size: 14px; line-height: 1.7; margin-top: 10px; }
+
+  /* Badges */
+  .vkx-badge{
+    display:inline-flex; align-items:center;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.06);
+    color: rgba(255,255,255,.72);
+  }
+  .vkx-badge.ok{ border-color: rgba(34,197,94,.22); background: rgba(34,197,94,.10); color: rgba(34,197,94,.95); }
+  .vkx-badge.wip{ border-color: rgba(167,139,250,.22); background: rgba(167,139,250,.10); color: rgba(167,139,250,.95); }
+
+  /* Chart */
+  .vkx-chart-wrap{
+    height: 240px;
+    max-height: 240px;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.02);
+  }
+  @media (min-width: 768px){
+    .vkx-chart-wrap{ height: 280px; max-height: 280px; }
+  }
+  .vkx-chart-fallback{
+    display:none;
+    padding: 18px;
+    color: rgba(255,255,255,.55);
+    font-size: 13px;
+  }
+  .vkx-chart-wrap.is-empty .vkx-chart-fallback{ display:block; }
+  .vkx-chart-wrap.is-empty canvas{ display:none; }
+
+  /* Divider */
+  .vkx-hr{ border-top: 1px solid rgba(255,255,255,.06); }
+</style>
+
+<section class="vkx-bg relative overflow-hidden">
+  <div class="vkx-glow"></div>
+
+  <div class="vkx-container" style="padding-top: 112px; padding-bottom: 56px; position:relative; z-index:1;">
+    <div style="text-align:center;">
+      <div class="vkx-pill">
+        <span class="vkx-dot"></span>
+        <%= t.wallet.tag %>
+      </div>
+
+      <h1 class="vkx-h1" style="margin-top: 22px;">
+        <% const titleParts = (t.wallet.title || 'VKX Wallet').split(' '); %>
+        <%= titleParts[0] %> <span class="vkx-grad"><%= titleParts.slice(1).join(' ') %></span>
+      </h1>
+
+      <p class="vkx-p" style="max-width: 860px; margin: 16px auto 0; font-size: clamp(15px, 2vw, 20px);">
+        <%= t.wallet.description %>
+      </p>
+
+      <div style="margin-top: 26px; display:flex; gap: 12px; justify-content:center; flex-wrap:wrap;">
+        <!-- App Store (disabled) -->
+        <div class="vkx-btn vkx-btn-ghost vkx-disabled" aria-disabled="true">
+          <svg class="w-6 h-6" style="width:24px;height:24px;" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.523 15.3414C17.5146 12.0298 20.3705 10.3957 20.5055 10.3013C19.2319 8.44857 17.2568 7.70881 16.5494 7.4265C14.7925 6.70321 13.0906 6.7645 13.0906 6.7645C13.0906 6.7645 11.4583 6.64161 9.94056 7.4265C8.61863 8.09339 7.79516 9.35246 7.74797 9.40578C7.71261 9.45892 5.67029 11.8386 5.67029 15.9328C5.67029 19.4682 8.71887 24 11.751 24C12.9255 23.9749 13.9118 22.9559 15.4228 22.9559C16.9038 22.9559 17.6586 23.993 18.9918 23.9619C20.6189 23.9247 21.6212 22.5209 22.3877 21.3916C23.2367 20.1413 23.5847 19.3323 23.6083 19.3009C23.5788 19.2758 20.9011 18.0673 20.9011 15.3414H17.523ZM15.1102 4.41401C15.9061 3.44866 16.3539 2.11584 16.295 0.799805C15.0214 0.850201 13.6744 1.59737 12.873 2.53123C12.1126 3.40474 11.5113 4.79724 11.6999 6.04691C13.0612 6.13488 14.3912 5.34069 15.1102 4.41401Z"/>
+          </svg>
+          <span><%= t.wallet.btn_appstore %></span>
+          <span style="margin-left: 6px; font-size: 11px; font-weight: 800; opacity:.85;">(Coming soon)</span>
+        </div>
+
+        <!-- Google Play -->
+        <a
+          class="vkx-btn vkx-btn-primary"
+          href="<%= (t.wallet.google_play_url && t.wallet.google_play_url.trim()) ? t.wallet.google_play_url : '#' %>"
+          rel="noopener"
+        >
+          <svg class="w-6 h-6" style="width:24px;height:24px;" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.14L6.05,2.66Z" />
+          </svg>
+          <span><%= t.wallet.btn_googleplay %></span>
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-top: 18px;" class="vkx-grid-3">
+      <% (t.wallet.features || []).forEach(feature => { %>
+        <div class="vkx-card" style="padding: 18px;">
+          <div class="vkx-ftitle">
+            <span class="vkx-fdot"></span>
+            <span><%= feature.title %></span>
+          </div>
+          <div class="vkx-fdesc"><%- feature.desc %></div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- Roadmap (grid robusta, sem timeline quebradiça) -->
+<section class="vkx-bg vkx-hr">
+  <div class="vkx-container vkx-section">
+    <div style="text-align:center;">
+      <div class="vkx-pill" style="border-color: rgba(255,255,255,.10); background: rgba(255,255,255,.05); color: rgba(56,189,248,.90);">
+        DEVELOPMENT TIMELINE
+      </div>
+      <h2 class="vkx-h2" style="margin-top: 14px;"><%= t.wallet.roadmap.title %></h2>
+      <p class="vkx-p" style="max-width: 760px; margin: 10px auto 0; font-size: 15px;">
+        Milestones verificáveis (release, integração, checklist de segurança).
+      </p>
+    </div>
+
+    <div class="vkx-grid-3" style="margin-top: 18px;">
+      <!-- Q1 -->
+      <div class="vkx-card" style="padding: 18px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap: 10px;">
+          <span class="vkx-badge ok">Entregue</span>
+        </div>
+        <div style="margin-top: 10px; font-size: 18px; font-weight: 900; color: var(--text);">
+          <%= t.wallet.roadmap.q1.title %>
+        </div>
+
+        <div style="margin-top: 12px;">
+          <% t.wallet.roadmap.q1.subsections.forEach(section => { %>
+            <div style="margin-top: 12px;">
+              <div style="font-size: 12px; font-weight: 900; letter-spacing:.12em; text-transform: uppercase; color: rgba(56,189,248,.90);">
+                <%= section.title %>
+              </div>
+              <ul style="margin-top: 8px; padding-left: 0; list-style: none;">
+                <% section.items.forEach(item => { %>
+                  <li style="display:flex; gap: 10px; margin-top: 8px; color: rgba(255,255,255,.62); font-size: 14px; line-height: 1.6;">
+                    <span style="margin-top: 9px; width:6px; height:6px; border-radius:999px; background: rgba(56,189,248,.35); flex: 0 0 auto;"></span>
+                    <span><%- item %></span>
+                  </li>
+                <% }) %>
+              </ul>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="vkx-card" style="padding: 18px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap: 10px;">
+          <span class="vkx-badge wip">Em progresso</span>
+        </div>
+        <div style="margin-top: 10px; font-size: 18px; font-weight: 900; color: var(--text);">
+          <%= t.wallet.roadmap.q2.title %>
+        </div>
+
+        <div style="margin-top: 12px;">
+          <% t.wallet.roadmap.q2.subsections.forEach(section => { %>
+            <div style="margin-top: 12px;">
+              <div style="font-size: 12px; font-weight: 900; letter-spacing:.12em; text-transform: uppercase; color: rgba(255,255,255,.78);">
+                <%= section.title %>
+              </div>
+              <ul style="margin-top: 8px; padding-left: 0; list-style: none;">
+                <% section.items.forEach(item => { %>
+                  <li style="display:flex; gap: 10px; margin-top: 8px; color: rgba(255,255,255,.60); font-size: 14px; line-height: 1.6;">
+                    <span style="margin-top: 9px; width:6px; height:6px; border-radius:999px; background: rgba(255,255,255,.18); flex: 0 0 auto;"></span>
+                    <span><%- item %></span>
+                  </li>
+                <% }) %>
+              </ul>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="vkx-card" style="padding: 18px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap: 10px;">
+          <span class="vkx-badge">Futuro</span>
+        </div>
+        <div style="margin-top: 10px; font-size: 18px; font-weight: 900; color: var(--text);">
+          <%= t.wallet.roadmap.q3.title %>
+        </div>
+
+        <div style="margin-top: 12px;">
+          <% t.wallet.roadmap.q3.subsections.forEach(section => { %>
+            <div style="margin-top: 12px;">
+              <div style="font-size: 12px; font-weight: 900; letter-spacing:.12em; text-transform: uppercase; color: rgba(255,255,255,.78);">
+                <%= section.title %>
+              </div>
+              <ul style="margin-top: 8px; padding-left: 0; list-style: none;">
+                <% section.items.forEach(item => { %>
+                  <li style="display:flex; gap: 10px; margin-top: 8px; color: rgba(255,255,255,.58); font-size: 14px; line-height: 1.6;">
+                    <span style="margin-top: 9px; width:6px; height:6px; border-radius:999px; background: rgba(255,255,255,.18); flex: 0 0 auto;"></span>
+                    <span><%- item %></span>
+                  </li>
+                <% }) %>
+              </ul>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tração & Crescimento -->
+<section class="vkx-bg vkx-hr">
+  <div class="vkx-container vkx-section">
+    <div style="text-align:center;">
+      <h2 class="vkx-h2"><%= t.wallet.traction.title %></h2>
+      <p class="vkx-p" style="max-width: 720px; margin: 10px auto 0; font-size: 15px;">
+        <%= t.wallet.traction.subtitle %>
+      </p>
+    </div>
+
+    <!-- Chart -->
+    <div class="vkx-card" style="margin-top: 24px; padding: 24px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap: 16px; flex-wrap:wrap; margin-bottom: 20px;">
+        <div style="font-weight: 900; color: var(--text); font-size: 16px;">Crescimento de Usuários</div>
+        <div style="display:flex; gap: 20px; font-size: 12px; font-weight: 600;">
+          <div style="display: flex; align-items: center; gap: 6px; color: var(--muted);">
+            <span style="width: 12px; height: 3px; background: rgba(56,189,248,.95); border-radius: 2px;"></span>
+            <%= t.wallet.traction.legend_active %>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px; color: var(--muted2);">
+            <span style="width: 12px; height: 1px; background: rgba(255,255,255,.35); border-radius: 2px;"></span>
+            <%= t.wallet.traction.legend_projected %>
+          </div>
+        </div>
+      </div>
+
+      <div id="chartWrap" class="vkx-chart-wrap" style="height: 320px; max-height: 320px;">
+        <canvas id="growthChart"></canvas>
+      </div>
+
+      <!-- Disclaimer do Gráfico -->
+      <div style="margin-top: 12px; text-align: center; opacity: 0.5; font-size: 11px; font-family: monospace; color: var(--muted);">
+        * Projeções baseadas em testes de carga e estimativas de mercado. Não constituem KPI garantido.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Disclaimer -->
+<section class="vkx-bg vkx-hr">
+  <div class="vkx-container" style="padding: 56px 24px;">
+    <div class="vkx-card" style="padding: 18px; max-width: 920px; margin: 0 auto;">
+      <div style="font-size: 12px; font-weight: 900; letter-spacing:.18em; text-transform: uppercase; color: rgba(255,255,255,.70); text-align:center;">
+        <%= t.wallet.disclaimer.title %>
+      </div>
+
+      <div style="margin-top: 14px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 11px; color: rgba(255,255,255,.40); line-height: 1.8;">
+        <p style="display:flex; gap: 12px; margin-top: 10px;">
+          <span style="color: rgba(255,255,255,.20);" class="select-none">01</span>
+          <span><%= t.wallet.disclaimer.p1 %></span>
+        </p>
+        <p style="display:flex; gap: 12px; margin-top: 10px;">
+          <span style="color: rgba(255,255,255,.20);" class="select-none">02</span>
+          <span><%= t.wallet.disclaimer.p2 %></span>
+        </p>
+        <p style="display:flex; gap: 12px; margin-top: 10px;">
+          <span style="color: rgba(255,255,255,.20);" class="select-none">03</span>
+          <span><%= t.wallet.disclaimer.p3 %></span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const canvas = document.getElementById('growthChart');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Gradients
+    const activeGradient = ctx.createLinearGradient(0, 0, 0, 320);
+    activeGradient.addColorStop(0, 'rgba(56,189,248,0.35)');
+    activeGradient.addColorStop(1, 'rgba(56,189,248,0)');
+
+    const projectedGradient = ctx.createLinearGradient(0, 0, 0, 320);
+    projectedGradient.addColorStop(0, 'rgba(255,255,255,0.06)');
+    projectedGradient.addColorStop(1, 'rgba(255,255,255,0)');
+
+    // Data: 10/Jan=0, 28/Jan=48, then projection for 1 year
+    const labels = ['10/Jan', '15/Jan', '20/Jan', '25/Jan', '28/Jan', 'Fev', 'Mar', 'Abr', 'Jun', 'Set', 'Jan 2027'];
+    const realData = [0, 12, 25, 38, 48, null, null, null, null, null, null];
+    const projectedData = [null, null, null, null, 48, 150, 400, 1000, 3500, 12000, 50000];
+
+    new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: '<%= t.wallet.traction.legend_active %>',
+            data: realData,
+            borderColor: 'rgba(56,189,248,0.95)',
+            backgroundColor: activeGradient,
+            borderWidth: 3,
+            tension: 0.4,
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            pointBackgroundColor: 'rgba(56,189,248,0.95)',
+            pointBorderColor: '#0B1220',
+            pointBorderWidth: 2,
+            fill: true
+          },
+          {
+            label: '<%= t.wallet.traction.legend_projected %>',
+            data: projectedData,
+            borderColor: 'rgba(255,255,255,0.25)',
+            backgroundColor: projectedGradient,
+            borderWidth: 1.5,
+            borderDash: [6, 4],
+            tension: 0.4,
+            pointRadius: 0,
+            fill: true
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: false }
+        },
+        scales: {
+          x: {
+            grid: { color: 'rgba(255,255,255,0.04)', drawBorder: false },
+            ticks: { 
+              color: 'rgba(255,255,255,0.50)', 
+              font: { size: 11 }, 
+              maxRotation: 0 
+            }
+          },
+          y: {
+            display: false,
+            beginAtZero: true
+          }
+        },
+        interaction: {
+          mode: 'nearest',
+          axis: 'x',
+          intersect: false
+        }
+      }
+    });
+  });
+</script>

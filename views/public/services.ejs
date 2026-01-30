@@ -1,0 +1,55 @@
+<section class="py-32 container mx-auto px-6">
+    <div class="text-center mb-24">
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-8"><%= t.services.title %> <span class="text-gradient"><%= t.services.title_gradient %></span></h1>
+        <p class="text-white/50 text-xl max-w-2xl mx-auto"><%= t.services.subtitle %></p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+        <div class="glass-card p-12 group hover:scale-[1.02] transition-all">
+            <h3 class="text-2xl font-bold mb-4"><%= t.services.app_title %></h3>
+            <p class="text-white/50 leading-relaxed mb-8"><%= t.services.app_desc %></p>
+            <ul class="text-sm text-white/40 space-y-2">
+                <% t.services.app_items.forEach(item => { %>
+                <li>• <%= item %></li>
+                <% }) %>
+            </ul>
+        </div>
+
+        <div class="glass-card p-12 group hover:scale-[1.02] transition-all border-primary/20 bg-primary/5">
+            <h3 class="text-2xl font-bold mb-4"><%= t.services.erp_title %></h3>
+            <p class="text-white/50 leading-relaxed mb-8"><%= t.services.erp_desc %></p>
+            <ul class="text-sm text-white/40 space-y-2">
+                <% t.services.erp_items.forEach(item => { %>
+                <li>• <%= item %></li>
+                <% }) %>
+            </ul>
+        </div>
+
+        <div class="glass-card p-12 group hover:scale-[1.02] transition-all">
+            <h3 class="text-2xl font-bold mb-4"><%= t.services.infra_title %></h3>
+            <p class="text-white/50 leading-relaxed mb-8"><%= t.services.infra_desc %></p>
+            <ul class="text-sm text-white/40 space-y-2">
+                <% t.services.infra_items.forEach(item => { %>
+                <li>• <%= item %></li>
+                <% }) %>
+            </ul>
+        </div>
+
+        <div class="glass-card p-12 group hover:scale-[1.02] transition-all border-primary/10">
+            <h3 class="text-2xl font-bold mb-4"><%= t.services.support_title %></h3>
+            <p class="text-white/50 leading-relaxed mb-8"><%= t.services.support_desc %></p>
+            <ul class="text-sm text-white/40 space-y-2">
+                <% t.services.support_items.forEach(item => { %>
+                <li>• <%= item %></li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Fiscal Block -->
+    <div class="mt-20 glass-card p-12 border-white/5 text-center">
+        <p class="text-white/60 leading-relaxed">
+            <%= t.services.fiscal_text_1 %> <span class="text-white font-bold"><%= t.services.fiscal_company %></span> <%= t.services.fiscal_text_2 %> <span class="text-primary font-bold"><%= t.services.fiscal_note %></span><%= t.services.fiscal_text_3 %>
+        </p>
+    </div>
+</section>

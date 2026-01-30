@@ -1,0 +1,82 @@
+<section class="py-32 container mx-auto px-6">
+    <div class="max-w-2xl mx-auto glass-card p-10 md:p-16">
+        <h2 class="text-4xl font-extrabold mb-4">Solicitação de Consultoria</h2>
+        <p class="text-white/60 mb-12">Nossa equipe analisa solicitações técnicas antes do contato. Preencha os dados abaixo com precisão.</p>
+
+        <form action="/request" method="POST" class="space-y-8">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-2">Nome Completo</label>
+                    <input type="text" name="name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary/50 transition-all">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-2">E-mail Institucional</label>
+                    <input type="email" name="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary/50 transition-all">
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-2">Telefone / WhatsApp</label>
+                    <input type="tel" name="phone" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary/50 transition-all">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-2">Tipo de Pessoa</label>
+                    <select name="personType" required onchange="document.getElementById('company-div').style.display = (this.value === 'PJ' ? 'block' : 'none')" class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary/50 transition-all text-white">
+                        <option value="PF" class="bg-dark">Pessoa Física</option>
+                        <option value="PJ" class="bg-dark">Pessoa Jurídica</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="company-div" style="display: none;">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-2">Nome da Empresa</label>
+                        <input type="text" name="companyName" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary/50 transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-2">Site Atual (Opcional)</label>
+                        <input type="text" name="website" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary/50 transition-all">
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-2">Tipo de Projeto</label>
+                    <select name="projectType" required class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary/50 transition-all text-white">
+                        <option value="App Mobile" class="bg-dark">Aplicativo Mobile (Android / iOS)</option>
+                        <option value="Sistema Web Interno" class="bg-dark">Sistema Web Interno (CRM, ERP, Painel)</option>
+                        <option value="API / Integracao" class="bg-dark">API / Integrações</option>
+                        <option value="Website Institucional" class="bg-dark">Website Institucional</option>
+                        <option value="Landing Page" class="bg-dark">Landing Page</option>
+                        <option value="E-commerce" class="bg-dark">E-commerce</option>
+                        <option value="Manutenção" class="bg-dark">Manutenção / Evolução de sistema</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-2">Faixa de Investimento</label>
+                    <select name="investmentRange" required class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary/50 transition-all text-white">
+                        <option value="Ate R$ 5.000" class="bg-dark">Até R$ 5.000</option>
+                        <option value="R$ 5.000 - R$ 15.000" class="bg-dark">R$ 5.000 – R$ 15.000</option>
+                        <option value="R$ 15.000 - R$ 50.000" class="bg-dark">R$ 15.000 – R$ 50.000</option>
+                        <option value="Acima de R$ 50.000" class="bg-dark">Acima de R$ 50.000</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-primary uppercase tracking-widest mb-2">Objetivo Principal do Projeto</label>
+                <textarea name="message" required rows="3" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-primary/50 transition-all resize-none" placeholder="Descreva brevemente o que sua empresa busca alcançar."></textarea>
+            </div>
+
+            <div class="flex items-start gap-4">
+                <input type="checkbox" name="consent" id="consent" required class="mt-1 accent-primary">
+                <label for="consent" class="text-sm text-white/50">Confirmo que os dados informados são reais e concordo com os Termos de Uso e Política de Privacidade da VKX.</label>
+            </div>
+
+            <button type="submit" class="w-full btn-primary py-4 text-lg">Enviar para Análise Técnica</button>
+        </form>
+    </div>
+</section>

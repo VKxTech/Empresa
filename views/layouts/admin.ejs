@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VKX Admin | <%- title %></title>
+    <link rel="stylesheet" href="/css/output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-dark-surface text-white min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-dark border-r border-white/5 flex flex-col">
+        <div class="p-8 text-2xl font-outfit font-black text-gradient">VKX ADMIN</div>
+        <nav class="flex-1 px-4 py-8 space-y-2">
+            <a href="/admin" class="flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-all <%- path === '/admin' ? 'bg-primary/10 text-primary' : 'text-white/50' %>">
+                <span>Dashboard</span>
+            </a>
+            <a href="/admin/leads" class="flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-all <%- path.startsWith('/admin/leads') ? 'bg-primary/10 text-primary' : 'text-white/50' %>">
+                <span>CRM Leads</span>
+            </a>
+            <a href="/admin/invoices" class="flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-all <%- path.startsWith('/admin/invoices') ? 'bg-primary/10 text-primary' : 'text-white/50' %>">
+                <span>Links Pagamento</span>
+            </a>
+            <a href="/admin/quotes" class="flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-all <%- path.startsWith('/admin/quotes') ? 'bg-primary/10 text-primary' : 'text-white/50' %>">
+                <span>Orçamentos PDF</span>
+            </a>
+        </nav>
+        <div class="p-8 border-t border-white/5">
+            <a href="/admin/logout" class="text-red-400 text-sm hover:underline">Sair do Sistema</a>
+        </div>
+    </aside>
+
+    <main class="flex-1 p-12 overflow-y-auto">
+        <header class="flex justify-between items-center mb-12">
+            <h1 class="text-4xl font-outfit font-extrabold"><%- title %></h1>
+            <div class="text-sm text-white/50">Admin Logado</div>
+        </header>
+        <%- body %>
+    </main>
+</body>
+</html>
