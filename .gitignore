@@ -1,0 +1,6 @@
+.vercel
+node_modules
+.claude
+dist
+.env.example
+.env
