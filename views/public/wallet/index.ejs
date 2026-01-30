@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VKX Wallet — Mobile-first, non-custodial crypto wallet</title>
+    <meta name="description" content="Secure wallet + WalletConnect + multi-chain. Built for BSC, Ethereum, Arbitrum, Base, Polygon, and Avalanche.">
+    <link rel="stylesheet" href="/css/output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --brand-blue: #2563eb;
+            --brand-light: #f8fafc;
+            --brand-dark: #0f172a;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .font-outfit { font-family: 'Outfit', sans-serif; }
+        
+        .premium-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(79, 70, 229, 0.05), transparent 40%);
+        }
+
+        .feature-card {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 2rem;
+            border: 1px solid #f3f4f6;
+            transition: transform 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .feature-card:hover {
+            transform: translateY(-0.5rem);
+            border-color: #dbeafe;
+            box-shadow: 0 20px 40px -12px rgba(37, 99, 235, 0.12);
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            font-weight: 700;
+            transition: transform 150ms ease, background-color 200ms ease, box-shadow 200ms ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.25), 0 10px 10px -5px rgba(37, 99, 235, 0.12);
+        }
+        .btn-primary:hover { background: #1d4ed8; }
+        .btn-primary:active { transform: scale(0.95); }
+
+        .btn-secondary {
+            background: #ffffff;
+            color: #111827;
+            border: 1px solid #e5e7eb;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            font-weight: 700;
+            transition: transform 150ms ease, background-color 200ms ease, border-color 200ms ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        .btn-secondary:hover { background: #f9fafb; }
+        .btn-secondary:active { transform: scale(0.95); }
+
+        .phone-mockup {
+            position: relative;
+            width: 280px;
+            height: 580px;
+            background: #0f172a;
+            border: 12px solid #1e293b;
+            border-radius: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8rem;
+            height: 1.5rem;
+            background: #1e293b;
+            border-bottom-left-radius: 1.5rem;
+            border-bottom-right-radius: 1.5rem;
+            z-index: 20;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+
+        .network-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            background: #ffffff;
+            border: 1px solid #f3f4f6;
+            border-radius: 1rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #374151;
+            transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+        }
+        .network-badge:hover {
+            border-color: #bfdbfe;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .hero-title { font-size: 2.5rem; line-height: 1.1; }
+        }
+    </style>
+</head>
+<body class="bg-brand-light text-slate-900 selection:bg-blue-100 selection:text-blue-700">
+    <!-- Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 premium-glass h-20 flex items-center">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg">
+                    <i data-lucide="wallet" class="w-6 h-6"></i>
+                </div>
+                <span class="text-2xl font-black font-outfit tracking-tighter text-slate-900">VKX<span class="text-blue-600">WALLET</span></span>
+            </a>
+            <nav class="hidden lg:flex gap-10 items-center text-sm font-bold uppercase tracking-widest text-slate-500">
+                <a href="#features" class="hover:text-blue-600 transition-colors">Features</a>
+                <a href="#networks" class="hover:text-blue-600 transition-colors">Networks</a>
+                <a href="#security" class="hover:text-blue-600 transition-colors">Security</a>
+                <a href="/support" class="hover:text-blue-600 transition-colors">Support</a>
+                <a href="https://play.google.com/store/apps/details?id=com.vkinha.wallet" target="_blank" class="bg-blue-600 text-white px-6 py-2.5 rounded-full hover:bg-black transition-all shadow-lg shadow-blue-500/20">
+                    Get App
+                </a>
+            </nav>
+            <button class="lg:hidden p-2 text-slate-900" id="menu-toggle">
+                <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-white hidden flex-col items-center justify-center gap-10 text-2xl font-black font-outfit uppercase tracking-tighter transition-all">
+        <button class="absolute top-6 right-6 p-2" id="menu-close">
+            <i data-lucide="x" class="w-10 h-10 text-slate-900"></i>
+        </button>
+        <a href="#features" class="hover:text-blue-600">Features</a>
+        <a href="#networks" class="hover:text-blue-600">Networks</a>
+        <a href="#security" class="hover:text-blue-600">Security</a>
+        <a href="/support" class="hover:text-blue-600">Support</a>
+        <a href="https://play.google.com/store/apps/details?id=com.vkinha.wallet" target="_blank" class="bg-blue-600 text-white px-10 py-4 rounded-2xl">Download</a>
+    </div>
+
+    <main class="hero-gradient">
+        <!-- Hero Section -->
+        <section class="pt-40 pb-20 px-6">
+            <div class="container mx-auto">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <div class="flex-1 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-xs font-black uppercase tracking-widest mb-6">
+                            <span class="w-1.5 h-1.5 bg-blue-600 rounded-full animate-pulse"></span>
+                            Multi-chain Non-Custodial
+                        </div>
+                        <h1 class="hero-title text-5xl lg:text-8xl font-black font-outfit text-slate-900 mb-8 leading-[0.95] tracking-tighter uppercase">
+                            Your crypto,<br/>
+                            <span class="text-blue-600">your control.</span>
+                        </h1>
+                        <p class="text-xl text-slate-500 mb-12 max-w-xl leading-relaxed font-medium">
+                            Secure + WalletConnect + Multi-chain wallet built for the real world. 
+                            The most intuitive way to manage your digital assets.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-5">
+                            <a href="https://play.google.com/store/apps/details?id=com.vkinha.wallet" target="_blank" class="btn-primary">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                                Google Play Store
+                            </a>
+                            <a href="https://t.me/canalvkx" target="_blank" class="btn-secondary">
+                                <i data-lucide="send" class="w-6 h-6 text-blue-500"></i>
+                                Telegram Group
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 flex justify-center lg:justify-end">
+                        <div class="phone-mockup animate-float">
+                            <div class="absolute inset-x-4 inset-y-6 bg-gradient-to-b from-blue-600 to-indigo-700 rounded-[2.2rem] overflow-hidden p-6 flex flex-col justify-between">
+                                <div class="space-y-6 pt-4">
+                                    <div class="flex justify-between items-center text-white/60 text-[10px] font-bold uppercase tracking-widest">
+                                        <span>VKX Wallet Alpha</span>
+                                        <i data-lucide="settings" class="w-4 h-4"></i>
+                                    </div>
+                                    <div class="bg-white/10 border border-white/20 rounded-2xl p-5">
+                                        <p class="text-white/60 text-[10px] uppercase font-black tracking-widest mb-1">Total Balance</p>
+                                        <h3 class="text-3xl font-black text-white">$ 12,450.80</h3>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div class="bg-blue-500/30 h-10 rounded-xl flex items-center justify-center">
+                                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-white"></i>
+                                        </div>
+                                        <div class="bg-blue-500/30 h-10 rounded-xl flex items-center justify-center">
+                                            <i data-lucide="arrow-down-left" class="w-4 h-4 text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white rounded-2xl py-4 text-center text-blue-600 font-black text-sm uppercase tracking-widest shadow-xl">
+                                    Launch Wallet
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats/Brands -->
+        <section class="py-12 border-y border-gray-100 bg-white/50 backdrop-blur-sm">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-wrap justify-between items-center gap-10 opacity-40 grayscale">
+                    <span class="text-2xl font-black tracking-tighter">ETHEREUM</span>
+                    <span class="text-2xl font-black tracking-tighter">BINANCE</span>
+                    <span class="text-2xl font-black tracking-tighter">SOLANA</span>
+                    <span class="text-2xl font-black tracking-tighter">POLYGON</span>
+                    <span class="text-2xl font-black tracking-tighter">AVALANCHE</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="py-32 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mb-24">
+                    <h2 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-4">Core Principles</h2>
+                    <h3 class="text-4xl lg:text-6xl font-black font-outfit text-slate-900 leading-[0.95] tracking-tighter uppercase">
+                        Built for <br/><span class="text-blue-600">the next billion users.</span>
+                    </h3>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="feature-card">
+                        <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-8">
+                            <i data-lucide="shield-check" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-2xl font-black font-outfit uppercase tracking-tighter mb-4">Non-Custodial</h4>
+                        <p class="text-slate-500 font-medium leading-relaxed">
+                            You are the sole master of your assets. We never have access to your seed phrase or private keys.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-8">
+                            <i data-lucide="layers" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-2xl font-black font-outfit uppercase tracking-tighter mb-4">Chain Agnostic</h4>
+                        <p class="text-slate-500 font-medium leading-relaxed">
+                            Switch between BSC, Ethereum, Arbitrum, Base, and more with a single tap. No complex setup.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-8">
+                            <i data-lucide="zap" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-2xl font-black font-outfit uppercase tracking-tighter mb-4">Swap Engine</h4>
+                        <p class="text-slate-500 font-medium leading-relaxed">
+                            Integrated aggregator for the best rates and instant execution across multiple liquidity pools.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Networks -->
+        <section id="networks" class="py-32 bg-slate-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-20">
+                    <h3 class="text-4xl font-black font-outfit text-slate-900 tracking-tighter uppercase mb-6">Ecosystem support</h3>
+                    <p class="text-slate-500 font-medium">Deeply integrated with the world's most trusted blockchain networks.</p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 lg:px-20">
+                    <div class="network-badge"><div class="w-3 h-3 bg-yellow-400 rounded-full"></div> BNB Chain</div>
+                    <div class="network-badge"><div class="w-3 h-3 bg-indigo-500 rounded-full"></div> Ethereum</div>
+                    <div class="network-badge"><div class="w-3 h-3 bg-blue-400 rounded-full"></div> Solana</div>
+                    <div class="network-badge"><div class="w-3 h-3 bg-orange-500 rounded-full"></div> Bitcoin (BRC-20)</div>
+                    <div class="network-badge"><div class="w-3 h-3 bg-red-600 rounded-full"></div> TRON</div>
+                    <div class="network-badge"><div class="w-3 h-3 bg-blue-400 rounded-full"></div> Arbitrum One</div>
+                    <div class="network-badge"><div class="w-3 h-3 bg-blue-600 rounded-full"></div> Coinbase Base</div>
+                    <div class="network-badge"><div class="w-3 h-3 bg-purple-600 rounded-full"></div> Polygon PoS</div>
+                    <div class="network-badge"><div class="w-3 h-3 bg-red-500 rounded-full"></div> Avalanche C-Chain</div>
+                    <div class="network-badge opacity-50 italic border-dashed border-gray-300">
+                        <i data-lucide="loader-2" class="w-3 h-3 animate-spin"></i> Linea (Coming Soon)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Focused -->
+        <section id="security" class="py-32 bg-slate-900 text-white relative overflow-hidden">
+            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <div>
+                        <h3 class="text-4xl lg:text-7xl font-black font-outfit mb-8 leading-[0.95] tracking-tighter uppercase">
+                            Institutional <br/><span class="text-blue-500">grade security.</span>
+                        </h3>
+                        <p class="text-slate-400 text-lg mb-12 font-medium">
+                            We use advanced cryptography and device-native security to ensure your funds are protected against all modern threats.
+                        </p>
+                        <ul class="space-y-6">
+                            <li class="flex items-center gap-4 font-bold uppercase tracking-widest text-sm text-slate-200">
+                                <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400">
+                                    <i data-lucide="check" class="w-5 h-5"></i>
+                                </div>
+                                Purely Local Signing
+                            </li>
+                            <li class="flex items-center gap-4 font-bold uppercase tracking-widest text-sm text-slate-200">
+                                <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400">
+                                    <i data-lucide="check" class="w-5 h-5"></i>
+                                </div>
+                                Zero-Knowledge Backends
+                            </li>
+                            <li class="flex items-center gap-4 font-bold uppercase tracking-widest text-sm text-slate-200">
+                                <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400">
+                                    <i data-lucide="check" class="w-5 h-5"></i>
+                                </div>
+                                Biometric Protection
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-600 rounded-[3rem] p-12 lg:p-20 text-center relative">
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+                        <i data-lucide="lock" class="w-24 h-24 text-white/20 absolute bottom-10 right-10"></i>
+                        <h4 class="text-3xl font-black font-outfit uppercase tracking-tighter mb-6 underline decoration-4 underline-offset-8">No backend signing.</h4>
+                        <p class="text-white/80 font-bold uppercase tracking-widest text-sm">Offline Execution Engine</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-32 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <div class="bg-blue-600 rounded-[4rem] p-12 lg:p-24 shadow-2xl shadow-blue-500/30 overflow-hidden relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-600"></div>
+                    <div class="relative z-10">
+                        <h2 class="text-4xl lg:text-7xl font-black font-outfit text-white mb-10 tracking-tighter uppercase leading-none">
+                            Ready to take <br/>ownership?
+                        </h2>
+                        <div class="flex flex-col sm:flex-row justify-center gap-6">
+                            <a href="https://play.google.com/store/apps/details?id=com.vkinha.wallet" target="_blank" class="bg-white text-blue-600 px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-sm shadow-xl shadow-black/10 hover:scale-105 transition-all">
+                                Download on Android
+                            </a>
+                            <a href="https://t.me/canalvkx" target="_blank" class="bg-blue-500 text-white border border-white/20 px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-blue-400 transition-all">
+                                Join Telegram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 pt-24 pb-12 border-t border-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-4 gap-16 mb-24">
+                <div class="col-span-2">
+                    <a href="/" class="flex items-center gap-2 mb-8">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white">
+                            <i data-lucide="wallet" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xl font-black font-outfit tracking-tighter uppercase">VKX<span class="text-blue-600">WALLET</span></span>
+                    </a>
+                    <p class="text-slate-400 max-w-sm font-medium leading-relaxed">
+                        The ultimate high-performance non-custodial wallet. Engineered with precision by VKX Technologies.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-8">Navigation</h5>
+                    <ul class="space-y-4 text-slate-500 text-sm font-bold uppercase tracking-widest">
+                        <li><a href="#features" class="hover:text-blue-600">Features</a></li>
+                        <li><a href="#networks" class="hover:text-blue-600">Networks</a></li>
+                        <li><a href="/support" class="hover:text-blue-600">Support</a></li>
+                        <li><a href="/privacy-policy" class="hover:text-blue-600 text-xs">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-8">Connect</h5>
+                    <div class="flex gap-4">
+                        <a href="https://t.me/canalvkx" target="_blank" class="w-12 h-12 bg-white border border-gray-200 rounded-2xl flex items-center justify-center text-slate-400 hover:text-blue-600 hover:border-blue-100 transition-all shadow-sm">
+                            <i data-lucide="send" class="w-6 h-6"></i>
+                        </a>
+                        <a href="mailto:contato@vkxtech.com.br" class="w-12 h-12 bg-white border border-gray-200 rounded-2xl flex items-center justify-center text-slate-400 hover:text-blue-600 hover:border-blue-100 transition-all shadow-sm">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-200/50 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-slate-400 text-[10px] uppercase font-black tracking-[0.4em]">© 2026 VKX TECHNOLOGIES. ALL RIGHTS RESERVED.</p>
+                <div class="flex gap-8 text-[10px] text-slate-400 font-black uppercase tracking-widest">
+                    <span>SECURITY AUDITED</span>
+                    <span>100% NON-CUSTODIAL</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        menuClose.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Add scrolled class to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-xl');
+            } else {
+                header.classList.remove('shadow-xl');
+            }
+        });
+    </script>
+</body>
+</html>
