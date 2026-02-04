@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.vkinha.wallet",
+      "sha256_cert_fingerprints": [
+        "61:C7:46:46:2B:7B:B1:56:2B:30:26:21:A8:13:CA:45:37:83:51:AB:06:C2:8F:7D:03:E5:98:B6:4D:DA"
+      ]
+    }
+  }
+]
