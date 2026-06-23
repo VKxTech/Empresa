@@ -1,463 +1,2907 @@
+<%
+const officialWalletUrl = 'https://wallet.vkxtech.com.br';
+const officialDownloadBase = `${officialWalletUrl}/download`;
+const officialSupportUrl = `${officialWalletUrl}/support`;
+const officialPrivacyUrl = `${officialWalletUrl}/privacy-policy`;
+const officialSecurityUrl = `${officialWalletUrl}/security-architecture`;
+const officialMainSiteUrl = 'https://vkxtech.com.br';
+const officialBlogUrl = 'https://www.vkinha.com/blog';
+const downloadHref = ref ? `${officialDownloadBase}?ref=${encodeURIComponent(ref)}` : officialDownloadBase;
+const uiLang = ['pt', 'en', 'es'].includes(lang) ? lang : 'en';
+
+const walletContent = {
+  pt: {
+    nav_problem: 'O Problema',
+    nav_vault: 'Vault',
+    nav_gas: 'Gas Shield',
+    nav_multichain: 'Multichain',
+    nav_comparison: 'Comparativo',
+    nav_faq: 'FAQ',
+    btn_download: 'Baixar VKX Wallet',
+    btn_understand: 'Ver como funciona',
+    pill_product: 'Velocidade Máxima',
+    pill_simple: 'Fácil & Intuitiva',
+    pill_secure: 'Segurança Blindada',
+    hero_title: 'Uma wallet cripto <span>rápida, fácil e segura</span> para o uso real.',
+    hero_desc: 'Mova e guarde seus ativos com autocustódia total. A VKX Wallet elimina os gargalos que te travam: taxas de gás com o Gas Shield BNB, riscos de golpes com o Vault e complexidade com IA integrada.',
+    
+    proof_users_title: '+5.000',
+    proof_users_desc: 'Usuários ativos',
+    proof_protected_title: '+US$ 500k',
+    proof_protected_desc: 'Protegidos no ecossistema',
+    proof_vault_title: '+US$ 20k',
+    proof_vault_desc: 'Blindados no Vault',
+    proof_evolution_title: '100%',
+    proof_evolution_desc: 'Autocustódia com camadas extras',
+    proof_update_note: '*Dados internos de produção atualizados em: 06/2026',
+
+    problem_tag: 'Cripto sem complicação',
+    problem_title: 'Cripto ainda é difícil para quem só quer usar.',
+    problem_desc: 'A maioria das wallets exige conhecimentos avançados. A VKX centraliza tudo em uma experiência fluida, rápida e livre de taxas surpresas e redes erradas.',
+    problem_card_gas_title: 'Falta de Gás (Taxas)',
+    problem_card_gas_desc: 'Ficar travado com saldo em tokens (como USDT) por não possuir BNB ou ETH para pagar a taxa de envio na rede.',
+    problem_card_network_title: 'Rede Incorreta',
+    problem_card_network_desc: 'A confusão ao escolher redes como BSC, Polygon ou Arbitrum, que frequentemente causa a perda definitiva de fundos.',
+    problem_card_fear_title: 'Medo de Perder Tudo',
+    problem_card_fear_desc: 'Golpes de phishing, links suspeitos e a ansiedade constante ao lidar com a seed phrase original.',
+    problem_card_wallets_title: 'Múltiplas Bridges',
+    problem_card_wallets_desc: 'Ter que conectar a sites de terceiros, lentos e difíceis, apenas para mover USDT entre redes.',
+
+    vault_tag: 'Pilar 1 — Segurança Ativa',
+    vault_title: 'Seu cripto protegido por camadas extras.',
+    vault_desc: 'O Vault VKX adiciona uma camada extra para separar seus fundos de reserva da carteira de uso diário, reduzindo riscos de erro humano, movimentações impulsivas e exposição operacional.',
+    vault_bullet1: 'Proteção blindada para reserva de longo prazo',
+    vault_bullet2: 'Alertas imediatos e verificação de movimentações',
+    vault_bullet3: 'Barreira contra erros operacionais e saques acidentais',
+    vault_bullet4: 'Ideal para USDT, VKX e outros ativos principais',
+    vault_highlight: 'Mais de <strong>US$ 20.000</strong> protegidos no Vault VKX.',
+
+    gas_tag: 'Pilar 2 — Velocidade e Praticidade',
+    gas_title: 'Sem BNB? O Gas Shield resolve.',
+    gas_desc: 'Esqueça o desespero de ter tokens mas não conseguir movê-los. Na BNB Chain, a VKX possui um sistema inteligente de subsídio de taxas. Se você tiver saldo em tokens, realizamos a transação sem que você fique travado por falta de BNB.',
+    gas_sim_title: 'Simulador Gas Shield',
+    gas_sim_start: 'Simular Transação Sem BNB',
+    gas_sim_reset: 'Reiniciar Simulação',
+    gas_sim_step1: '1. Verificando saldos da carteira...',
+    gas_sim_step2: '2. Detectado: 100 USDT | 0.00 BNB (Taxas necessárias)',
+    gas_sim_step3: '3. Ativando Gas Shield: VKX assume e subsidia a taxa...',
+    gas_sim_step4: '4. ✓ Transação concluída! 100 USDT enviados.',
+
+    cross_tag: 'Pilar 3 — Conectividade Multichain',
+    cross_title: 'USDT multichain de verdade.',
+    cross_desc: 'Transacione USDT entre diferentes redes em poucos segundos, sem precisar de bridges externas lentas. A VKX conecta rotas integradas para máxima velocidade e menor taxa.',
+    cross_networks_title: 'Redes suportadas e em expansão contínua:',
+    cross_router_title: 'Simulador Cross-Chain',
+    cross_router_from: 'Rede de Origem',
+    cross_router_to: 'Rede de Destino',
+    cross_router_amount: 'Valor (USDT)',
+    cross_router_btn: 'Calcular Melhor Rota',
+    cross_router_calc: 'Calculando rota otimizada...',
+    cross_router_result: 'Melhor rota encontrada!',
+    cross_router_time: 'Tempo estimado:',
+    cross_router_fee: 'Taxa da rota:',
+
+    comp_tag: 'Comparação Prática',
+    comp_title: 'Por que escolher a VKX Wallet?',
+    comp_desc: 'Compare os recursos essenciais. A VKX foi desenhada para resolver as dores reais do usuário, com foco em facilidade, velocidade e segurança.',
+    comp_col_feature: 'Recurso / Diferencial',
+    comp_col_vkx: 'VKX Wallet',
+    comp_col_trust: 'Trust Wallet',
+    comp_col_meta: 'MetaMask',
+    comp_col_safe: 'SafePal',
+    
+    faq_tag: 'Dúvidas Frequentes',
+    faq_title: 'FAQ de Segurança & Uso',
+    faq_desc: 'Entenda como protegemos sua custódia e facilitamos sua experiência.',
+
+    cta_title: 'A carteira que protege, move e simplifica.',
+    cta_desc: 'Pronta para o uso real. Baixe agora e comece a operar com o máximo de velocidade, facilidade e segurança.',
+    btn_official_site: 'Site oficial',
+    btn_official_blog: 'Blog oficial',
+    news_tag: 'Newsletter',
+    news_title: 'RECEBA ATUALIZAÇÕES E NOVIDADES',
+    news_check_general: 'Novidades gerais',
+    news_check_dev: 'Atualizações para desenvolvedores',
+    news_placeholder: 'Seu endereço de e-mail',
+    news_btn: 'INSCREVER-SE',
+    news_disclaimer: 'A VKX poderá usar as informações de contato fornecidas para enviar novidades sobre produtos e serviços. Ao se inscrever, você consente com essas comunicações. Cancele a assinatura a qualquer momento. Consulte nossa <a href="/legal/privacy" style="text-decoration: underline;">Política de Privacidade</a>.',
+    footer_rights: '2026 VKX Wallet • Uma wallet rápida, fácil e segura para uso real.',
+    footer_disclaimer: 'VKX Wallet é um software de autocustódia. Não atuamos como custodiante, corretora ou banco. Seus fundos e chaves privadas permanecem exclusivamente sob seu controle. Use com responsabilidade.'
+  },
+  en: {
+    nav_problem: 'The Problem',
+    nav_vault: 'Vault',
+    nav_gas: 'Gas Shield',
+    nav_multichain: 'Multichain',
+    nav_comparison: 'Comparison',
+    nav_faq: 'FAQ',
+    btn_download: 'Download VKX Wallet',
+    btn_understand: 'See how it works',
+    pill_product: 'Maximum Speed',
+    pill_simple: 'Easy & Intuitive',
+    pill_secure: 'Advanced Security',
+    hero_title: 'A <span>fast, easy, and secure</span> crypto wallet built for real-world use.',
+    hero_desc: 'Move and store your assets with total self-custody. VKX Wallet eliminates the bottlenecks that stop you: transaction fees with BNB Gas Shield, scam risks with Vault, and complexity with integrated AI.',
+    
+    proof_users_title: '+5,000',
+    proof_users_desc: 'Active users',
+    proof_protected_title: '+$500k',
+    proof_protected_desc: 'Protected in ecosystem',
+    proof_vault_title: '+$20k',
+    proof_vault_desc: 'Secured in Vault',
+    proof_evolution_title: '100%',
+    proof_evolution_desc: 'Self-custody with extra layers',
+    proof_update_note: '*Internal production data updated: 06/2026',
+
+    problem_tag: 'Frictionless Crypto',
+    problem_title: 'Crypto is still too hard for daily use.',
+    problem_desc: 'Most wallets require complex technical knowledge. VKX centralizes everything into a smooth, fast experience free of surprise fees and wrong networks.',
+    problem_card_gas_title: 'Lack of Gas (Fees)',
+    problem_card_gas_desc: 'Getting stuck with token balances (like USDT) due to not having BNB or ETH to pay the network transfer fee.',
+    problem_card_network_title: 'Incorrect Network',
+    problem_card_network_desc: 'Confusion when choosing chains like BSC, Polygon, or Arbitrum, frequently causing permanent loss of funds.',
+    problem_card_fear_title: 'Fear of Losing It All',
+    problem_card_fear_desc: 'Phishing scams, malicious links, and constant anxiety when managing the original seed phrase.',
+    problem_card_wallets_title: 'Multiple Bridges',
+    problem_card_wallets_desc: 'Having to connect to slow and difficult third-party sites just to move USDT between networks.',
+
+    vault_tag: 'Pillar 1 — Active Security',
+    vault_title: 'Your crypto protected by extra layers.',
+    vault_desc: 'The VKX Vault adds an extra layer to segregate your reserve funds from your daily spending wallet, reducing the risks of human error, impulsive transfers, and operational exposure.',
+    vault_bullet1: 'Ironclad protection for long-term reserves',
+    vault_bullet2: 'Immediate alerts and transfer verification',
+    vault_bullet3: 'Barrier against operational errors and impulsive withdrawals',
+    vault_bullet4: 'Ideal for USDT, VKX, and other major assets',
+    vault_highlight: 'Over <strong>$20,000</strong> already secured in the VKX Vault.',
+
+    gas_tag: 'Pillar 2 — Speed & Convenience',
+    gas_title: 'No BNB? Gas Shield takes over.',
+    gas_desc: 'Forget the despair of having tokens you cannot move. On the BNB Chain, VKX has an intelligent gas fee sponsorship system. If you have token balances, we execute the transaction so you are never stranded.',
+    gas_sim_title: 'Gas Shield Simulator',
+    gas_sim_start: 'Simulate Gasless Transaction',
+    gas_sim_reset: 'Reset Simulation',
+    gas_sim_step1: '1. Checking wallet balances...',
+    gas_sim_step2: '2. Detected: 100 USDT | 0.00 BNB (Gas required)',
+    gas_sim_step3: '3. Activating Gas Shield: VKX sponsors the network fee...',
+    gas_sim_step4: '4. ✓ Success! 100 USDT transferred without BNB.',
+
+    cross_tag: 'Pillar 3 — Multichain Connectivity',
+    cross_title: 'True multichain USDT.',
+    cross_desc: 'Swap USDT across networks in seconds, without using slow external bridges. VKX integrates automated routes for maximum speed and lowest fees.',
+    cross_networks_title: 'Supported networks (expanding continuously):',
+    cross_router_title: 'Cross-Chain Simulator',
+    cross_router_from: 'Source Network',
+    cross_router_to: 'Destination Network',
+    cross_router_amount: 'Amount (USDT)',
+    cross_router_btn: 'Calculate Best Route',
+    cross_router_calc: 'Calculating optimal route...',
+    cross_router_result: 'Best route found!',
+    cross_router_time: 'Estimated time:',
+    cross_router_fee: 'Route fee:',
+
+    comp_tag: 'Practical Comparison',
+    comp_title: 'Why choose VKX Wallet?',
+    comp_desc: 'Compare core features. VKX was built to solve user pain points with a focus on ease of use, speed, and safety.',
+    comp_col_feature: 'Feature / Benefit',
+    comp_col_vkx: 'VKX Wallet',
+    comp_col_trust: 'Trust Wallet',
+    comp_col_meta: 'MetaMask',
+    comp_col_safe: 'SafePal',
+
+    faq_tag: 'FAQ',
+    faq_title: 'Security & Usage Answers',
+    faq_desc: 'Learn how we secure your custody and simplify your web3 experience.',
+
+    cta_title: 'The wallet that protects, moves, and simplifies.',
+    cta_desc: 'Ready for real-world usage. Download now and start transacting with maximum speed, simplicity, and safety.',
+    btn_official_site: 'Official Site',
+    btn_official_blog: 'Official Blog',
+    news_tag: 'Newsletter',
+    news_title: 'SIGN UP TO RECEIVE UPDATES AND ANNOUNCEMENTS',
+    news_check_general: 'General updates',
+    news_check_dev: 'Developer updates',
+    news_placeholder: 'Email address',
+    news_btn: 'SUBSCRIBE',
+    news_disclaimer: 'VKX may use the contact information you provide to contact you about products and services. By subscribing, you consent to receive such communications. Unsubscribe at any time. Review our <a href="/legal/privacy" style="text-decoration: underline;">Privacy Notice</a>.',
+    footer_rights: '2026 VKX Wallet • A fast, easy, and secure wallet for real-world use.',
+    footer_disclaimer: 'VKX Wallet is self-custody software. We do not act as custodian, exchange, or bank. Your funds and private keys remain strictly in your control. Use responsibly.'
+  },
+  es: {
+    nav_problem: 'El Problema',
+    nav_vault: 'Vault',
+    nav_gas: 'Gas Shield',
+    nav_multichain: 'Multichain',
+    nav_comparison: 'Comparativa',
+    nav_faq: 'FAQ',
+    btn_download: 'Descargar VKX Wallet',
+    btn_understand: 'Ver cómo funciona',
+    pill_product: 'Máxima Velocidad',
+    pill_simple: 'Fácil & Intuitiva',
+    pill_secure: 'Seguridad Blindada',
+    hero_title: 'Una wallet cripto <span>rápida, fácil y segura</span> para el uso real.',
+    hero_desc: 'Mueve y guarda tus activos con autocustodia total. VKX Wallet elimina los cuellos de botella que te frenan: comisiones de gas con BNB Gas Shield, riesgos de estafas con Vault y complejidad con IA integrada.',
+    
+    proof_users_title: '+5.000',
+    proof_users_desc: 'Usuarios activos',
+    proof_protected_title: '+US$ 500k',
+    proof_protected_desc: 'Protegidos en el ecosistema',
+    proof_vault_title: '+US$ 20k',
+    proof_vault_desc: 'Blindados en el Vault',
+    proof_evolution_title: '100%',
+    proof_evolution_desc: 'Autocustodia con capas extras',
+    proof_update_note: '*Datos de producción actualizados: 06/2026',
+
+    problem_tag: 'Cripto sin fricciones',
+    problem_title: 'Cripto sigue siendo difícil para el uso diario.',
+    problem_desc: 'La mayoría de las wallets exigen conocimientos complejos. VKX centraliza todo en una experiencia fluida, rápida y libre de tasas sorpresa o redes incorrectas.',
+    problem_card_gas_title: 'Falta de Gas (Tasas)',
+    problem_card_gas_desc: 'Quedarse atascado con saldo de tokens (como USDT) por no poseer BNB o ETH para pagar la tasa de envío en la red.',
+    problem_card_network_title: 'Red Incorrecta',
+    problem_card_network_desc: 'La confusión al elegir cadenas como BSC, Polygon o Arbitrum, que frecuentemente causa la pérdida definitiva de fondos.',
+    problem_card_fear_title: 'Miedo a Perder Todo',
+    problem_card_fear_desc: 'Estafas de phishing, enlaces sospechosos y la ansiedad constante al gestionar la frase seed original.',
+    problem_card_wallets_title: 'Múltiples Puentes',
+    problem_card_wallets_desc: 'Tener que conectarse a sitios de terceros lentos y difíciles solo para mover USDT entre redes.',
+
+    vault_tag: 'Pilar 1 — Seguridad Activa',
+    vault_title: 'Tu cripto protegido por capas extras.',
+    vault_desc: 'El Vault VKX añade una capa extra para separar tus fondos de reserva de la billetera de uso diario, reduciendo riesgos de error humano, movimientos impulsivos y exposición operacional.',
+    vault_bullet1: 'Protección blindada para reserva a largo plazo',
+    vault_bullet2: 'Alertas inmediatas y verificación de movimientos',
+    vault_bullet3: 'Barrera contra errores operacionales y retiros impulsivos',
+    vault_bullet4: 'Ideal para USDT, VKX y otros activos principales',
+    vault_highlight: 'Más de <strong>US$ 20.000</strong> protegidos en el Vault VKX.',
+
+    gas_tag: 'Pilar 2 — Velocidad y Facilidad',
+    gas_title: '¿Sin BNB? Gas Shield lo resuelve.',
+    gas_desc: 'Olvídate del desespero de tener tokens pero no poder moverlos. En BNB Chain, VKX posee un sistema inteligente de patrocinio de tasas. Si tienes saldo en tokens, realizamos la transacción sin que te quedes atascado por falta de BNB.',
+    gas_sim_title: 'Simulador Gas Shield',
+    gas_sim_start: 'Simular Transacción Sin BNB',
+    gas_sim_reset: 'Reiniciar Simulador',
+    gas_sim_step1: '1. Verificando saldos de la wallet...',
+    gas_sim_step2: '2. Detectado: 100 USDT | 0.00 BNB (Tasas requeridas)',
+    gas_sim_step3: '3. Activando Gas Shield: VKX asume y subsidia la tasa...',
+    gas_sim_step4: '4. ✓ ¡Transacción exitosa! 100 USDT enviados.',
+
+    cross_tag: 'Pilar 3 — Conectividad Multichain',
+    cross_title: 'USDT multichain de verdad.',
+    cross_desc: 'Transacciona USDT entre diferentes redes en pocos segundos, sin puentes externos lentos. VKX conecta rutas integradas para máxima velocidad y menor tasa.',
+    cross_networks_title: 'Redes soportadas y en expansión:',
+    cross_router_title: 'Simulador Cross-Chain',
+    cross_router_from: 'Red de Origem',
+    cross_router_to: 'Red de Destino',
+    cross_router_amount: 'Monto (USDT)',
+    cross_router_btn: 'Calcular Mejor Ruta',
+    cross_router_calc: 'Calculando ruta optimizada...',
+    cross_router_result: '¡Mejor ruta encontrada!',
+    cross_router_time: 'Tiempo estimado:',
+    cross_router_fee: 'Tasa de la ruta:',
+
+    comp_tag: 'Comparativa Práctica',
+    comp_title: '¿Por qué elegir VKX Wallet?',
+    comp_desc: 'Compara los recursos esenciales. VKX fue diseñada para resolver los dolores reales del usuario, enfocándose en facilidad, velocidad y seguridad.',
+    comp_col_feature: 'Recurso / Diferencia',
+    comp_col_vkx: 'VKX Wallet',
+    comp_col_trust: 'Trust Wallet',
+    comp_col_meta: 'MetaMask',
+    comp_col_safe: 'SafePal',
+
+    faq_tag: 'Preguntas Frecuentes',
+    faq_title: 'FAQ de Seguridad y Uso',
+    faq_desc: 'Entiende cómo protegemos tu custodia y facilitamos tu experiencia.',
+
+    cta_title: 'La wallet que protege, mueve y simplifica.',
+    cta_desc: 'Lista para el uso real. Descárgala ahora y comienza a operar con el máximo de velocidad, facilidad y seguridad.',
+    btn_official_site: 'Sitio Oficial',
+    btn_official_blog: 'Blog Oficial',
+    news_tag: 'Boletín de noticias',
+    news_title: 'RECIBE ACTUALIZACIONES Y ANUNCIOS',
+    news_check_general: 'Novedades generales',
+    news_check_dev: 'Actualizaciones para desarrolladores',
+    news_placeholder: 'Dirección de correo electrónico',
+    news_btn: 'INSCRIBIRSE',
+    news_disclaimer: 'VKX podrá utilizar la información de contacto provista para enviar novedades sobre productos y servicios. Al suscribirse, acepta recibir dichas comunicaciones. Cancele la suscripción en cualquier momento. Consulte nuestra <a href="/legal/privacy" style="text-decoration: underline;">Política de Privacidad</a>.',
+    footer_rights: '2026 VKX Wallet • La wallet más rápida, fácil y segura del mercado.',
+    footer_disclaimer: 'VKX Wallet é un software de autocustodia. No actuamos como custodio, exchange ni banco. Tus fondos y claves privadas permanecen exclusivamente bajo tu control. Usa con responsabilidad.'
+  }
+};
+const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
+%>
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="<%= lang %>">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VKX Wallet — Mobile-first, non-custodial crypto wallet</title>
-    <meta name="description" content="Secure wallet + WalletConnect + multi-chain. Built for BSC, Ethereum, Arbitrum, Base, Polygon, and Avalanche.">
-    <link rel="stylesheet" href="/css/output.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        :root {
-            --brand-blue: #2563eb;
-            --brand-light: #f8fafc;
-            --brand-dark: #0f172a;
-        }
-        body { font-family: 'Inter', sans-serif; }
-        .font-outfit { font-family: 'Outfit', sans-serif; }
-        
-        .premium-glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VKX Wallet | <%= uiLang === 'pt' ? 'Uma wallet rápida, fácil e segura para o uso real' : uiLang === 'es' ? 'Una wallet rápida, fácil y segura para el uso real' : 'A fast, easy, and secure crypto wallet for real-world use' %></title>
+  <meta name="description" content="<%= landing.hero_desc %>">
+  <meta property="og:title" content="VKX Wallet">
+  <meta property="og:description" content="<%= landing.hero_desc %>">
+  <meta property="og:url" content="https://wallet.vkxtech.com.br">
+  <meta property="og:image" content="https://wallet.vkxtech.com.br/og-wallet.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://wallet.vkxtech.com.br/og-wallet.png">
+  <link rel="canonical" href="https://wallet.vkxtech.com.br">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  <% if (clarityProjectId) { %>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+"<%= clarityProjectId %>";
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script");
+  </script>
+  <% } %>
 
-        .hero-gradient {
-            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent 40%),
-                        radial-gradient(circle at bottom left, rgba(79, 70, 229, 0.05), transparent 40%);
-        }
+  <% if (metaPixelId) { %>
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '<%= metaPixelId %>');
+    fbq('track', 'PageView');
+  </script>
+  <% } %>
 
-        .feature-card {
-            background: #ffffff;
-            padding: 2rem;
-            border-radius: 2rem;
-            border: 1px solid #f3f4f6;
-            transition: transform 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-        }
-        .feature-card:hover {
-            transform: translateY(-0.5rem);
-            border-color: #dbeafe;
-            box-shadow: 0 20px 40px -12px rgba(37, 99, 235, 0.12);
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --bg: #fcfdfc;
+      --bg-gradient: radial-gradient(circle at 12% 16%, rgba(5, 150, 105, 0.04), transparent 35%),
+                      radial-gradient(circle at 85% 82%, rgba(37, 99, 235, 0.03), transparent 30%),
+                      linear-gradient(180deg, #fcfdfc 0%, #ffffff 100%);
+      --surface: #ffffff;
+      --surface-hover: #ffffff;
+      --ink: #0c1a15;
+      --muted: #4b5563;
+      --line: rgba(5, 150, 105, 0.12);
+      --line-glowing: rgba(5, 150, 105, 0.35);
+      --green: #059669;
+      --green-deep: #045c43;
+      --green-glow: rgba(5, 150, 105, 0.06);
+      --green-soft: rgba(5, 150, 105, 0.03);
+      --blue: #2563eb;
+      --radius: 20px;
+      --shadow: 0 12px 30px -10px rgba(4, 63, 49, 0.05);
+      --shadow-glow: 0 0 20px rgba(5, 150, 105, 0.05);
+    }
+    
+    * {
+      box-sizing: border-box;
+      outline: none;
+    }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      background: var(--bg);
+      background-image: var(--bg-gradient);
+      color: var(--ink);
+      font-family: 'Manrope', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    .container {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .5s cubic-bezier(0.16, 1, 0.3, 1), transform .5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .reveal.show {
+      opacity: 1;
+      transform: none;
+    }
+    
+    /* Topbar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
+      transition: 0.3s;
+    }
+    
+    .topbar.scrolled {
+      border-color: var(--line);
+      box-shadow: var(--shadow);
+    }
+    
+    .topbar-inner {
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.05));
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    
+    .brand-mark img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+    }
+    
+    .brand-copy {
+      display: grid;
+      gap: 2px;
+    }
+    
+    .brand-copy strong {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .brand-copy span {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+    
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    
+    .nav-links a {
+      transition: color 0.2s;
+    }
+    
+    .nav-links a:hover {
+      color: var(--green);
+    }
+    
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      line-height: 1;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+    
+    .btn:active {
+      transform: translateY(0);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--green), var(--green-deep));
+      color: #fff;
+      box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.4);
+    }
+    
+    .btn-primary:hover {
+      box-shadow: 0 12px 25px -3px rgba(16, 185, 129, 0.6), var(--shadow-glow);
+    }
+    
+    .btn-secondary {
+      background: rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: var(--ink);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(0, 0, 0, 0.06);
+      border-color: var(--green);
+    }
+    
+    .btn-light {
+      background: #fff;
+      color: #030605;
+      font-weight: 800;
+    }
+    
+    .btn-light:hover {
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+    }
+    
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      color: var(--ink);
+    }
+    
+    .btn-ghost:hover {
+      background: rgba(0, 0, 0, 0.02);
+      border-color: var(--green);
+    }
+    
+    /* Hero */
+    .hero {
+      padding: 60px 0 40px;
+    }
+    
+    .hero-shell {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(5, 150, 105, 0.03) 0%, rgba(255, 255, 255, 0.95) 100%);
+      padding: 48px;
+      border-radius: 32px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 100px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid var(--line);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+    
+    .pill.blue-pill {
+      background: rgba(59, 130, 246, 0.08);
+      border-color: rgba(59, 130, 246, 0.2);
+      color: var(--blue);
+    }
+    
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+    }
+    
+    .dot.blue-dot {
+      background: var(--blue);
+      box-shadow: 0 0 8px var(--blue);
+    }
+    
+    h1 {
+      margin: 0 0 20px;
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+    
+    h1 span {
+      background: linear-gradient(90deg, #10b981, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      max-width: 600px;
+    }
+    
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    
+    /* SecurityProofBar */
+    .proof-bar {
+      margin-top: 40px;
+      border-top: 1px solid var(--line);
+      padding-top: 30px;
+    }
+    
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    
+    .proof-item {
+      text-align: left;
+    }
+    
+    .proof-number {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--green);
+      display: block;
+      margin-bottom: 4px;
+      background: linear-gradient(135deg, var(--green), var(--green-deep));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .proof-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    
+    .proof-note {
+      grid-column: span 4;
+      font-size: 0.65rem;
+      color: var(--muted);
+      opacity: 0.6;
+      margin-top: 8px;
+    }
+    
+    /* Phone Mockup Interface simulation */
+    .mockup-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .phone-mockup {
+      width: 290px;
+      height: 560px;
+      border-radius: 40px;
+      background: #0b110e;
+      border: 12px solid #1a2420;
+      box-shadow: var(--shadow), var(--shadow-glow);
+      position: relative;
+      overflow: hidden;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .phone-notch {
+      width: 100px;
+      height: 18px;
+      background: #1a2420;
+      border-radius: 0 0 12px 12px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+    
+    .mock-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 0.75rem;
+    }
+    
+    .mock-logo {
+      font-weight: 800;
+      font-family: 'Sora', sans-serif;
+      color: var(--green);
+    }
+    
+    .mock-balance-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .mock-balance-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 80%);
+      pointer-events: none;
+    }
+    
+    .mock-balance-title {
+      font-size: 0.65rem;
+      color: var(--muted);
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .mock-balance-val {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+      display: block;
+      margin: 4px 0 8px;
+    }
+    
+    .mock-badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 0.6rem;
+      color: var(--green);
+      font-weight: 700;
+    }
+    
+    .mock-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    
+    .mock-act-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .mock-act-btn i {
+      color: var(--green);
+    }
+    
+    .mock-vault-status {
+      background: rgba(59, 130, 246, 0.04);
+      border: 1px solid rgba(59, 130, 246, 0.15);
+      border-radius: 16px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .mock-vault-info h4 {
+      margin: 0;
+      font-size: 0.75rem;
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+    }
+    
+    .mock-vault-info p {
+      margin: 2px 0 0;
+      font-size: 0.6rem;
+      color: var(--muted);
+    }
+    
+    .mock-vault-amount {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--blue);
+    }
+    
+    .mock-ai-copilot {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(59, 130, 246, 0.04) 100%);
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      position: relative;
+    }
+    
+    .mock-ai-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    
+    .mock-ai-text {
+      font-size: 0.65rem;
+      line-height: 1.4;
+      color: var(--muted);
+      margin: 0;
+    }
+    
+    .mock-ai-sparkle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: var(--green);
+      animation: pulse 2s infinite;
+    }
+    
+    /* Sections */
+    .section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    
+    .section-head {
+      max-width: 800px;
+      margin-bottom: 48px;
+    }
+    
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 100px;
+      background: var(--green-soft);
+      border: 1px solid var(--line);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+    
+    h2 {
+      margin: 0 0 16px;
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+    
+    h2 span {
+      color: var(--green);
+    }
+    
+    .section-desc {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    /* Problem Grid */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    
+    .problem-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: all 0.3s;
+      box-shadow: var(--shadow);
+    }
+    
+    .problem-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(239, 68, 68, 0.4);
+      background: rgba(239, 68, 68, 0.02);
+    }
+    
+    .problem-card .icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .problem-card h3 {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.1rem;
+      margin: 0 0 12px;
+      color: var(--ink);
+    }
+    
+    .problem-card p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    .problem-footer {
+      text-align: center;
+      margin-top: 32px;
+      font-weight: 700;
+      color: var(--green);
+      font-size: 0.95rem;
+    }
+    
+    /* Vault Grid & Flow */
+    .vault-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    
+    .vault-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 24px 0 32px;
+      display: grid;
+      gap: 16px;
+    }
+    
+    .vault-content li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+    
+    .vault-content li i {
+      color: var(--green);
+      margin-top: 2px;
+    }
+    
+    .vault-highlight-box {
+      border-left: 3px solid var(--green);
+      background: var(--green-soft);
+      padding: 16px;
+      border-radius: 0 12px 12px 0;
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+    
+    /* Vault Flow Graphic */
+    .vault-flow-graphic {
+      background: rgba(5, 150, 105, 0.02);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+    }
+    
+    .flow-node {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      z-index: 2;
+      box-shadow: var(--shadow);
+    }
+    
+    .flow-node.active-node {
+      border-color: var(--green);
+      box-shadow: 0 0 15px rgba(5, 150, 105, 0.06);
+    }
+    
+    .flow-node.vault-node {
+      border-color: var(--blue);
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.06);
+    }
+    
+    .node-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(5, 150, 105, 0.05);
+      display: grid;
+      place-items: center;
+      color: var(--green);
+    }
+    
+    .vault-node .node-icon {
+      color: var(--blue);
+      background: rgba(37, 99, 235, 0.05);
+    }
+    
+    .node-info h4 {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+    
+    .node-info p {
+      margin: 2px 0 0;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    
+    .flow-arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--line-glowing);
+      position: relative;
+      height: 20px;
+    }
+    
+    .flow-arrow::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 24px;
+      background: linear-gradient(180deg, var(--green), var(--blue));
+      z-index: 1;
+    }
+    
+    /* Gas Shield Simulator Section */
+    .gas-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    
+    .simulator-box {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+    
+    .sim-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 15px;
+    }
+    
+    .sim-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    
+    .sim-badge {
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: rgba(5, 150, 105, 0.08);
+      color: var(--green);
+      border: 1px solid rgba(5, 150, 105, 0.15);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .sim-balance-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .sim-balance-card {
+      background: rgba(5, 150, 105, 0.02);
+      border: 1px solid rgba(5, 150, 105, 0.08);
+      padding: 14px;
+      border-radius: 12px;
+    }
+    
+    .sim-bal-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+    
+    .sim-bal-val {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    
+    .sim-bal-val.red-val {
+      color: #ef4444;
+    }
+    
+    .sim-console {
+      background: #f4f6f5;
+      border: 1px solid rgba(5, 150, 105, 0.12);
+      border-radius: 12px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      min-height: 140px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .sim-console-line {
+      opacity: 0;
+      transform: translateY(4px);
+      transition: all 0.3s;
+      color: #4b5563;
+    }
+    
+    .sim-console-line.show {
+      opacity: 1;
+      transform: none;
+    }
+    
+    .sim-console-line.highlight {
+      color: var(--green);
+      font-weight: bold;
+    }
+    
+    .sim-action-btn {
+      width: 100%;
+      background: var(--green);
+      color: #ffffff;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+    
+    .sim-action-btn:hover {
+      background: var(--green-deep);
+      box-shadow: 0 5px 15px rgba(5, 150, 105, 0.2);
+    }
+    
+    /* Cross-Chain Section */
+    .cross-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+    
+    .router-box {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+    
+    .router-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    
+    .router-select {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    
+    .router-select label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    
+    .router-select select {
+      background: #ffffff;
+      border: 1px solid rgba(6, 78, 59, 0.15);
+      border-radius: 10px;
+      padding: 12px;
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 600;
+    }
+    
+    .router-select select option {
+      background: #ffffff;
+      color: var(--ink);
+    }
+    
+    .router-amount-box {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    
+    .router-amount-box label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    
+    .router-amount-box input {
+      background: #ffffff;
+      border: 1px solid rgba(6, 78, 59, 0.15);
+      border-radius: 10px;
+      padding: 12px;
+      color: var(--ink);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    
+    .router-result {
+      background: rgba(5, 150, 105, 0.02);
+      border: 1px solid rgba(5, 150, 105, 0.08);
+      border-radius: 12px;
+      padding: 20px;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .router-result-placeholder {
+      color: #4b5563;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    
+    .router-result-data {
+      display: none;
+    }
+    
+    .router-result-title {
+      font-size: 0.75rem;
+      color: var(--green);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .router-result-detail {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--ink);
+    }
+    
+    .router-result-detail span {
+      color: var(--muted);
+    }
+    
+    /* Comparison Table Section */
+    .comparison-section {
+      background: linear-gradient(180deg, rgba(5, 150, 105, 0.02) 0%, transparent 100%);
+    }
+    
+    .table-container {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: #ffffff;
+      box-shadow: var(--shadow);
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    
+    th, td {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      font-size: 0.9rem;
+    }
+    
+    th {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      color: var(--ink);
+      background: rgba(5, 150, 105, 0.04);
+    }
+    
+    td:first-child, th:first-child {
+      font-weight: 700;
+    }
+    
+    /* VKX Highlight Column */
+    td.vkx-col, th.vkx-col {
+      background: rgba(5, 150, 105, 0.03);
+      color: var(--ink);
+      font-weight: 800;
+    }
+    
+    tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .status-check {
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+    }
+    
+    .status-partial {
+      color: #b45309;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .status-cross {
+      color: #ef4444;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    /* FAQ Accordion */
+    .faq-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s;
+      box-shadow: var(--shadow);
+    }
+    
+    .faq-item:hover {
+      border-color: var(--green);
+    }
+    
+    .faq-trigger {
+      width: 100%;
+      background: transparent;
+      border: none;
+      padding: 22px 28px;
+      text-align: left;
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--ink);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .faq-trigger i {
+      color: var(--green);
+      transition: transform 0.3s;
+    }
+    
+    .faq-item.active .faq-trigger i {
+      transform: rotate(180deg);
+    }
+    
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      background: transparent;
+    }
+    
+    .faq-content-inner {
+      padding: 0 28px 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    /* CTA */
+    .cta-wrapper {
+      padding: 80px 0;
+    }
+    
+    .cta {
+      padding: 60px 48px;
+      background: linear-gradient(135deg, var(--green), var(--green-deep));
+      color: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow), var(--shadow-glow);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    
+    .cta h2 {
+      margin: 0 0 16px;
+      max-width: 20ch;
+      color: #fff;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+    }
+    
+    .cta p {
+      margin: 0 0 32px;
+      max-width: 600px;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    
+    .cta-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Footer */
+    footer {
+      padding: 40px 0 120px; /* spacing for mobile sticky button */
+      background: #f4f6f5;
+      border-top: 1px solid var(--line);
+    }
+    
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-weight: 700;
+    }
+    
+    .footer-links a:hover {
+      color: var(--green);
+    }
+    
+    .footer-note {
+      width: 100%;
+      margin-top: 24px;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      padding-top: 20px;
+      font-size: 0.75rem;
+      line-height: 1.6;
+      opacity: 0.6;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+    
+    .social-links a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.02);
+      display: grid;
+      place-items: center;
+      transition: all 0.2s;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      color: var(--ink);
+    }
+    
+    .social-links a:hover {
+      background: var(--green-soft);
+      border-color: var(--green);
+      color: var(--green);
+      transform: translateY(-2px);
+    }
+    
+    /* Language switcher styles */
+    .lang-switcher {
+      position: relative;
+    }
+    
+    .lang-switcher:hover .lang-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .lang-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 80px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: 0.2s;
+      z-index: 100;
+      overflow: hidden;
+    }
+    
+    .lang-dropdown a {
+      display: block;
+      padding: 10px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-align: center;
+      color: var(--ink);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .lang-dropdown a:last-child {
+      border-bottom: 0;
+    }
+    
+    .lang-dropdown a:hover {
+      background: var(--green-soft);
+      color: var(--green);
+    }
+    
+    /* Sticky Mobile CTA Footer */
+    .sticky-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--line);
+      padding: 16px;
+      z-index: 90;
+      display: none;
+      box-shadow: 0 -10px 30px rgba(4, 63, 49, 0.04);
+    }
 
-        .btn-primary {
-            background: #2563eb;
-            color: #ffffff;
-            padding: 1rem 2rem;
-            border-radius: 1rem;
-            font-weight: 700;
-            transition: transform 150ms ease, background-color 200ms ease, box-shadow 200ms ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.25), 0 10px 10px -5px rgba(37, 99, 235, 0.12);
-        }
-        .btn-primary:hover { background: #1d4ed8; }
-        .btn-primary:active { transform: scale(0.95); }
+    /* Newsletter Section Styles */
+    .newsletter-section {
+      background: linear-gradient(180deg, transparent 0%, rgba(5, 150, 105, 0.01) 100%);
+      padding: 80px 0;
+    }
+    
+    .newsletter-card {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 48px;
+      max-width: 760px;
+      margin: 0 auto;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
 
-        .btn-secondary {
-            background: #ffffff;
-            color: #111827;
-            border: 1px solid #e5e7eb;
-            padding: 1rem 2rem;
-            border-radius: 1rem;
-            font-weight: 700;
-            transition: transform 150ms ease, background-color 200ms ease, border-color 200ms ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-        }
-        .btn-secondary:hover { background: #f9fafb; }
-        .btn-secondary:active { transform: scale(0.95); }
+    .newsletter-card h2 {
+      margin: 0 0 24px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
 
-        .phone-mockup {
-            position: relative;
-            width: 280px;
-            height: 580px;
-            background: #0f172a;
-            border: 12px solid #1e293b;
-            border-radius: 3rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        .phone-mockup::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8rem;
-            height: 1.5rem;
-            background: #1e293b;
-            border-bottom-left-radius: 1.5rem;
-            border-bottom-right-radius: 1.5rem;
-            z-index: 20;
-        }
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        .animate-float { animation: float 6s ease-in-out infinite; }
+    .checkbox-group {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
 
-        .network-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.625rem 1.25rem;
-            background: #ffffff;
-            border: 1px solid #f3f4f6;
-            border-radius: 1rem;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            font-size: 0.875rem;
-            font-weight: 700;
-            color: #374151;
-            transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
-        }
-        .network-badge:hover {
-            border-color: #bfdbfe;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-        }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+    }
 
-        /* Responsive adjustments */
-        @media (max-width: 640px) {
-            .hero-title { font-size: 2.5rem; line-height: 1.1; }
-        }
-    </style>
+    .checkbox-label input {
+      accent-color: var(--green);
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .email-input-wrap {
+      width: 100%;
+    }
+
+    .email-input-wrap input {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid rgba(6, 78, 59, 0.15);
+      border-radius: 999px;
+      padding: 16px 24px;
+      font-size: 0.95rem;
+      color: var(--ink);
+      transition: all 0.2s;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.01);
+    }
+
+    .email-input-wrap input:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.08);
+    }
+
+    .recaptcha-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      border: 1px solid #dcdcdc;
+      border-radius: 4px;
+      padding: 6px 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      align-self: flex-start;
+    }
+
+    .recaptcha-text {
+      font-size: 0.65rem;
+      color: #555;
+      line-height: 1.2;
+    }
+
+    .recaptcha-text a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+
+    .recaptcha-text a:hover {
+      text-decoration: underline;
+    }
+
+    .btn-subscribe {
+      background: #064e3b;
+      color: #ffffff;
+      border: none;
+      border-radius: 999px;
+      padding: 16px 36px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-subscribe:hover {
+      background: #043f31;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(4, 63, 49, 0.15);
+    }
+
+    .btn-subscribe:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .newsletter-disclaimer {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .newsletter-success-box {
+      text-align: center;
+      padding: 24px 0;
+    }
+
+    .newsletter-success-box .success-icon {
+      color: var(--green);
+      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Media Queries */
+    @media (max-width: 1080px) {
+      .hero-shell, .vault-layout, .gas-layout, .cross-layout {
+        grid-template-columns: 1fr;
+      }
+      
+      .mockup-container {
+        order: -1;
+      }
+      
+      .simulator-box, .router-box {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      
+      .problem-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 860px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .sticky-footer {
+        display: block;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .hero-shell {
+        padding: 24px;
+      }
+      
+      .proof-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      
+      .proof-note {
+        grid-column: span 1;
+      }
+      
+      .problem-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .vault-layout, .gas-layout, .cross-layout {
+        gap: 24px;
+      }
+      
+      .vault-flow-graphic {
+        padding: 16px;
+      }
+      
+      .cta {
+        padding: 36px 20px;
+      }
+      
+      .btn, .hero-actions .btn, .cta-actions .btn {
+        width: 100%;
+      }
+      
+      .hero-actions, .cta-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
-<body class="bg-brand-light text-slate-900 selection:bg-blue-100 selection:text-blue-700">
-    <!-- Navbar -->
-    <header class="fixed top-0 left-0 right-0 z-50 premium-glass h-20 flex items-center">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg">
-                    <i data-lucide="wallet" class="w-6 h-6"></i>
-                </div>
-                <span class="text-2xl font-black font-outfit tracking-tighter text-slate-900">VKX<span class="text-blue-600">WALLET</span></span>
-            </a>
-            <nav class="hidden lg:flex gap-10 items-center text-sm font-bold uppercase tracking-widest text-slate-500">
-                <a href="#features" class="hover:text-blue-600 transition-colors">Features</a>
-                <a href="#networks" class="hover:text-blue-600 transition-colors">Networks</a>
-                <a href="#security" class="hover:text-blue-600 transition-colors">Security</a>
-                <a href="/support" class="hover:text-blue-600 transition-colors">Support</a>
-                <a href="https://play.google.com/store/apps/details?id=com.vkinha.wallet" target="_blank" class="bg-blue-600 text-white px-6 py-2.5 rounded-full hover:bg-black transition-all shadow-lg shadow-blue-500/20">
-                    Get App
-                </a>
-            </nav>
-            <button class="lg:hidden p-2 text-slate-900" id="menu-toggle">
-                <i data-lucide="menu" class="w-7 h-7"></i>
-            </button>
-        </div>
-    </header>
+<body data-ref="<%= ref || '' %>" data-download-base="<%= officialDownloadBase %>">
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-white hidden flex-col items-center justify-center gap-10 text-2xl font-black font-outfit uppercase tracking-tighter transition-all">
-        <button class="absolute top-6 right-6 p-2" id="menu-close">
-            <i data-lucide="x" class="w-10 h-10 text-slate-900"></i>
-        </button>
-        <a href="#features" class="hover:text-blue-600">Features</a>
-        <a href="#networks" class="hover:text-blue-600">Networks</a>
-        <a href="#security" class="hover:text-blue-600">Security</a>
-        <a href="/support" class="hover:text-blue-600">Support</a>
-        <a href="https://play.google.com/store/apps/details?id=com.vkinha.wallet" target="_blank" class="bg-blue-600 text-white px-10 py-4 rounded-2xl">Download</a>
+  <header class="topbar" id="topbar">
+    <div class="container topbar-inner">
+      <a href="<%= officialWalletUrl %>" class="brand" aria-label="VKX Wallet">
+        <div class="brand-mark" style="background: #064e3b; padding: 6px;">
+          <img src="/logo.png" alt="VKX Logo">
+        </div>
+        <div class="brand-copy">
+          <strong style="color: var(--ink);">VKX Wallet</strong>
+          <span><%= uiLang === 'pt' ? 'Rápida, Fácil, Segura' : uiLang === 'es' ? 'Rápida, Fácil, Segura' : 'Fast, Easy, Secure' %></span>
+        </div>
+      </a>
+      
+      <div class="nav">
+        <nav class="nav-links" aria-label="Navegação principal">
+          <a href="#problema"><%= landing.nav_problem %></a>
+          <a href="#vault"><%= landing.nav_vault %></a>
+          <a href="#gas-shield"><%= landing.nav_gas %></a>
+          <a href="#multichain"><%= landing.nav_multichain %></a>
+          <a href="#comparativo"><%= landing.nav_comparison %></a>
+          <a href="#faq"><%= landing.nav_faq %></a>
+        </nav>
+        
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+          <button class="btn btn-secondary" style="padding: 8px 14px; min-width: 60px; font-size: 0.75rem;">
+            <%= lang.toUpperCase() %>
+          </button>
+          <div class="lang-dropdown">
+            <a href="#" class="js-lang-select" data-lang="pt">PT</a>
+            <a href="#" class="js-lang-select" data-lang="en">EN</a>
+            <a href="#" class="js-lang-select" data-lang="es">ES</a>
+          </div>
+        </div>
+
+        <a href="<%= downloadHref %>" class="btn btn-primary js-download-link"><i data-lucide="download"></i><%= landing.btn_download %></a>
+      </div>
     </div>
+  </header>
 
-    <main class="hero-gradient">
-        <!-- Hero Section -->
-        <section class="pt-40 pb-20 px-6">
-            <div class="container mx-auto">
-                <div class="flex flex-col lg:flex-row items-center gap-16">
-                    <div class="flex-1 text-center lg:text-left">
-                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-xs font-black uppercase tracking-widest mb-6">
-                            <span class="w-1.5 h-1.5 bg-blue-600 rounded-full animate-pulse"></span>
-                            Multi-chain Non-Custodial
-                        </div>
-                        <h1 class="hero-title text-5xl lg:text-8xl font-black font-outfit text-slate-900 mb-8 leading-[0.95] tracking-tighter uppercase">
-                            Your crypto,<br/>
-                            <span class="text-blue-600">your control.</span>
-                        </h1>
-                        <p class="text-xl text-slate-500 mb-12 max-w-xl leading-relaxed font-medium">
-                            Secure + WalletConnect + Multi-chain wallet built for the real world. 
-                            The most intuitive way to manage your digital assets.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-5">
-                            <a href="https://play.google.com/store/apps/details?id=com.vkinha.wallet" target="_blank" class="btn-primary">
-                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
-                                Google Play Store
-                            </a>
-                            <a href="https://t.me/canalvkx" target="_blank" class="btn-secondary">
-                                <i data-lucide="send" class="w-6 h-6 text-blue-500"></i>
-                                Telegram Group
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="flex-1 flex justify-center lg:justify-end">
-                        <div class="phone-mockup animate-float">
-                            <div class="absolute inset-x-4 inset-y-6 bg-gradient-to-b from-blue-600 to-indigo-700 rounded-[2.2rem] overflow-hidden p-6 flex flex-col justify-between">
-                                <div class="space-y-6 pt-4">
-                                    <div class="flex justify-between items-center text-white/60 text-[10px] font-bold uppercase tracking-widest">
-                                        <span>VKX Wallet Alpha</span>
-                                        <i data-lucide="settings" class="w-4 h-4"></i>
-                                    </div>
-                                    <div class="bg-white/10 border border-white/20 rounded-2xl p-5">
-                                        <p class="text-white/60 text-[10px] uppercase font-black tracking-widest mb-1">Total Balance</p>
-                                        <h3 class="text-3xl font-black text-white">$ 12,450.80</h3>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-3">
-                                        <div class="bg-blue-500/30 h-10 rounded-xl flex items-center justify-center">
-                                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-white"></i>
-                                        </div>
-                                        <div class="bg-blue-500/30 h-10 rounded-xl flex items-center justify-center">
-                                            <i data-lucide="arrow-down-left" class="w-4 h-4 text-white"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bg-white rounded-2xl py-4 text-center text-blue-600 font-black text-sm uppercase tracking-widest shadow-xl">
-                                    Launch Wallet
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-shell">
+        <div class="reveal show">
+          <div class="pill-row">
+            <div class="pill"><span class="dot"></span><%= landing.pill_product %></div>
+            <div class="pill"><span class="dot blue-dot"></span><%= landing.pill_simple %></div>
+            <div class="pill"><i data-lucide="shield-check"></i><%= landing.pill_secure %></div>
+          </div>
+          <h1><%- landing.hero_title %></h1>
+          <p class="lead"><%= landing.hero_desc %></p>
+          
+          <div class="hero-actions">
+            <a href="<%= downloadHref %>" class="btn btn-primary js-download-link"><i data-lucide="smartphone"></i><%= landing.btn_download %></a>
+            <a href="#problema" class="btn btn-secondary"><i data-lucide="sparkles"></i><%= landing.btn_understand %></a>
+          </div>
+          
+          <div class="proof-bar">
+            <div class="proof-grid">
+              <div class="proof-item">
+                <span class="proof-number"><%= landing.proof_users_title %></span>
+                <span class="proof-label"><%= landing.proof_users_desc %></span>
+              </div>
+              <div class="proof-item">
+                <span class="proof-number"><%= landing.proof_protected_title %></span>
+                <span class="proof-label"><%= landing.proof_protected_desc %></span>
+              </div>
+              <div class="proof-item">
+                <span class="proof-number"><%= landing.proof_vault_title %></span>
+                <span class="proof-label"><%= landing.proof_vault_desc %></span>
+              </div>
+              <div class="proof-item">
+                <span class="proof-number"><%= landing.proof_evolution_title %></span>
+                <span class="proof-label"><%= landing.proof_evolution_desc %></span>
+              </div>
+              <div class="proof-note"><%= landing.proof_update_note %></div>
             </div>
-        </section>
-
-        <!-- Stats/Brands -->
-        <section class="py-12 border-y border-gray-100 bg-white/50 backdrop-blur-sm">
-            <div class="container mx-auto px-6">
-                <div class="flex flex-wrap justify-between items-center gap-10 opacity-40 grayscale">
-                    <span class="text-2xl font-black tracking-tighter">ETHEREUM</span>
-                    <span class="text-2xl font-black tracking-tighter">BINANCE</span>
-                    <span class="text-2xl font-black tracking-tighter">SOLANA</span>
-                    <span class="text-2xl font-black tracking-tighter">POLYGON</span>
-                    <span class="text-2xl font-black tracking-tighter">AVALANCHE</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features -->
-        <section id="features" class="py-32 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="max-w-3xl mb-24">
-                    <h2 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-4">Core Principles</h2>
-                    <h3 class="text-4xl lg:text-6xl font-black font-outfit text-slate-900 leading-[0.95] tracking-tighter uppercase">
-                        Built for <br/><span class="text-blue-600">the next billion users.</span>
-                    </h3>
-                </div>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="feature-card">
-                        <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-8">
-                            <i data-lucide="shield-check" class="w-8 h-8"></i>
-                        </div>
-                        <h4 class="text-2xl font-black font-outfit uppercase tracking-tighter mb-4">Non-Custodial</h4>
-                        <p class="text-slate-500 font-medium leading-relaxed">
-                            You are the sole master of your assets. We never have access to your seed phrase or private keys.
-                        </p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-8">
-                            <i data-lucide="layers" class="w-8 h-8"></i>
-                        </div>
-                        <h4 class="text-2xl font-black font-outfit uppercase tracking-tighter mb-4">Chain Agnostic</h4>
-                        <p class="text-slate-500 font-medium leading-relaxed">
-                            Switch between BSC, Ethereum, Arbitrum, Base, and more with a single tap. No complex setup.
-                        </p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-8">
-                            <i data-lucide="zap" class="w-8 h-8"></i>
-                        </div>
-                        <h4 class="text-2xl font-black font-outfit uppercase tracking-tighter mb-4">Swap Engine</h4>
-                        <p class="text-slate-500 font-medium leading-relaxed">
-                            Integrated aggregator for the best rates and instant execution across multiple liquidity pools.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Networks -->
-        <section id="networks" class="py-32 bg-slate-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-2xl mx-auto mb-20">
-                    <h3 class="text-4xl font-black font-outfit text-slate-900 tracking-tighter uppercase mb-6">Ecosystem support</h3>
-                    <p class="text-slate-500 font-medium">Deeply integrated with the world's most trusted blockchain networks.</p>
-                </div>
-                <div class="flex flex-wrap justify-center gap-4 lg:px-20">
-                    <div class="network-badge"><div class="w-3 h-3 bg-yellow-400 rounded-full"></div> BNB Chain</div>
-                    <div class="network-badge"><div class="w-3 h-3 bg-indigo-500 rounded-full"></div> Ethereum</div>
-                    <div class="network-badge"><div class="w-3 h-3 bg-blue-400 rounded-full"></div> Solana</div>
-                    <div class="network-badge"><div class="w-3 h-3 bg-orange-500 rounded-full"></div> Bitcoin (BRC-20)</div>
-                    <div class="network-badge"><div class="w-3 h-3 bg-red-600 rounded-full"></div> TRON</div>
-                    <div class="network-badge"><div class="w-3 h-3 bg-blue-400 rounded-full"></div> Arbitrum One</div>
-                    <div class="network-badge"><div class="w-3 h-3 bg-blue-600 rounded-full"></div> Coinbase Base</div>
-                    <div class="network-badge"><div class="w-3 h-3 bg-purple-600 rounded-full"></div> Polygon PoS</div>
-                    <div class="network-badge"><div class="w-3 h-3 bg-red-500 rounded-full"></div> Avalanche C-Chain</div>
-                    <div class="network-badge opacity-50 italic border-dashed border-gray-300">
-                        <i data-lucide="loader-2" class="w-3 h-3 animate-spin"></i> Linea (Coming Soon)
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Security Focused -->
-        <section id="security" class="py-32 bg-slate-900 text-white relative overflow-hidden">
-            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="grid lg:grid-cols-2 gap-20 items-center">
-                    <div>
-                        <h3 class="text-4xl lg:text-7xl font-black font-outfit mb-8 leading-[0.95] tracking-tighter uppercase">
-                            Institutional <br/><span class="text-blue-500">grade security.</span>
-                        </h3>
-                        <p class="text-slate-400 text-lg mb-12 font-medium">
-                            We use advanced cryptography and device-native security to ensure your funds are protected against all modern threats.
-                        </p>
-                        <ul class="space-y-6">
-                            <li class="flex items-center gap-4 font-bold uppercase tracking-widest text-sm text-slate-200">
-                                <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400">
-                                    <i data-lucide="check" class="w-5 h-5"></i>
-                                </div>
-                                Purely Local Signing
-                            </li>
-                            <li class="flex items-center gap-4 font-bold uppercase tracking-widest text-sm text-slate-200">
-                                <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400">
-                                    <i data-lucide="check" class="w-5 h-5"></i>
-                                </div>
-                                Zero-Knowledge Backends
-                            </li>
-                            <li class="flex items-center gap-4 font-bold uppercase tracking-widest text-sm text-slate-200">
-                                <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400">
-                                    <i data-lucide="check" class="w-5 h-5"></i>
-                                </div>
-                                Biometric Protection
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="bg-blue-600 rounded-[3rem] p-12 lg:p-20 text-center relative">
-                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-                        <i data-lucide="lock" class="w-24 h-24 text-white/20 absolute bottom-10 right-10"></i>
-                        <h4 class="text-3xl font-black font-outfit uppercase tracking-tighter mb-6 underline decoration-4 underline-offset-8">No backend signing.</h4>
-                        <p class="text-white/80 font-bold uppercase tracking-widest text-sm">Offline Execution Engine</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="py-32 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                <div class="bg-blue-600 rounded-[4rem] p-12 lg:p-24 shadow-2xl shadow-blue-500/30 overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-600"></div>
-                    <div class="relative z-10">
-                        <h2 class="text-4xl lg:text-7xl font-black font-outfit text-white mb-10 tracking-tighter uppercase leading-none">
-                            Ready to take <br/>ownership?
-                        </h2>
-                        <div class="flex flex-col sm:flex-row justify-center gap-6">
-                            <a href="https://play.google.com/store/apps/details?id=com.vkinha.wallet" target="_blank" class="bg-white text-blue-600 px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-sm shadow-xl shadow-black/10 hover:scale-105 transition-all">
-                                Download on Android
-                            </a>
-                            <a href="https://t.me/canalvkx" target="_blank" class="bg-blue-500 text-white border border-white/20 px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-blue-400 transition-all">
-                                Join Telegram
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-50 pt-24 pb-12 border-t border-gray-100">
-        <div class="container mx-auto px-6">
-            <div class="grid lg:grid-cols-4 gap-16 mb-24">
-                <div class="col-span-2">
-                    <a href="/" class="flex items-center gap-2 mb-8">
-                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white">
-                            <i data-lucide="wallet" class="w-5 h-5"></i>
-                        </div>
-                        <span class="text-xl font-black font-outfit tracking-tighter uppercase">VKX<span class="text-blue-600">WALLET</span></span>
-                    </a>
-                    <p class="text-slate-400 max-w-sm font-medium leading-relaxed">
-                        The ultimate high-performance non-custodial wallet. Engineered with precision by VKX Technologies.
-                    </p>
-                </div>
-                <div>
-                    <h5 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-8">Navigation</h5>
-                    <ul class="space-y-4 text-slate-500 text-sm font-bold uppercase tracking-widest">
-                        <li><a href="#features" class="hover:text-blue-600">Features</a></li>
-                        <li><a href="#networks" class="hover:text-blue-600">Networks</a></li>
-                        <li><a href="/support" class="hover:text-blue-600">Support</a></li>
-                        <li><a href="/privacy-policy" class="hover:text-blue-600 text-xs">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="text-xs font-black text-slate-900 uppercase tracking-widest mb-8">Connect</h5>
-                    <div class="flex gap-4">
-                        <a href="https://t.me/canalvkx" target="_blank" class="w-12 h-12 bg-white border border-gray-200 rounded-2xl flex items-center justify-center text-slate-400 hover:text-blue-600 hover:border-blue-100 transition-all shadow-sm">
-                            <i data-lucide="send" class="w-6 h-6"></i>
-                        </a>
-                        <a href="mailto:contato@vkxtech.com.br" class="w-12 h-12 bg-white border border-gray-200 rounded-2xl flex items-center justify-center text-slate-400 hover:text-blue-600 hover:border-blue-100 transition-all shadow-sm">
-                            <i data-lucide="mail" class="w-6 h-6"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-200/50 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-slate-400 text-[10px] uppercase font-black tracking-[0.4em]">© 2026 VKX TECHNOLOGIES. ALL RIGHTS RESERVED.</p>
-                <div class="flex gap-8 text-[10px] text-slate-400 font-black uppercase tracking-widest">
-                    <span>SECURITY AUDITED</span>
-                    <span>100% NON-CUSTODIAL</span>
-                </div>
-            </div>
+          </div>
         </div>
-    </footer>
+        
+        <div class="mockup-container reveal show">
+          <div class="phone-mockup">
+            <div class="phone-notch"></div>
+            <div class="mock-header">
+              <span class="mock-logo">VKX Wallet</span>
+              <div style="display: flex; gap: 8px;">
+                <i data-lucide="wifi" style="width: 14px;"></i>
+                <i data-lucide="battery" style="width: 14px;"></i>
+              </div>
+            </div>
+            
+            <div class="mock-balance-card">
+              <span class="mock-balance-title"><%= uiLang === 'pt' ? 'Patrimônio Total' : uiLang === 'es' ? 'Patrimonio Total' : 'Total Asset Balance' %></span>
+              <span class="mock-balance-val">$1,240.50</span>
+              <div class="mock-badge-status">
+                <i data-lucide="shield-check" style="width: 12px; height: 12px;"></i>
+                <span>Gas Shield Active</span>
+              </div>
+            </div>
+            
+            <div class="mock-actions">
+              <div class="mock-act-btn"><i data-lucide="arrow-up-right"></i><span>Enviar</span></div>
+              <div class="mock-act-btn"><i data-lucide="arrow-down-left"></i><span>Receber</span></div>
+              <div class="mock-act-btn"><i data-lucide="refresh-cw"></i><span>Swap</span></div>
+            </div>
+            
+            <div class="mock-vault-status">
+              <div class="mock-vault-info">
+                <h4>🔒 Vault Protegido</h4>
+                <p><%= uiLang === 'pt' ? 'Reserva com time-lock' : uiLang === 'es' ? 'Reserva con time-lock' : 'Time-locked reserve' %></p>
+              </div>
+              <span class="mock-vault-amount">$500.00</span>
+            </div>
+            
+            <div class="mock-ai-copilot">
+              <i data-lucide="sparkles" class="mock-ai-sparkle" style="width: 14px; height: 14px;"></i>
+              <div class="mock-ai-header">
+                <i data-lucide="cpu" style="width: 12px; height: 12px;"></i>
+                <span>VKINHA Copilot</span>
+              </div>
+              <p class="mock-ai-text">
+                <%= uiLang === 'pt' 
+                  ? 'Você está enviando 100 USDT pela BNB Chain. O Gas Shield cobrirá suas taxas. Não é necessário ter saldo em BNB.' 
+                  : uiLang === 'es'
+                    ? 'Estás enviando 100 USDT por BNB Chain. Gas Shield cubrirá las comisiones. No necesitas saldo en BNB.'
+                    : 'You are sending 100 USDT via BNB Chain. Gas Shield will cover your fees. No BNB balance required.' %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        // Init Lucide Icons
-        lucide.createIcons();
+    <!-- O PROBLEMA QUE A VKX RESOLVE -->
+    <section class="section" id="problema">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="eyebrow"><i data-lucide="alert-circle"></i><%= landing.problem_tag %></div>
+          <h2><%= landing.problem_title %></h2>
+          <p class="section-desc"><%= landing.problem_desc %></p>
+        </div>
+        
+        <div class="problem-grid">
+          <div class="problem-card reveal">
+            <div class="icon-wrap"><i data-lucide="fuel"></i></div>
+            <h3><%= landing.problem_card_gas_title %></h3>
+            <p><%= landing.problem_card_gas_desc %></p>
+          </div>
+          <div class="problem-card reveal">
+            <div class="icon-wrap"><i data-lucide="shuffle"></i></div>
+            <h3><%= landing.problem_card_network_title %></h3>
+            <p><%= landing.problem_card_network_desc %></p>
+          </div>
+          <div class="problem-card reveal">
+            <div class="icon-wrap"><i data-lucide="shield-alert"></i></div>
+            <h3><%= landing.problem_card_fear_title %></h3>
+            <p><%= landing.problem_card_fear_desc %></p>
+          </div>
+          <div class="problem-card reveal">
+            <div class="icon-wrap"><i data-lucide="layers"></i></div>
+            <h3><%= landing.problem_card_wallets_title %></h3>
+            <p><%= landing.problem_card_wallets_desc %></p>
+          </div>
+        </div>
+        
+        <p class="problem-footer reveal">
+          <%= uiLang === 'pt' 
+            ? 'A VKX centraliza as rotas principais em uma experiência simplificada, com proteção extra contra perdas e menor dependência de ferramentas complexas.' 
+            : uiLang === 'es'
+              ? 'VKX centraliza las rutas principales en una experiencia simplificada, con protección extra contra pérdidas y menor dependencia de herramientas complejas.'
+              : 'VKX centralizes core routes in a simplified experience with extra protection against losses and less dependence on complex tools.' %>
+        </p>
+      </div>
+    </section>
 
-        // Mobile Menu Logic
-        const menuToggle = document.getElementById('menu-toggle');
-        const menuClose = document.getElementById('menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
+    <!-- PILAR 1 - VAULT -->
+    <section class="section" id="vault">
+      <div class="container vault-layout">
+        <div class="reveal">
+          <div class="eyebrow"><i data-lucide="shield"></i><%= landing.vault_tag %></div>
+          <h2><%= landing.vault_title %></h2>
+          <p class="section-desc"><%= landing.vault_desc %></p>
+          
+          <div class="vault-content">
+            <ul>
+              <li><i data-lucide="check-circle-2"></i><span><%= landing.vault_bullet1 %></span></li>
+              <li><i data-lucide="check-circle-2"></i><span><%= landing.vault_bullet2 %></span></li>
+              <li><i data-lucide="check-circle-2"></i><span><%= landing.vault_bullet3 %></span></li>
+              <li><i data-lucide="check-circle-2"></i><span><%= landing.vault_bullet4 %></span></li>
+            </ul>
+            
+            <div class="vault-highlight-box">
+              <%- landing.vault_highlight %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="vault-flow-graphic reveal">
+          <div class="flow-node active-node">
+            <div class="node-icon"><i data-lucide="wallet"></i></div>
+            <div class="node-info">
+              <h4><%= uiLang === 'pt' ? 'Carteira Principal (Hot)' : uiLang === 'es' ? 'Wallet Principal (Hot)' : 'Primary Wallet (Hot)' %></h4>
+              <p><%= uiLang === 'pt' ? 'Uso diário com transações rápidas' : uiLang === 'es' ? 'Uso diario con transacciones rápidas' : 'Daily use with quick transactions' %></p>
+            </div>
+          </div>
+          
+          <div class="flow-arrow"><i data-lucide="arrow-down"></i></div>
+          
+          <div class="flow-node vault-node">
+            <div class="node-icon"><i data-lucide="lock"></i></div>
+            <div class="node-info">
+              <h4><%= uiLang === 'pt' ? 'Vault VKX (Cofre)' : uiLang === 'es' ? 'Vault VKX (Cofre)' : 'VKX Vault' %></h4>
+              <p><%= uiLang === 'pt' ? 'Reserva cripto isolada da seed phrase direta' : uiLang === 'es' ? 'Reserva cripto aislada de la frase seed directa' : 'Crypto reserve isolated from direct seed phrase' %></p>
+            </div>
+          </div>
+          
+          <div class="flow-arrow"><i data-lucide="arrow-down"></i></div>
+          
+          <div class="flow-node active-node" style="border-color: var(--blue);">
+            <div class="node-icon" style="color: var(--blue);"><i data-lucide="shield-check"></i></div>
+            <div class="node-info">
+              <h4><%= uiLang === 'pt' ? 'Regras de Proteção Ativa' : uiLang === 'es' ? 'Reglas de Protección Activa' : 'Active Protection Rules' %></h4>
+              <p><%= uiLang === 'pt' ? 'Time-lock, coautorização e alertas contra golpes' : uiLang === 'es' ? 'Time-lock, coautorización y alertas anti-estafas' : 'Time-lock, co-authorization and anti-scam alerts' %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
+    <!-- PILAR 2 - GAS SHIELD -->
+    <section class="section" id="gas-shield">
+      <div class="container gas-layout">
+        <div class="simulator-box reveal">
+          <div class="sim-head">
+            <span class="sim-title"><%= landing.gas_sim_title %></span>
+            <span class="sim-badge">BNB Chain</span>
+          </div>
+          
+          <div class="sim-balance-row">
+            <div class="sim-balance-card">
+              <span class="sim-bal-label">Saldo USDT</span>
+              <span class="sim-bal-val">100.00 USDT</span>
+            </div>
+            <div class="sim-balance-card">
+              <span class="sim-bal-label">Saldo BNB</span>
+              <span class="sim-bal-val red-val" id="sim-bnb-val">0.00 BNB</span>
+            </div>
+          </div>
+          
+          <div class="sim-console" id="sim-console-output">
+            <div class="sim-console-line"><%= uiLang === 'pt' ? 'Aguardando simulação...' : uiLang === 'es' ? 'Esperando simulación...' : 'Waiting for simulation...' %></div>
+          </div>
+          
+          <button class="sim-action-btn" id="btn-run-gas-sim"><%= landing.gas_sim_start %></button>
+        </div>
+        
+        <div class="reveal">
+          <div class="eyebrow"><i data-lucide="zap"></i><%= landing.gas_tag %></div>
+          <h2><%= landing.gas_title %></h2>
+          <p class="section-desc" style="margin-bottom: 24px;"><%= landing.gas_desc %></p>
+          <a href="<%= downloadHref %>" class="btn btn-primary js-download-link"><i data-lucide="download"></i><%= landing.btn_download %></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PILAR 3 - CROSS CHAIN -->
+    <section class="section" id="multichain">
+      <div class="container cross-layout">
+        <div class="reveal">
+          <div class="eyebrow"><i data-lucide="globe"></i><%= landing.cross_tag %></div>
+          <h2><%= landing.cross_title %></h2>
+          <p class="section-desc" style="margin-bottom: 24px;"><%= landing.cross_desc %></p>
+          
+          <h4 style="margin: 0 0 16px; font-family: 'Sora', sans-serif; color: var(--ink);"><%= landing.cross_networks_title %></h4>
+          <div class="chips" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px;">
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #f0b90b;"></span>BNB Chain</div>
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #8247e5;"></span>Polygon</div>
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #28a0f0;"></span>Arbitrum</div>
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0052ff;"></span>Base</div>
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #627eea;"></span>Ethereum</div>
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #14f195;"></span>Solana</div>
+          </div>
+        </div>
+        
+        <div class="router-box reveal">
+          <h3 style="font-family: 'Sora', sans-serif; font-size: 1rem; margin: 0 0 20px; color: var(--ink);"><%= landing.cross_router_title %></h3>
+          
+          <div class="router-grid">
+            <div class="router-select">
+              <label><%= landing.cross_router_from %></label>
+              <select id="router-from">
+                <option value="bsc">BNB Chain</option>
+                <option value="polygon">Polygon</option>
+                <option value="arbitrum">Arbitrum</option>
+                <option value="base">Base</option>
+                <option value="ethereum">Ethereum</option>
+                <option value="solana">Solana</option>
+              </select>
+            </div>
+            
+            <div class="router-select">
+              <label><%= landing.cross_router_to %></label>
+              <select id="router-to">
+                <option value="polygon">Polygon</option>
+                <option value="bsc">BNB Chain</option>
+                <option value="arbitrum">Arbitrum</option>
+                <option value="base">Base</option>
+                <option value="ethereum">Ethereum</option>
+                <option value="solana">Solana</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="router-amount-box">
+            <label><%= landing.cross_router_amount %></label>
+            <input type="number" id="router-amount" value="100">
+          </div>
+          
+          <div class="router-result" id="router-result-box">
+            <div class="router-result-placeholder" id="router-placeholder">
+              <%= uiLang === 'pt' ? 'Configure a simulação e clique em Calcular.' : uiLang === 'es' ? 'Configura la simulación y haz clic en Calcular.' : 'Configure the simulation and click Calculate.' %>
+            </div>
+            <div class="router-result-data" id="router-data">
+              <div class="router-result-title" id="router-result-status">Melhor rota encontrada!</div>
+              <div class="router-result-detail">
+                <span><%= landing.cross_router_time %></span>
+                <strong id="router-est-time">~45s</strong>
+              </div>
+              <div class="router-result-detail">
+                <span><%= landing.cross_router_fee %></span>
+                <strong id="router-est-fee">$0.15</strong>
+              </div>
+            </div>
+          </div>
+          
+          <button class="sim-action-btn" id="btn-run-router"><%= landing.cross_router_btn %></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABELA COMPARATIVA -->
+    <section class="section comparison-section" id="comparativo">
+      <div class="container">
+        <div class="section-head reveal" style="text-align: center; margin: 0 auto 48px;">
+          <div class="eyebrow"><i data-lucide="git-compare"></i><%= landing.comp_tag %></div>
+          <h2><%= landing.comp_title %></h2>
+          <p class="section-desc"><%= landing.comp_desc %></p>
+        </div>
+        
+        <div class="table-container reveal">
+          <table>
+            <thead>
+              <tr>
+                <th><%= landing.comp_col_feature %></th>
+                <th class="vkx-col"><%= landing.comp_col_vkx %></th>
+                <th><%= landing.comp_col_trust %></th>
+                <th><%= landing.comp_col_meta %></th>
+                <th><%= landing.comp_col_safe %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= uiLang === 'pt' ? 'Autocustódia' : uiLang === 'es' ? 'Autocustodia' : 'Self-custody' %></td>
+                <td class="vkx-col"><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
+                <td><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
+                <td><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
+                <td><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
+              </tr>
+              <tr>
+                <td><%= uiLang === 'pt' ? 'Vault com Proteção Extra' : uiLang === 'es' ? 'Vault con Protección Extra' : 'Vault with Extra Protection' %></td>
+                <td class="vkx-col"><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
+                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Depende' : 'Partial' %></span></td>
+                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Depende' : 'Partial' %></span></td>
+                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Depende' : 'Partial' %></span></td>
+              </tr>
+              <tr>
+                <td><%= uiLang === 'pt' ? 'Subsídio de Gás BNB (Gas Shield)' : uiLang === 'es' ? 'Subsidio de Gas BNB (Gas Shield)' : 'BNB Gas Sponsorship (Gas Shield)' %></td>
+                <td class="vkx-col"><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
+                <td><span class="status-cross"><i data-lucide="x"></i> <%= uiLang === 'pt' ? 'Não' : 'No' %></span></td>
+                <td><span class="status-cross"><i data-lucide="x"></i> <%= uiLang === 'pt' ? 'Não' : 'No' %></span></td>
+                <td><span class="status-cross"><i data-lucide="x"></i> <%= uiLang === 'pt' ? 'Não' : 'No' %></span></td>
+              </tr>
+              <tr>
+                <td><%= uiLang === 'pt' ? 'Rotas USDT Multichain' : uiLang === 'es' ? 'Rutas USDT Multichain' : 'Multichain USDT Routes' %></td>
+                <td class="vkx-col"><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
+                <td><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
+                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Parcial' : 'Partial' %></span></td>
+                <td><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
+              </tr>
+              <tr>
+                <td><%= uiLang === 'pt' ? 'Suporte Dedicado Local' : uiLang === 'es' ? 'Soporte Dedicado Local' : 'Local Dedicated Support' %></td>
+                <td class="vkx-col"><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim (100% BR)' : 'Yes (BR)' %></span></td>
+                <td><span class="status-cross"><i data-lucide="x"></i> <%= uiLang === 'pt' ? 'Não' : 'No' %></span></td>
+                <td><span class="status-cross"><i data-lucide="x"></i> <%= uiLang === 'pt' ? 'Não' : 'No' %></span></td>
+                <td><span class="status-cross"><i data-lucide="x"></i> <%= uiLang === 'pt' ? 'Não' : 'No' %></span></td>
+              </tr>
+              <tr>
+                <td><%= uiLang === 'pt' ? 'Experiência Simplificada' : uiLang === 'es' ? 'Experiencia Simplificada' : 'Simplified UX' %></td>
+                <td class="vkx-col"><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim (Sem jargão)' : 'Yes (No Jargon)' %></span></td>
+                <td><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
+                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Média' : 'Medium' %></span></td>
+                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Média' : 'Medium' %></span></td>
+              </tr>
+              <tr>
+                <td><%= uiLang === 'pt' ? 'Recompensas / Cashback Interno' : uiLang === 'es' ? 'Recompensas / Cashback Interno' : 'Rewards & Internal Cashback' %></td>
+                <td class="vkx-col"><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
+                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Parcial' : 'Partial' %></span></td>
+                <td><span class="status-cross"><i data-lucide="x"></i> <%= uiLang === 'pt' ? 'Não' : 'No' %></span></td>
+                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Parcial' : 'Partial' %></span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ DE SEGURANÇA -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head reveal" style="text-align: center; margin: 0 auto 48px;">
+          <div class="eyebrow"><i data-lucide="help-circle"></i><%= landing.faq_tag %></div>
+          <h2><%= landing.faq_title %></h2>
+          <p class="section-desc"><%= landing.faq_desc %></p>
+        </div>
+        
+        <div class="faq-grid">
+          <div class="faq-item reveal">
+            <button class="faq-trigger">
+              <span><%= uiLang === 'pt' ? '1. O que torna a VKX Wallet a mais rápida, fácil e segura do mercado?' : uiLang === 'es' ? '1. ¿Qué hace a VKX Wallet la más rápida, fácil y segura del mercado?' : '1. What makes VKX Wallet the fastest, easiest, and most secure wallet on the market?' %></span>
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                <%= uiLang === 'pt' 
+                  ? 'A VKX une a soberania da autocustódia com uma usabilidade focada em resolver as maiores barreiras do mercado. É a mais rápida porque integra rotas diretas de cross-chain que eliminam intermediários; a mais fácil porque possui o Gas Shield BNB para transações sem a necessidade de adquirir tokens de gás adicionais; e a mais segura porque o Vault adiciona políticas de proteção avançadas baseadas em hardware contra saques acidentais e golpes.' 
+                  : uiLang === 'es'
+                    ? 'VKX une la soberanía de la autocustodia con una usabilidad enfocada en resolver las mayores barreras del mercado. Es la más rápida porque integra rutas directas de cross-chain que eliminan intermediarios; la más fácil porque posee el Gas Shield BNB para transacciones sin la necesidad de adquirir tokens de gas adicionales; y la más segura porque el Vault añade políticas de protección avanzadas basadas en hardware contra retiros accidentales y estafas.'
+                    : 'VKX merges self-custody with a UX built to solve key blockchain barriers. It is the fastest because of integrated direct cross-chain routing; the easiest because of the BNB Gas Shield for gasless token transfers; and the safest because the Vault introduces advanced device-linked hardware security policies against unauthorized withdrawals and human errors.' %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item reveal">
+            <button class="faq-trigger">
+              <span><%= uiLang === 'pt' ? '2. Minha frase de recuperação (seed phrase) está protegida de verdade?' : uiLang === 'es' ? '2. ¿Mi frase de recuperación (seed phrase) está realmente protegida?' : '2. Is my recovery seed phrase truly secure?' %></span>
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                <%= uiLang === 'pt' 
+                  ? 'Sim, a VKX Wallet é 100% de autocustódia. Suas palavras-chave nunca saem do seu aparelho e são protegidas por criptografia local. E para garantir proteção máxima contra erros, golpes e vazamentos de chaves, seus fundos armazenados no Vault contam com regras e travas de segurança ativas que reduzem o risco de saques imediatos e não autorizados, fornecendo uma camada extra de proteção.' 
+                  : uiLang === 'es'
+                    ? 'Sí, VKX Wallet es 100% autocustodial. Sus palabras clave nunca salen de su dispositivo y se protegen localmente. Y para garantizar protección máxima contra errores, estafas y fugas de llaves, sus fondos en el Vault cuentan con reglas y bloqueos de seguridad activos que reducen el riesgo de retiros inmediatos y no autorizados, ofreciendo una capa extra de protección.'
+                    : 'Yes, VKX Wallet is 100% self-custodial. Your keys never leave your device and are encrypted locally. To ensure maximum protection against mistakes and seed exposure, funds stored in the Vault feature active security rules and time-locks that prevent immediate withdrawals, giving you an extra safety net.' %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item reveal">
+            <button class="faq-trigger">
+              <span><%= uiLang === 'pt' ? '3. Como funciona o Gas Shield na BNB Chain?' : uiLang === 'es' ? '3. ¿Cómo funciona el Gas Shield en la BNB Chain?' : '3. How does the Gas Shield on the BNB Chain work?' %></span>
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                <%= uiLang === 'pt' 
+                  ? 'Se você tem saldo em USDT na BNB Chain mas não possui BNB para pagar as taxas de transferência, as carteiras comuns travam sua operação. Na VKX, o Gas Shield detecta essa ausência e subsidia o pagamento do gás da operação diretamente em tokens USDT no fluxo da transação. Você envia seus ativos sem precisar comprar BNB por fora.' 
+                  : uiLang === 'es'
+                    ? 'Si tienes saldo en USDT en BNB Chain pero no posees BNB para pagar las comisiones, las wallets comunes detienen tu operación. En VKX, Gas Shield detecta esto y subsidia el pago del gas directamente en tokens USDT en el flujo de la transacción. Envías tus activos sin tener que comprar BNB externamente.'
+                    : 'If you hold USDT on the BNB Chain but have no BNB to pay transaction fees, traditional wallets will block your transaction. With VKX Gas Shield, the app detects this and sponsors the transaction fee directly, converting it seamlessly from your token balance. You transfer assets without buying external BNB.' %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="faq-item reveal">
+            <button class="faq-trigger">
+              <span><%= uiLang === 'pt' ? '4. Quais blockchains a VKX suporta hoje?' : uiLang === 'es' ? '4. ¿Qué blockchains soporta VKX hoy?' : '4. Which blockchains does VKX support today?' %></span>
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                <%= uiLang === 'pt' 
+                  ? 'A VKX suporta hoje redes EVM como BNB Chain, Ethereum, Polygon, Arbitrum e Base, com integrações em andamento e expansão contínua para novas redes como Solana, Tron e Bitcoin.' 
+                  : uiLang === 'es'
+                    ? 'VKX soporta hoy redes EVM como BNB Chain, Ethereum, Polygon, Arbitrum y Base, con integraciones en curso y expansión continua hacia nuevas redes como Solana, Tron y Bitcoin.'
+                    : 'VKX currently supports EVM networks including BNB Chain, Ethereum, Polygon, Arbitrum, and Base, with active integrations and ongoing expansion to networks like Solana, Tron, and Bitcoin.' %>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-trigger">
+              <span><%= uiLang === 'pt' ? '5. Posso ter mais de uma carteira na VKX Wallet?' : uiLang === 'es' ? '5. ¿Puedo tener más de una billetera en VKX Wallet?' : '5. Can I have more than one wallet inside VKX Wallet?' %></span>
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                <%= uiLang === 'pt' 
+                  ? 'Sim! A VKX Wallet oferece suporte completo a múltiplas contas e carteiras. Você pode criar novas carteiras ou importar chaves privadas/frases de recuperação existentes adicionais, gerenciando todas de forma totalmente separada dentro do mesmo aplicativo.' 
+                  : uiLang === 'es'
+                    ? '¡Sí! VKX Wallet ofrece soporte completo para múltiples cuentas y billeteras. Puedes generar nuevas billeteras o importar claves privadas/frases de recuperación existentes adicionales, administrándolas de forma totalmente separada dentro de la misma aplicación.'
+                    : 'Yes! VKX Wallet offers complete support for multiple accounts and wallets. You can generate new wallets or import additional existing private keys/recovery phrases, keeping them fully isolated and organized within a single app interface.' %>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-trigger">
+              <span><%= uiLang === 'pt' ? '6. A VKX Wallet cobra taxas sobre as operações?' : uiLang === 'es' ? '6. ¿VKX Wallet cobra comisiones por transacción?' : '6. Does VKX Wallet charge transaction fees?' %></span>
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                <%= uiLang === 'pt' 
+                  ? 'A VKX Wallet em si não cobra taxas de download ou taxas ocultas de uso. Para o recurso Gas Shield BNB, pode haver uma taxa de conveniência muito baixa descontada diretamente do próprio token enviado para cobrir o custo da transação. As transações normais pagam apenas as taxas de rede nativas (como gás de rede) e os swaps ou operações cross-chain integradas utilizam as menores taxas de rota possíveis calculadas em tempo real.' 
+                  : uiLang === 'es'
+                    ? 'VKX Wallet no cobra tarifas de descarga ni comisiones ocultas. Para la función Gas Shield BNB, se aplica una tarifa de conveniencia muy baja descontada directamente del token enviado para cubrir el costo de red. Las transacciones comunes solo pagan las comisiones de red nativas y los swaps/transferencias cross-chain integrados emplean las comisiones de ruta más bajas posibles calculadas en tiempo real.'
+                    : 'VKX Wallet itself does not charge download fees or hidden usage fees. For the BNB Gas Shield feature, a minimal convenience fee is processed directly from the transferred token to cover network cost sponsorship. Regular transactions only pay native network gas fees, while swaps and cross-chain transfers utilize the lowest possible route fees calculated in real time.' %>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-trigger">
+              <span><%= uiLang === 'pt' ? '7. O que acontece se eu perder ou quebrar meu celular?' : uiLang === 'es' ? '7. ¿Qué pasa si pierdo o se rompe mi teléfono móvil?' : '7. What happens if I lose or break my mobile phone?' %></span>
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                <%= uiLang === 'pt' 
+                  ? 'Como a VKX Wallet é de autocustódia, seus fundos estão seguros na blockchain, e não no aparelho físico. Você pode recuperar o acesso total à sua carteira em qualquer outro dispositivo compatível digitando a sua frase de recuperação (seed phrase) de 12 palavras. Recomendamos guardar essa frase em papel em um local seguro. Caso use o Vault, as configurações e políticas de segurança também se aplicam para impedir acessos não autorizados imediatos ao seu saldo.' 
+                  : uiLang === 'es'
+                    ? 'Dado que VKX Wallet es autocustodial, tus fondos están en la blockchain, no en el dispositivo físico. Puedes restaurar el acceso completo a tus activos en cualquier billetera compatible ingresando tu frase de recuperación de 12 palabras. Asegúrate de guardar esta frase escrita a mano en un lugar seguro. Si usas el Vault, los bloqueos activos seguirán vigentes para evitar retiros inmediatos no autorizados.'
+                    : 'Since VKX Wallet is fully self-custodial, your funds exist on the blockchain, not on the physical device. You can easily recover your assets on any compatible wallet software by entering your 12-word recovery seed phrase. Always write down your seed phrase on paper and store it securely. If using the Vault, security rules and locks persist on-chain to prevent unauthorized immediate access.' %>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-trigger">
+              <span><%= uiLang === 'pt' ? '8. A VKX Wallet é segura e auditada?' : uiLang === 'es' ? '8. ¿VKX Wallet es segura y está auditada?' : '8. Is VKX Wallet audited and secure?' %></span>
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                <%= uiLang === 'pt' 
+                  ? 'A segurança é nosso pilar principal. Sendo de autocustódia, o código do cliente interage localmente no dispositivo. A arquitetura de segurança e os contratos inteligentes integrados passam por processos rigorosos de auditoria interna e externa. O código passa por revisões contínuas por especialistas para garantir blindagem contra ameaças emergentes.' 
+                  : uiLang === 'es'
+                    ? 'La seguridad es nuestro pilar fundamental. Al ser una billetera autocustodial, el código del cliente opera localmente. Nuestra arquitectura de seguridad y contratos inteligentes se someten a procesos de auditoría interna y revisiones constantes por profesionales para garantizar protección total contra amenazas de seguridad.'
+                    : 'Security is our core pillar. As a self-custodial wallet, client-side code interacts locally on your secure hardware enclave. The system architecture and integrated smart contracts undergo internal security audits and peer reviews. Code updates are continuously reviewed by blockchain security professionals to guarantee defense against emerging threat vectors.' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP SECTION -->
+    <section class="section" id="roadmap" style="background: rgba(5, 150, 105, 0.01);">
+      <div class="container">
+        <div class="section-head reveal" style="text-align: center; margin: 0 auto 48px;">
+          <div class="eyebrow"><i data-lucide="milestone"></i>Roadmap</div>
+          <h2><%= uiLang === 'pt' ? 'Evolução Contínua' : uiLang === 'es' ? 'Evolución Continua' : 'Continuous Evolution' %></h2>
+          <p class="section-desc"><%= uiLang === 'pt' ? 'O que já entregamos e para onde estamos indo.' : uiLang === 'es' ? 'Lo que ya entregamos y hacia dónde vamos.' : 'What we have delivered and where we are headed.' %></p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 900px; margin: 0 auto;" class="reveal">
+          <!-- Entregue (Últimos 4 meses) -->
+          <div style="background: #ffffff; border: 1px solid var(--line); border-radius: 20px; padding: 30px; box-shadow: var(--shadow);">
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(5, 150, 105, 0.08); color: var(--green); padding: 6px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px;">
+              <i data-lucide="check" style="width: 14px; height: 14px;"></i>
+              <%= uiLang === 'pt' ? 'Últimos 4 Meses (Entregue)' : uiLang === 'es' ? 'Últimos 4 Meses (Entregado)' : 'Last 4 Months (Delivered)' %>
+            </div>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px;">
+              <li style="display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem; color: var(--ink);">
+                <i data-lucide="check-circle" style="color: var(--green); flex-shrink: 0; width: 18px; height: 18px;"></i>
+                +5.000 <%= uiLang === 'pt' ? 'Usuários Ativos' : uiLang === 'es' ? 'Usuarios Activos' : 'Active Users' %>
+              </li>
+              <li style="display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem; color: var(--ink);">
+                <i data-lucide="check-circle" style="color: var(--green); flex-shrink: 0; width: 18px; height: 18px;"></i>
+                Vault <%= uiLang === 'pt' ? 'de Autocustódia' : uiLang === 'es' ? 'de Autocustodia' : 'Self-Custody' %>
+              </li>
+              <li style="display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem; color: var(--ink);">
+                <i data-lucide="check-circle" style="color: var(--green); flex-shrink: 0; width: 18px; height: 18px;"></i>
+                Gas Shield BNB Chain
+              </li>
+              <li style="display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem; color: var(--ink);">
+                <i data-lucide="check-circle" style="color: var(--green); flex-shrink: 0; width: 18px; height: 18px;"></i>
+                <%= uiLang === 'pt' ? 'Copiloto de IA Integrado' : uiLang === 'es' ? 'Copiloto de IA Integrado' : 'Integrated AI Copilot' %>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Próximos Passos -->
+          <div style="background: #ffffff; border: 1px solid var(--line); border-radius: 20px; padding: 30px; box-shadow: var(--shadow);">
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(37, 99, 235, 0.08); color: var(--blue); padding: 6px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px;">
+              <i data-lucide="zap" style="width: 14px; height: 14px;"></i>
+              <%= uiLang === 'pt' ? 'Próximos Marcos (Em Desenvolvimento)' : uiLang === 'es' ? 'Próximos Hitos (En Desarrollo)' : 'Upcoming Milestones (In Progress)' %>
+            </div>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px;">
+              <li style="display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem; color: var(--ink);">
+                <i data-lucide="clock" style="color: var(--blue); flex-shrink: 0; width: 18px; height: 18px;"></i>
+                <%= uiLang === 'pt' ? 'Suporte a novas Blockchains' : uiLang === 'es' ? 'Soporte a nuevas Blockchains' : 'Support for new Blockchains' %>
+              </li>
+              <li style="display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem; color: var(--ink);">
+                <i data-lucide="clock" style="color: var(--blue); flex-shrink: 0; width: 18px; height: 18px;"></i>
+                Staking <%= uiLang === 'pt' ? 'Simplificado' : uiLang === 'es' ? 'Simplificado' : 'Simplified Staking' %>
+              </li>
+              <li style="display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem; color: var(--ink);">
+                <i data-lucide="clock" style="color: var(--blue); flex-shrink: 0; width: 18px; height: 18px;"></i>
+                <%= uiLang === 'pt' ? 'DeFi Integrado' : uiLang === 'es' ? 'DeFi Integrado' : 'Integrated DeFi' %>
+              </li>
+              <li style="display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem; color: var(--ink);">
+                <i data-lucide="clock" style="color: var(--blue); flex-shrink: 0; width: 18px; height: 18px;"></i>
+                <%= uiLang === 'pt' ? 'Recuperação Social de Conta' : uiLang === 'es' ? 'Recuperación Social de Cuenta' : 'Social Account Recovery' %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA DE CONVERSÃO -->
+    <section class="cta-wrapper">
+      <div class="container">
+        <div class="cta reveal">
+          <h2><%= landing.cta_title %></h2>
+          <p><%= landing.cta_desc %></p>
+          <div class="cta-actions">
+            <a href="<%= downloadHref %>" class="btn btn-light js-download-link"><i data-lucide="download"></i><%= landing.btn_download %></a>
+            <a href="<%= officialMainSiteUrl %>" target="_blank" rel="noreferrer" class="btn btn-ghost"><i data-lucide="globe"></i><%= landing.btn_official_site %></a>
+            <a href="<%= officialBlogUrl %>" target="_blank" rel="noreferrer" class="btn btn-ghost"><i data-lucide="newspaper"></i><%= landing.btn_official_blog %></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- NEWSLETTER / INSCREVER-SE -->
+    <section class="section newsletter-section" id="newsletter">
+      <div class="container">
+        <div class="newsletter-card reveal">
+          <h2><%= landing.news_title %></h2>
+          
+          <form id="newsletter-form" class="newsletter-form">
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="updates" value="general" checked>
+                <%= landing.news_check_general %>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="updates" value="developer">
+                <%= landing.news_check_dev %>
+              </label>
+            </div>
+            
+            <!-- Invisible Honeypot Field -->
+            <input type="text" id="news-hp" name="news_hp" style="display: none !important;" tabindex="-1" autocomplete="off">
+            
+            <div class="email-input-wrap">
+              <input type="email" id="news-email" required placeholder="<%= landing.news_placeholder %>">
+            </div>
+            
+            <div class="recaptcha-badge">
+              <div class="recaptcha-text">
+                <span>protected by <strong>reCAPTCHA</strong></span>
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> - 
+                <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a>
+              </div>
+            </div>
+            
+            <button type="submit" class="btn-subscribe" id="btn-newsletter-submit">
+              <%= landing.news_btn %>
+              <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+            </button>
+            
+            <p class="newsletter-disclaimer"><%- landing.news_disclaimer %></p>
+          </form>
+          
+          <div id="newsletter-success" class="newsletter-success-box" style="display: none;">
+            <div class="success-icon">
+              <i data-lucide="check-circle" style="width: 48px; height: 48px;"></i>
+            </div>
+            <h3 style="font-family: 'Sora', sans-serif; font-size: 1.25rem; color: var(--ink); margin: 0 0 10px;"><%= uiLang === 'pt' ? 'Inscrição realizada!' : uiLang === 'es' ? '¡Suscripción realizada!' : 'Subscription successful!' %></h3>
+            <p style="color: var(--muted); font-size: 0.9rem; margin: 0;"><%= uiLang === 'pt' ? 'Obrigado por se inscrever. Você começará a receber nossas atualizações em breve.' : uiLang === 'es' ? 'Gracias por suscribirte. Comenzarás a recibir nuestras actualizaciones pronto.' : 'Thank you for subscribing. You will start receiving updates shortly.' %></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© <%= landing.footer_rights %></div>
+      <div class="footer-links">
+        <a href="<%= officialMainSiteUrl %>" target="_blank" rel="noreferrer"><%= landing.btn_official_site %></a>
+        <a href="<%= officialBlogUrl %>" target="_blank" rel="noreferrer"><%= landing.btn_official_blog %></a>
+        <a href="<%= officialSupportUrl %>" target="_blank" rel="noreferrer"><%= t.contact.whatsapp_label %></a>
+        <a href="<%= officialPrivacyUrl %>" target="_blank" rel="noreferrer"><%= uiLang === 'pt' ? 'Privacidade' : uiLang === 'es' ? 'Privacidad' : 'Privacy' %></a>
+      </div>
+      <div class="social-links">
+        <a href="https://t.me/canalvkx" target="_blank" rel="noreferrer" title="Telegram"><i data-lucide="send" style="width: 16px; height: 16px;"></i></a>
+        <a href="https://chat.whatsapp.com/F3erV36lzCB3i8PgrgFKsb" target="_blank" rel="noreferrer" title="WhatsApp"><i data-lucide="message-circle" style="width: 16px; height: 16px;"></i></a>
+        <a href="https://www.instagram.com/vkxwallet?igsh=MThueXV3ZDJha3lyZA==" target="_blank" rel="noreferrer" title="Instagram"><i data-lucide="instagram" style="width: 16px; height: 16px;"></i></a>
+      </div>
+      <div class="footer-note"><%= landing.footer_disclaimer %></div>
+    </div>
+  </footer>
+
+  <!-- STICKY MOBILE CTA -->
+  <div class="sticky-footer">
+    <a href="<%= downloadHref %>" class="btn btn-primary js-download-link" style="width: 100%;"><i data-lucide="smartphone"></i><%= landing.btn_download %></a>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    
+    // Download Link Setup preserving all current page query parameters
+    const topbar = document.getElementById('topbar');
+    const refCode = document.body.getAttribute('data-ref') || '';
+    const downloadBase = document.body.getAttribute('data-download-base');
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    if (refCode && !urlParams.has('ref')) {
+      urlParams.set('ref', refCode);
+    }
+    const paramsStr = urlParams.toString();
+    const downloadUrl = paramsStr ? `${downloadBase}?${paramsStr}` : downloadBase;
+    
+    document.querySelectorAll('.js-download-link').forEach((link) => link.setAttribute('href', downloadUrl));
+    
+    // Sticky header
+    const syncTopbar = () => window.scrollY > 12 ? topbar.classList.add('scrolled') : topbar.classList.remove('scrolled');
+    syncTopbar();
+    window.addEventListener('scroll', syncTopbar, { passive: true });
+    
+    // Intersection Observer for fade-in animations
+    const items = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const obs = new IntersectionObserver((entries) => entries.forEach((entry) => { 
+        if (entry.isIntersecting) { 
+          entry.target.classList.add('show'); 
+          obs.unobserve(entry.target); 
+        } 
+      }), { threshold: 0.1 });
+      items.forEach((item) => obs.observe(item));
+    } else {
+      items.forEach((item) => item.classList.add('show'));
+    }
+
+    // FAQ Accordion logic
+    document.querySelectorAll('.faq-trigger').forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.parentElement;
+        const content = item.querySelector('.faq-content');
+        const isActive = item.classList.contains('active');
+        
+        // Close all other items
+        document.querySelectorAll('.faq-item').forEach((otherItem) => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+            otherItem.querySelector('.faq-content').style.maxHeight = null;
+          }
+        });
+        
+        if (isActive) {
+          item.classList.remove('active');
+          content.style.maxHeight = null;
+        } else {
+          item.classList.add('active');
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // Interactive Simulators Data & Logic
+    const currentLang = '<%= uiLang %>';
+    const simTranslations = {
+      pt: {
+        gas: [
+          "1. Verificando saldos da carteira...",
+          "2. Detectado: 100 USDT | 0.00 BNB (Sem saldo para taxas)",
+          "3. Ativando Gas Shield: VKX assume e subsidia a taxa...",
+          "4. ✓ Transação concluída com sucesso! 100 USDT transferidos sem BNB."
+        ],
+        gas_btn_start: "Simular Transação Sem BNB",
+        gas_btn_reset: "Reiniciar Simulação",
+        cross_calc: "Calculando rota otimizada...",
+        cross_success: "✓ Melhor rota encontrada!",
+        cross_time: "Tempo estimado: ~45s",
+        cross_fee: "Taxa da rota: $0.15"
+      },
+      en: {
+        gas: [
+          "1. Checking wallet balances...",
+          "2. Detected: 100 USDT | 0.00 BNB (Insufficient gas fee balance)",
+          "3. Activating Gas Shield: VKX sponsors the network fee...",
+          "4. ✓ Success! 100 USDT transferred without BNB."
+        ],
+        gas_btn_start: "Simulate Gasless Transaction",
+        gas_btn_reset: "Reset Simulation",
+        cross_calc: "Calculating optimal route...",
+        cross_success: "✓ Best route found!",
+        cross_time: "Estimated time: ~45s",
+        cross_fee: "Route fee: $0.15"
+      },
+      es: {
+        gas: [
+          "1. Verificando saldos de la wallet...",
+          "2. Detectado: 100 USDT | 0.00 BNB (Sin saldo para comisiones)",
+          "3. Activando Gas Shield: VKX asume y subsidia la tasa...",
+          "4. ✓ ¡Transacción exitosa! 100 USDT enviados sin BNB."
+        ],
+        gas_btn_start: "Simular Transacción Sin BNB",
+        gas_btn_reset: "Reiniciar Simulador",
+        cross_calc: "Calculando ruta optimizada...",
+        cross_success: "¡Mejor ruta encontrada!",
+        cross_time: "Tiempo estimado: ~45s",
+        cross_fee: "Costo de la ruta: $0.15"
+      }
+    };
+
+    // Gas Shield Simulator
+    const btnRunGas = document.getElementById('btn-run-gas-sim');
+    const consoleOutput = document.getElementById('sim-console-output');
+    const bnbVal = document.getElementById('sim-bnb-val');
+    let isGasSimRunning = false;
+
+    btnRunGas.addEventListener('click', () => {
+      if (isGasSimRunning) {
+        // Reset
+        consoleOutput.innerHTML = `<div class="sim-console-line show">Waiting for simulation...</div>`;
+        bnbVal.textContent = "0.00 BNB";
+        bnbVal.classList.add('red-val');
+        btnRunGas.textContent = simTranslations[currentLang].gas_btn_start;
+        isGasSimRunning = false;
+        return;
+      }
+
+      isGasSimRunning = true;
+      btnRunGas.disabled = true;
+      consoleOutput.innerHTML = '';
+      
+      const steps = simTranslations[currentLang].gas;
+      let currentStep = 0;
+
+      const runStep = () => {
+        if (currentStep < steps.length) {
+          const line = document.createElement('div');
+          line.className = 'sim-console-line';
+          line.textContent = steps[currentStep];
+          
+          if (currentStep === 2) {
+            line.classList.add('highlight');
+          }
+          
+          if (currentStep === 3) {
+            line.classList.add('highlight');
+            bnbVal.textContent = "0.00 BNB (Shielded)";
+            bnbVal.classList.remove('red-val');
+            bnbVal.style.color = "var(--green)";
+          }
+
+          consoleOutput.appendChild(line);
+          setTimeout(() => line.classList.add('show'), 50);
+          
+          currentStep++;
+          setTimeout(runStep, 1000);
+        } else {
+          btnRunGas.disabled = false;
+          btnRunGas.textContent = simTranslations[currentLang].gas_btn_reset;
+        }
+      };
+
+      runStep();
+    });
+
+    // Cross-Chain Router Simulator
+    const btnRunRouter = document.getElementById('btn-run-router');
+    const routerPlaceholder = document.getElementById('router-placeholder');
+    const routerData = document.getElementById('router-data');
+    const routerStatus = document.getElementById('router-result-status');
+    const routerTime = document.getElementById('router-est-time');
+    const routerFee = document.getElementById('router-est-fee');
+    const routerFrom = document.getElementById('router-from');
+    const routerTo = document.getElementById('router-to');
+    const routerAmount = document.getElementById('router-amount');
+
+    btnRunRouter.addEventListener('click', () => {
+      const fromVal = routerFrom.options[routerFrom.selectedIndex].text;
+      const toVal = routerTo.options[routerTo.selectedIndex].text;
+      const amountVal = parseFloat(routerAmount.value) || 100;
+
+      if (routerFrom.value === routerTo.value) {
+        alert(currentLang === 'pt' ? 'Por favor selecione redes diferentes!' : 'Please select different networks!');
+        return;
+      }
+
+      btnRunRouter.disabled = true;
+      routerPlaceholder.style.display = 'block';
+      routerData.style.display = 'none';
+      routerPlaceholder.textContent = simTranslations[currentLang].cross_calc;
+
+      setTimeout(() => {
+        routerPlaceholder.style.display = 'none';
+        routerData.style.display = 'block';
+        
+        routerStatus.textContent = simTranslations[currentLang].cross_success;
+        routerTime.textContent = "~45s";
+        
+        // Calculate dynamic mock fee
+        const calculatedFee = (amountVal * 0.0015).toFixed(2);
+        routerFee.textContent = `$${Math.max(parseFloat(calculatedFee), 0.15).toFixed(2)}`;
+
+        btnRunRouter.disabled = false;
+      }, 1200);
+    });
+
+    // Tracking Event Listeners
+    document.querySelectorAll('.js-download-link').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (typeof clarity === 'function') {
+          clarity('event', 'download_click');
+        }
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'Lead');
+        }
+      });
+    });
+
+    // Newsletter Submission Logic
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterSuccess = document.getElementById('newsletter-success');
+    const btnNewsletterSubmit = document.getElementById('btn-newsletter-submit');
+    const newsEmail = document.getElementById('news-email');
+
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const emailVal = newsEmail.value.trim();
+        if (!emailVal) return;
+
+        // Antispam / Honeypot Check
+        const honeypot = document.getElementById('news-hp')?.value || '';
+        if (honeypot) {
+          console.warn('Honeypot filled - Bot detected.');
+          return;
+        }
+
+        const updates = [];
+        newsletterForm.querySelectorAll('input[name="updates"]:checked').forEach(cb => {
+          updates.push(cb.value);
         });
 
-        menuClose.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            document.body.style.overflow = '';
-        });
+        // Capture UTMs & referral parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const utm_source = urlParams.get('utm_source') || '';
+        const utm_medium = urlParams.get('utm_medium') || '';
+        const utm_campaign = urlParams.get('utm_campaign') || '';
+        const utm_content = urlParams.get('utm_content') || '';
+        const ref = urlParams.get('ref') || document.body.getAttribute('data-ref') || '';
 
-        mobileMenu.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                document.body.style.overflow = '';
-            });
-        });
+        btnNewsletterSubmit.disabled = true;
+        const originalText = btnNewsletterSubmit.innerHTML;
+        btnNewsletterSubmit.textContent = currentLang === 'pt' ? 'ENVIANDO...' : currentLang === 'es' ? 'ENVIANDO...' : 'SUBSCRIBING...';
 
-        // Add scrolled class to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 20) {
-                header.classList.add('shadow-xl');
-            } else {
-                header.classList.remove('shadow-xl');
+        try {
+          const response = await fetch('/newsletter/subscribe', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              email: emailVal,
+              updates: updates,
+              utm_source,
+              utm_medium,
+              utm_campaign,
+              utm_content,
+              ref
+            })
+          });
+
+          const result = await response.json();
+          if (response.ok && result.success) {
+            newsletterForm.style.display = 'none';
+            newsletterSuccess.style.display = 'block';
+            if (typeof clarity === 'function') {
+              clarity('event', 'newsletter_subscribe');
             }
-        });
-    </script>
+            if (typeof fbq !== 'undefined') {
+              fbq('track', 'CompleteRegistration');
+            }
+          } else {
+            alert(result.error || result.message || (currentLang === 'pt' ? 'Erro ao realizar inscrição.' : 'Error during subscription.'));
+            btnNewsletterSubmit.disabled = false;
+            btnNewsletterSubmit.innerHTML = originalText;
+          }
+        } catch (err) {
+          console.error('Newsletter error:', err);
+          alert(currentLang === 'pt' ? 'Erro de conexão com o servidor.' : 'Connection error with the server.');
+          btnNewsletterSubmit.disabled = false;
+          btnNewsletterSubmit.innerHTML = originalText;
+        }
+      });
+    }
+
+    // Language selection preservation of query parameters
+    document.querySelectorAll('.js-lang-select').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetLang = link.getAttribute('data-lang');
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('lang', targetLang);
+        window.location.href = window.location.pathname + '?' + urlParams.toString();
+      });
+    });
+  </script>
 </body>
 </html>
