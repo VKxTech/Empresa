@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security - VKX Wallet</title>
+    <meta name="description" content="How VKX Wallet protects your keys, what the protection does not cover, post-quantum cryptography, and how to report a security issue.">
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="alternate" hreflang="pt-BR" href="https://wallet.vkxtech.com.br/wallet-security-pt">
+    <link rel="stylesheet" href="/css/vkx-tokens.css">
+    <style>
+        /* Estilos PRÓPRIOS e sem @layer de propósito.
+           O Tailwind v4 emite as utilities dentro de `@layer utilities`, e
+           camada CSS perde para regra sem camada — então o `body` do
+           vkx-tokens.css vencia `bg-white` e a página saía com texto escuro
+           sobre fundo escuro. Aqui usamos os TOKENS do site, então a página
+           acompanha o tema em vez de brigar com ele. */
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--vkx-bg);
+            color: var(--vkx-text-muted);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-size: 16px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--vkx-violet-cta, #6c5cff); }
+
+        .topbar {
+            position: sticky; top: 0; z-index: 50;
+            display: flex; align-items: center; height: 60px;
+            padding-inline: 20px;
+            background: var(--vkx-bg);
+            border-bottom: 1px solid var(--vkx-border);
+        }
+        .topbar a {
+            font-weight: 700; font-size: 20px; text-decoration: none;
+            color: var(--vkx-text);
+        }
+
+        main { max-width: 760px; margin: 0 auto; padding-inline: 20px; padding-block: 44px 80px; }
+
+        .stamp {
+            font-size: 11px; font-weight: 700; letter-spacing: .12em;
+            text-transform: uppercase; color: var(--vkx-violet-cta, #6c5cff);
+            margin: 0 0 14px;
+        }
+
+        h1 {
+            color: var(--vkx-text);
+            font-size: clamp(30px, 6vw, 42px);
+            font-weight: 800; line-height: 1.12; letter-spacing: -.02em;
+            margin: 0 0 22px; text-wrap: balance;
+        }
+
+        h2 {
+            color: var(--vkx-text);
+            font-size: 24px; font-weight: 700; line-height: 1.25;
+            margin: 52px 0 14px; text-wrap: balance;
+        }
+
+        h3 {
+            color: var(--vkx-text);
+            font-size: 16.5px; font-weight: 700;
+            margin: 30px 0 8px;
+        }
+
+        p { margin: 0 0 15px; max-width: 68ch; }
+        strong { color: var(--vkx-text); font-weight: 600; }
+
+        ul, ol { margin: 0 0 15px; padding-left: 22px; max-width: 68ch; }
+        li { margin-bottom: 8px; }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: .875em;
+            background: var(--vkx-card);
+            border: 1px solid var(--vkx-border);
+            padding: .08em .4em; border-radius: 4px;
+            color: var(--vkx-text);
+        }
+
+        .callout {
+            border-left: 3px solid var(--vkx-violet-cta, #6c5cff);
+            background: var(--vkx-card);
+            padding: 15px 18px; margin: 18px 0 20px;
+            color: var(--vkx-text); font-weight: 600;
+            max-width: 68ch; border-radius: 0 6px 6px 0;
+        }
+
+        .tbl { overflow-x: auto; margin: 18px 0 22px; }
+        table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 30rem; }
+        th, td { text-align: left; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--vkx-border); vertical-align: top; }
+        th {
+            font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+            color: var(--vkx-text-muted); font-weight: 600;
+        }
+        td strong { font-weight: 600; }
+
+        hr { border: 0; border-top: 1px solid var(--vkx-border); margin: 52px 0; }
+
+        .back { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--vkx-border); font-size: 14.5px; }
+        .back a { font-weight: 600; text-decoration: none; }
+
+        .topbar { justify-content: space-between; }
+        .topbar .lang {
+            font-size: 13px; font-weight: 600; letter-spacing: .04em;
+            text-transform: uppercase; color: var(--vkx-text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+      <a href="/wallet">VKX Wallet</a>
+      <a href="/wallet-security-pt" class="lang">Português</a>
+    </div>
+
+    <main>
+        <p class="stamp">Last reviewed: 15 September 2026</p>
+        <h1>Security</h1>
+
+        <p>VKX Wallet is a <strong>self-custody</strong> wallet. The keys that control your funds are generated on your device, stay on your device, and are never transmitted to us. We cannot move your funds, freeze your account, or restore your access if you lose your recovery phrase.</p>
+        <p>This page describes <strong>how</strong> that is done and — just as importantly — <strong>what that protection does not cover</strong>. If you are a security researcher, go straight to <a href="#disclosure">Responsible disclosure</a>.</p>
+
+        <hr>
+
+        <h2>1. How keys are generated</h2>
+        <p>A wallet is created from <strong>128 bits of entropy</strong> taken from the operating system's cryptographic generator — <code>SecRandomCopyBytes</code> on iOS and the kernel entropy device on Android. We do not use language-level random generators, nor anything derived from the clock, a device identifier, or user input.</p>
+        <p>Those 128 bits are encoded as a <strong>12-word phrase</strong> following <strong>BIP-39</strong>, and every address derives from it via <strong>BIP-44</strong>:</p>
+        <div class="tbl">
+            <table>
+                <thead><tr><th>Network</th><th>Derivation path</th></tr></thead>
+                <tbody>
+                    <tr><td>Ethereum, BNB Chain, Polygon, Arbitrum, Base</td><td><code>m/44'/60'/0'/0/{index}</code></td></tr>
+                    <tr><td>Bitcoin (native SegWit)</td><td><code>m/84'/0'/0'/0/{index}</code></td></tr>
+                    <tr><td>TRON</td><td><code>m/44'/195'/0'/0/{index}</code></td></tr>
+                    <tr><td>Solana (ed25519)</td><td><code>m/44'/501'/{index}'/0'</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>These are public standards. The practical consequence for you: <strong>your 12-word phrase does not depend on VKX</strong>. It restores your funds in any compatible wallet, today or ten years from now, even if VKX ceases to exist.</p>
+
+        <h2>2. Where keys are stored</h2>
+        <p>The private key and the recovery phrase are encrypted with <strong>AES-256-GCM</strong>. The encryption key is derived from your PIN using <strong>scrypt</strong>, and the parameters used travel inside the encrypted file itself — so an older file keeps opening after we strengthen the parameters.</p>
+        <p>The encrypted files live in the <strong>operating system's protected storage</strong>: Keychain on iOS, Keystore on Android. They are marked as <strong>this device only</strong>, which means they are <strong>not included in backups and do not migrate to a new phone</strong>.</p>
+        <div class="callout">Restoring your phone's backup on another device will not bring your wallet back. Recovery is done with the 12 words.</div>
+        <p>That is why we insist you store the phrase outside the device. On Android, the app also declares <code>allowBackup="false"</code>, so app data does not go to Google's backup.</p>
+
+        <h2>3. Where the PIN fits in</h2>
+        <p>The 6-digit PIN <strong>is not a lock screen</strong>: it is the password that encrypts your keys. Without the correct PIN, the encrypted file is a useless block of bytes.</p>
+        <p>So we treat it as a password:</p>
+        <ul>
+            <li><strong>3 attempts</strong>, then a wait that starts at 30 seconds and grows to 5 minutes.</li>
+            <li>The scrypt cost exists precisely to make mass PIN guessing expensive. On devices with native cryptographic acceleration we use the stronger parameter (<code>N=32768</code>, 32 MiB of memory per attempt).</li>
+            <li>If you enable biometric access, the PIN is stored in the Keychain/Keystore <strong>requiring system authentication to be read</strong> (Face ID, Touch ID, or Android biometrics). On a device with <strong>no</strong> biometrics enrolled, the PIN is simply <strong>not stored</strong>.</li>
+        </ul>
+
+        <h2>4. What leaves the device</h2>
+        <p><strong>Never leaves:</strong> the recovery phrase and the private keys. There is no path in the app that sends them to any server — ours or a third party's.</p>
+        <p><strong>Does leave:</strong> your <strong>public addresses</strong>, so we can show balances and history, and the data you deliberately provide for local-currency buy and sell operations, where regulation requires identification. When you link your wallet to an account, the server receives the account identifier and the public address — nothing beyond that.</p>
+        <p>Transactions are signed <strong>on your device</strong>. The server may build a transaction and suggest a route, but the signature — the only thing that moves funds — happens locally.</p>
+
+        <h2>5. Screen and clipboard protection</h2>
+        <ul>
+            <li>Every screen that displays the recovery phrase <strong>blocks screenshots and screen recording</strong>, both during sign-up and on the backup screen.</li>
+            <li>If you copy the phrase, it is <strong>removed from the clipboard after 60 seconds</strong> — and only if it is still there, so we never erase something you copied afterwards. This exists because third-party keyboards and clipboard managers can read that content, and iOS syncs it across your devices.</li>
+        </ul>
+
+        <hr>
+
+        <h2>6. Post-quantum cryptography</h2>
+        <p>A sufficiently large quantum computer would break the signatures that protect virtually every cryptocurrency today. That machine does not exist yet, but data copied today can be attacked later.</p>
+        <p>VKX uses <strong>ML-DSA-65</strong> — the post-quantum signature standardised by NIST in <strong>FIPS 204</strong>, formerly known as Dilithium3 — in two places.</p>
+
+        <h3>Proof of authorship for every transaction</h3>
+        <p>Each wallet has its own ML-DSA-65 key pair, generated on the device, with the secret key encrypted at rest. Every transaction receives, <strong>alongside the normal signature</strong>, a post-quantum signature recording that this device authorised that operation. It is active and required in production.</p>
+        <ul>
+            <li>The post-quantum signature is produced <strong>after</strong> the transaction already exists on the network and <strong>never blocks</strong> sending. If it fails, your transaction still goes through — added security must not become a source of downtime.</li>
+            <li>It <strong>does not take part in blockchain validation</strong>. No network can verify ML-DSA today. What it offers is proof of authorship that <strong>remains valid against a quantum adversary</strong>, for audit and dispute purposes.</li>
+        </ul>
+
+        <h3>Portable backup with post-quantum authenticity</h3>
+        <p>The portable wallet backup is encrypted with <strong>AES-256-GCM</strong>, with the key derived by <strong>scrypt (N=32768)</strong> from a secret of yours of <strong>at least 16 characters</strong> — not the 6-digit PIN — and it is <strong>signed with ML-DSA-65</strong>. The signature is what lets you trust the file: nobody can forge or tamper with a VKX backup without the secret key, not even with a quantum computer.</p>
+        <p>AES-256 is why the encryption is not the weak link: against a quantum attack it retains the equivalent of 128-bit security, which remains out of reach. <strong>This feature requires an active subscription.</strong></p>
+
+        <h3>What post-quantum cryptography does not do here</h3>
+        <div class="callout">Your funds on the blockchain do not become resistant to quantum computing.</div>
+        <p>Bitcoin, Ethereum, Solana and the other networks validate transactions with ECDSA (secp256k1) and ed25519. Both would fall to a sufficiently large quantum computer — and that is a problem <strong>of the networks</strong>, not of the wallet. No wallet can fix it alone: it depends on the blockchains themselves migrating to post-quantum signatures.</p>
+        <p>Any wallet advertising "quantum-proof funds" is selling something that does not exist. What does exist, and what we deliver, is <strong>protecting what is under our control</strong> — the authorship of your operations and the integrity of your backup — with a NIST-standardised algorithm.</p>
+
+        <hr>
+
+        <h2>7. Threat model</h2>
+        <p>Security only means something when you say <strong>against what</strong>. This section is deliberately honest about the limits.</p>
+
+        <h3>What we protect against</h3>
+        <div class="tbl">
+            <table>
+                <thead><tr><th>Threat</th><th>How</th></tr></thead>
+                <tbody>
+                    <tr><td>Our server being breached</td><td>We do not hold your keys. There is nothing to steal from us.</td></tr>
+                    <tr><td>Our company shutting down</td><td>Your 12 words work in any BIP-39 wallet.</td></tr>
+                    <tr><td>Lost or stolen device, locked</td><td>Keys encrypted in system storage; PIN with escalating lockout.</td></tr>
+                    <tr><td>Phone backup restored on another device</td><td>Items marked this-device-only, excluded from backup.</td></tr>
+                    <tr><td>Accidental screenshot of the phrase</td><td>Capture blocked on every screen that shows it.</td></tr>
+                    <tr><td>Secret left behind in the clipboard</td><td>Automatic clearing after 60 seconds.</td></tr>
+                    <tr><td>Hostile network watching traffic</td><td>No key material is transmitted.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>What we do not protect against</h3>
+        <p>These are real limits, not oversights. No software wallet solves these cases, and anyone claiming otherwise is selling something:</p>
+        <ul>
+            <li><strong>A compromised device.</strong> Malware with root or jailbreak privileges can read protected storage and capture the screen. In that scenario, what stands between the attacker and your funds is the cost of breaking your PIN. A 6-digit PIN has one million combinations: with scrypt that is a real barrier, but <strong>it is not infinite</strong>.</li>
+            <li><strong>You handing over the phrase.</strong> No technical mechanism prevents someone from being talked into typing their 12 words into a fake site. <strong>We never ask for your phrase — through any channel, under any circumstance.</strong></li>
+            <li><strong>You approving a malicious transaction.</strong> The wallet shows what is being signed, but the decision is yours.</li>
+            <li><strong>An unlocked device in someone else's hands</strong>, if they know your PIN.</li>
+            <li><strong>Flaws in the third-party libraries</strong> we use.</li>
+            <li><strong>Quantum computing against the blockchains.</strong> We protect the authorship of operations and your backup, but on-chain validation depends on the networks.</li>
+        </ul>
+
+        <h3>Over-the-air updates — an explicit statement</h3>
+        <p>The app receives <strong>code updates over the network</strong>, without going through the app store. This lets us fix a problem in minutes instead of days, and it has been used for exactly that.</p>
+        <p>The security consequence, stated plainly: <strong>we have the technical ability to change the app's behaviour on your device.</strong> There is no way for you to verify, today, that the running code is what this page describes.</p>
+        <p>We do not think that should stay implicit. Under <strong>Settings → About</strong> the app shows the identifier of the running build, copyable. The work in progress is to publish the release list and enable reproducible builds, so anyone can check that the published package corresponds to the source. Until that exists, this statement is the honest information we can give.</p>
+
+        <h3>Source code and independent audit</h3>
+        <p>Two things we would rather state than let you assume:</p>
+        <ul>
+            <li><strong>Part of the code is public.</strong> The two modules that protect your keys on the device — encryption at rest and the derivation of the encryption key from your PIN — are published at <a href="https://github.com/VkxProtocol/VKX-Wallet">github.com/VkxProtocol/VKX-Wallet</a>, under the MIT licence. They are the files that ship in the app, not a version rewritten for display.</li>
+            <li><strong>Key generation and address derivation are public too.</strong> The BIP-39 and BIP-44 code is in the same repository, and its test suite derives from the mnemonic BIP-39 uses for its own test vectors, comparing against references published outside VKX: the first receiving address in the BIP-84 test vectors, and the Ethereum address that mnemonic produces in every wallet. That is the check behind our promise that your 12 words work anywhere.</li>
+            <li><strong>We have not been audited by a third party.</strong> When that happens, the report will be published here, findings included.</li>
+        </ul>
+        <p>What you can check for yourself today: clone the repository, run <code>npm install &amp;&amp; npm test</code>, and the suite verifies our PIN key derivation against the published vector from <strong>RFC 7914 §12</strong>, and our address derivation against the <strong>BIP-84</strong> test vectors — the standards themselves. It also pins the properties a subtly broken implementation would fail: that the synchronous and asynchronous paths return the same bytes, that the native and JavaScript backends agree, and that the cost parameters actually affect the output.</p>
+        <p>What you still have to take on trust: the statements on this page about screen capture, the clipboard, and where secrets are stored. Those are covered by automated tests on every release, but the tests are ours and live in code that is not public. That is precisely why the two items above matter.</p>
+
+        <hr>
+
+        <h2 id="disclosure">8. Responsible disclosure</h2>
+        <p>If you found a flaw, we want to know before our users do.</p>
+        <p>There are two routes, and the only difference is whether you use the wallet.</p>
+        <p><strong>If you have the app installed</strong> — open a ticket under <strong>Settings → Support Center → Create ticket</strong>, category <strong>Security</strong>. This is the preferred route: it is authenticated, keeps the conversation history, accepts up to three attachments, and already tells us the app version and the device.</p>
+        <p><strong>If you are not a user</strong> — write to <code>security@vkxtech.com.br</code>. It exists precisely for this: we do not want installing the wallet and creating an account to be a condition for telling us about a flaw.</p>
+        <p>Either way, include the steps to reproduce and the impact you see. A proof of concept helps.</p>
+
+        <h3>What you can expect from us</h3>
+        <div class="tbl">
+            <table>
+                <thead><tr><th>Timeline</th><th>Commitment</th></tr></thead>
+                <tbody>
+                    <tr><td>2 business days</td><td>Confirmation that we received and read it</td></tr>
+                    <tr><td>7 days</td><td>Our severity assessment and a plan</td></tr>
+                    <tr><td>90 days</td><td>Fix published, or an explanation of why not yet</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>Security reports do not go through automated triage: the <strong>Security</strong> category and the address above go straight to a person.</p>
+
+        <h3>What we ask of you</h3>
+        <ul>
+            <li>Do not exploit further than necessary to demonstrate the flaw.</li>
+            <li>Do not access, alter, or exfiltrate other people's data. Use your own accounts.</li>
+            <li>Do not run denial-of-service or load testing.</li>
+            <li><strong>Talk to us first, privately.</strong> Publishing the flaw before the fix exposes the people using the wallet — including those with no way to protect themselves. Ask for whatever deadline you need; what we ask is that it not become public before a fix exists.</li>
+        </ul>
+
+        <h3>How it works, from report to publication</h3>
+        <ol>
+            <li><strong>You tell us privately.</strong> This is the step that buys time to fix the issue before someone with bad intent reads the same information.</li>
+            <li><strong>We fix it</strong> and publish the fix.</li>
+            <li><strong>We publish the finding</strong> in the history on this page, crediting you.</li>
+        </ol>
+        <p>The credit is yours, and you choose the form:</p>
+        <ul>
+            <li><strong>your name or a pseudonym</strong>, or</li>
+            <li><strong>your wallet address</strong> — which makes the credit verifiable: you can prove authorship of the finding at any time by signing a message with the same wallet, without depending on us to confirm anything, or</li>
+            <li><strong>anonymous</strong>, if you prefer.</li>
+        </ul>
+        <p><strong>We do not run a monetary bounty programme.</strong> We would rather say so than advertise amounts we would not honour. What we offer is what is described here: a fast response, a published fix, verifiable credit for the finding, and the guarantee that we will not take legal action against good-faith research.</p>
+
+        <hr>
+
+        <h2>9. Security fix history</h2>
+        <p>We publish what we fixed, including what was wrong before. A security page that only lists what went right tells you nothing.</p>
+
+        <h3>15 September 2026</h3>
+        <ul>
+            <li><strong>The encrypted private key was kept in ordinary app storage</strong>, not in the Keychain/Keystore. The recovery phrase and the PIN were already protected; the private key was not. On iOS, this meant it was included in the device backup. Fixed, with automatic migration on unlock.</li>
+            <li><strong>Protected-storage items could migrate to another device</strong> when restoring a backup. They are now this-device-only.</li>
+            <li><strong>The recovery phrase was shown during sign-up without screenshot blocking.</strong> The backup screen already blocked it; sign-up did not. Fixed.</li>
+            <li><strong>A copied phrase stayed in the clipboard indefinitely.</strong> It is now removed after 60 seconds.</li>
+            <li><strong>Encryption parameters could be weakened.</strong> The routine that upgraded the storage format treated a stronger parameter as "outdated" and reduced it. Migration now only ever strengthens.</li>
+        </ul>
+
+        <div class="back"><a href="/wallet">&larr; Back to VKX Wallet</a></div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,724 @@
+<%
+const officialWalletUrl = 'https://wallet.vkxtech.com.br';
+const officialMainSiteUrl = 'https://vkxtech.com.br';
+const currentLang = ['pt', 'en', 'es', 'zh', 'ar'].includes(lang) ? lang : 'en';
+
+const termsTranslations = {
+  en: {
+    meta_title: "Terms of Service — VKX Wallet",
+    hero_tag: "VKX Wallet • Legal Terms & Conditions",
+    hero_title: "Terms of <span>Service</span>",
+    hero_subtitle: "Global Terms of Use for the VKX Wallet non-custodial software, multi-chain services, and third-party integrations (including Transak fiat services).",
+    last_updated: "Last Updated: July 2026 • Version 2.5 Global",
+    product_notice_title: "Product & Company Distinction",
+    product_notice_text: "VKX Wallet is a decentralized, non-custodial software application developed by VKX Technologies (CNPJ: 33.070.993/0001-27). This document governs the product end-user agreement for VKX Wallet separately from corporate services.",
+    btn_download: "Download Wallet",
+    btn_support: "Support Center",
+    btn_privacy: "Privacy Policy",
+    sections: [
+      {
+        id: "acceptance",
+        num: "01",
+        title: "Acceptance of Terms",
+        content: `By downloading, installing, accessing, or using the VKX Wallet mobile application, web interface (wallet.vkxtech.com.br), or related services, you ("User" or "you") agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, you must immediately cease accessing or using VKX Wallet.`
+      },
+      {
+        id: "non-custodial",
+        num: "02",
+        title: "Non-Custodial Nature & Key Sovereignty",
+        content: `VKX Wallet is strictly non-custodial software. 
+        <ul class="list-disc pl-6 space-y-2 mt-3 text-gray-700">
+          <li><strong>Sole Control:</strong> You maintain sole control over your private keys, seed phrases (BIP-39 12 words), and digital assets.</li>
+          <li><strong>No Custody or Access:</strong> VKX Technologies does not store, transmit, process, or possess your seed phrases, private keys, or passwords. We cannot access your wallet or recover lost keys.</li>
+          <li><strong>User Responsibility:</strong> You are exclusively responsible for maintaining the confidentiality and backup of your seed phrase and securing your device with local PIN and biometrics.</li>
+          <li><strong>Irreversibility:</strong> Transactions executed on blockchain networks are final and irreversible. VKX Technologies cannot pause, cancel, or refund any transaction.</li>
+        </ul>`
+      },
+      {
+        id: "third-party",
+        num: "03",
+        title: "Third-Party Integrations & Transak Fiat On/Off-Ramp Services",
+        content: `VKX Wallet integrates third-party services to enhance user experience, including fiat-to-crypto and crypto-to-fiat payment processing, decentralized exchange aggregators, and RPC node providers.
+        <ul class="list-disc pl-6 space-y-2 mt-3 text-gray-700">
+          <li><strong>Transak Integration:</strong> Fiat-to-crypto purchasing and sell-to-fiat functionalities within VKX Wallet are facilitated by <strong>Transak</strong> (Transak Limited and its global operating entities).</li>
+          <li><strong>Independent Relationship:</strong> When you purchase or sell cryptocurrencies using Transak inside VKX Wallet, you enter into a direct contractual relationship with Transak. VKX Technologies is not a payment gateway, financial institution, money transmitter, or fiat custodian.</li>
+          <li><strong>Compliance & KYC:</strong> Transak handles all identity verification (KYC/KYB), anti-money laundering (AML) checks, and banking operations under its own Terms of Use and Privacy Policy.</li>
+          <li><strong>United Kingdom restriction:</strong> Buy/Sell is not available in the United Kingdom. The Transak-powered Buy/Sell service is currently unavailable for users located in the United Kingdom. This restriction uses the ISO country code <strong>GB</strong>.</li>
+          <li><strong>Disclaimer:</strong> VKX Technologies is not responsible for Transak’s service uptime, exchange rates, banking fees, account verifications, or transaction processing times.</li>
+        </ul>`
+      },
+      {
+        id: "risks",
+        num: "04",
+        title: "Blockchain & Digital Asset Risk Disclosures",
+        content: `Transacting in cryptocurrencies and interacting with blockchain protocols involves substantial financial and operational risks:
+        <ul class="list-disc pl-6 space-y-2 mt-3 text-gray-700">
+          <li><strong>Market Volatility:</strong> Digital asset prices can fluctuate drastically. You accept all risks of financial loss.</li>
+          <li><strong>Network Fees & Gas:</strong> Blockchain networks require gas fees (e.g., BNB, ETH, MATIC) to process transactions. VKX Wallet features like "Gas Shield" sponsor or optimize fees where available, but underlying network congestion remains outside our control.</li>
+          <li><strong>Smart Contract Risk:</strong> Interacting with smart contracts, swap protocols, or decentralized applications (dApps) carries risks of code vulnerabilities or protocol exploits.</li>
+          <li><strong>Experimental Technologies:</strong> VKX Wallet features Post-Quantum Cryptography (PQC) attestation layers and Vault mechanisms designed to enhance security, provided on an "as-is" technical basis.</li>
+        </ul>`
+      },
+      {
+        id: "compliance",
+        num: "05",
+        title: "User Eligibility & Prohibited Activities",
+        content: `You represent and warrant that you are at least 18 years of age or the legal age of majority in your jurisdiction.
+        <br><br>You agree NOT to use VKX Wallet to:
+        <ul class="list-disc pl-6 space-y-2 mt-3 text-gray-700">
+          <li>Engage in illegal gambling, money laundering, terrorism financing, or fraudulent activities.</li>
+          <li>Violate international sanctions or trade restrictions imposed by OFAC, the United Nations, European Union, or United Kingdom.</li>
+          <li>Interfere with, disable, or exploit the VKX Wallet software, APIs, or infrastructure.</li>
+        </ul>
+        VKX Technologies reserves the right to restrict access to centralized API endpoints or relayer servers for addresses flagged for illicit activity.`
+      },
+      {
+        id: "intellectual-property",
+        num: "06",
+        title: "Intellectual Property Rights",
+        content: `All rights, titles, and interests in and to VKX Wallet—including code, user interfaces, branding, logos, graphics, and trademarks—are the exclusive intellectual property of VKX Technologies and its licensors. You are granted a limited, non-exclusive, non-transferable, revocable license to use the app for personal, non-commercial purposes.`
+      },
+      {
+        id: "no-advice",
+        num: "07",
+        title: "No Financial, Tax, or Legal Advice",
+        content: `VKX Wallet, its AI Copilot assistant, portfolio telemetry, and promotional materials provide technical tools and informational data only. Nothing contained in VKX Wallet constitutes investment, financial, legal, or tax advice. You should consult a qualified professional before making financial decisions.`
+      },
+      {
+        id: "disclaimer",
+        num: "08",
+        title: "Disclaimer of Warranties & Limitation of Liability",
+        content: `VKX WALLET IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+        <br><br>TO THE MAXIMUM EXTENT PERMITTED BY LAW, VKX TECHNOLOGIES AND ITS DIRECTORS, OFFICERS, EMPLOYEES, AND AGENTS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, USE, GOODWILL, OR DIGITAL ASSETS RESULTING FROM YOUR USE OF THE APPLICATION.`
+      },
+      {
+        id: "indemnification",
+        num: "09",
+        title: "Indemnification",
+        content: `You agree to defend, indemnify, and hold harmless VKX Technologies and its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable legal fees) arising out of your violation of these Terms or applicable law.`
+      },
+      {
+        id: "governing-law",
+        num: "10",
+        title: "Governing Law & Jurisdiction",
+        content: `These Terms shall be governed by and construed in accordance with the laws of the Federative Republic of Brazil, without regard to its conflict of law principles. Any dispute arising out of or in connection with these Terms shall be submitted to the exclusive jurisdiction of the competent courts of the domicile of VKX Technologies.`
+      },
+      {
+        id: "contact",
+        num: "11",
+        title: "Corporate Identity & Official Contact",
+        content: `<strong>Legal Entity:</strong> VKX Technologies LTDA<br>
+        <strong>Corporate Registry (CNPJ):</strong> 33.070.993/0001-27<br>
+        <strong>Phone / WhatsApp:</strong> +55 (41) 3798-7800<br>
+        <strong>Official Product Domain:</strong> <a href="https://wallet.vkxtech.com.br" class="text-emerald-600 underline font-semibold">https://wallet.vkxtech.com.br</a><br>
+        <strong>Official Legal Email:</strong> <a href="mailto:contato@vkxtech.com.br" class="text-emerald-600 underline font-semibold">contato@vkxtech.com.br</a><br>
+        <strong>Support Center:</strong> <a href="https://wallet.vkxtech.com.br/support" class="text-emerald-600 underline font-semibold">https://wallet.vkxtech.com.br/support</a>`
+      }
+    ]
+  },
+  pt: {
+    meta_title: "Termos de Uso — VKX Wallet",
+    hero_tag: "VKX Wallet • Termos e Condições Legais",
+    hero_title: "Termos de <span>Uso</span>",
+    hero_subtitle: "Termos Globais de Uso do software de autocustódia VKX Wallet, serviços multichain e integrações com terceiros (incluindo serviços fiat da Transak).",
+    last_updated: "Última Atualização: Julho de 2026 • Versão 2.5 Global",
+    product_notice_title: "Distinção entre Produto e Empresa",
+    product_notice_text: "A VKX Wallet é uma aplicação de software descentralizada e de autocustódia desenvolvida pela VKX Technologies (CNPJ: 33.070.993/0001-27). Este documento rege o contrato de usuário final do produto VKX Wallet de forma separada dos serviços corporativos.",
+    btn_download: "Baixar Wallet",
+    btn_support: "Central de Ajuda",
+    btn_privacy: "Política de Privacidade",
+    sections: [
+      {
+        id: "acceptance",
+        num: "01",
+        title: "Aceitação dos Termos",
+        content: `Ao baixar, instalar, acessar ou utilizar o aplicativo móvel VKX Wallet, a interface web (wallet.vkxtech.com.br) ou serviços correlatos, você ("Usuário" ou "você") concorda expressamente em cumprir estes Termos de Uso ("Termos"). Caso não concorde com qualquer disposição destes Termos, você deve cessar imediatamente o acesso ou uso da VKX Wallet.`
+      },
+      {
+        id: "non-custodial",
+        num: "02",
+        title: "Natureza de Autocustódia e Soberania das Chaves",
+        content: `A VKX Wallet é estritamente um software de autocustódia (non-custodial).
+        <ul class="list-disc pl-6 space-y-2 mt-3 text-gray-700">
+          <li><strong>Controle Exclusivo:</strong> Você mantém controle exclusivo e integral sobre suas chaves privadas, frases de recuperação (BIP-39 de 12 palavras) e ativos digitais.</li>
+          <li><strong>Ausência de Custódia:</strong> A VKX Technologies não armazena, transmite, processa ou possui acesso às suas frases de recuperação, chaves privadas ou senhas. Não temos a capacidade de acessar sua carteira ou recuperar chaves perdidas.</li>
+          <li><strong>Responsabilidade do Usuário:</strong> Você é o único e exclusivo responsável por manter o sigilo e o backup da sua frase de recuperação, bem como por proteger seu dispositivo com PIN local e biometria.</li>
+          <li><strong>Irreversibilidade:</strong> As transações executadas nas redes blockchain são definitivas e irreversíveis. A VKX Technologies não pode pausar, cancelar ou estornar qualquer transação.</li>
+        </ul>`
+      },
+      {
+        id: "third-party",
+        num: "03",
+        title: "Integrações com Terceiros e Serviços Fiat On/Off-Ramp da Transak",
+        content: `A VKX Wallet integra serviços de terceiros para aprimorar a experiência do usuário, incluindo processamento de compra e venda de cripto por moeda fiduciária, agregadores de trocas descentralizadas e provedores de nós RPC.
+        <ul class="list-disc pl-6 space-y-2 mt-3 text-gray-700">
+          <li><strong>Integração com Transak:</strong> As funcionalidades de compra de criptomoedas com cartão/Pix/transferência e venda para moeda fiduciária dentro da VKX Wallet são viabilizadas pela <strong>Transak</strong> (Transak Limited e suas entidades globais operacionais).</li>
+          <li><strong>Relação Contratual Independente:</strong> Ao adquirir ou vender criptomoedas utilizando a Transak no aplicativo VKX Wallet, você estabelece uma relação contratual direta com a Transak. A VKX Technologies não atua como gateway de pagamento, instituição financeira, transmissora de dinheiro ou custodiante de valores fiduciários.</li>
+          <li><strong>Conformidade e KYC:</strong> A Transak é responsável por todas as etapas de verificação de identidade (KYC/KYB), prevenção à lavagem de dinheiro (AML) e operações bancárias de acordo com seus próprios Termos de Uso e Política de Privacidade.</li>
+          <li><strong>Restrição no Reino Unido:</strong> Buy/Sell não está disponível no Reino Unido. O serviço Buy/Sell fornecido pela Transak está atualmente indisponível para usuários localizados no Reino Unido. Esta restrição utiliza o código ISO de país <strong>GB</strong>.</li>
+          <li><strong>Isenção de Responsabilidade:</strong> A VKX Technologies não se responsabiliza pela disponibilidade de serviço, taxas de câmbio, tarifas bancárias, verificações de conta ou tempo de processamento da Transak.</li>
+        </ul>`
+      },
+      {
+        id: "risks",
+        num: "04",
+        title: "Divulgação de Riscos de Blockchain e Ativos Digitais",
+        content: `Transacionar em criptomoedas e interagir com protocolos de blockchain envolve riscos financeiros e operacionais significativos:
+        <ul class="list-disc pl-6 space-y-2 mt-3 text-gray-700">
+          <li><strong>Volatilidade do Mercado:</strong> Os preços de ativos digitais podem flutuar drasticamente. Você assume integralmente os riscos de eventuais perdas financeiras.</li>
+          <li><strong>Taxas de Rede (Gás):</strong> Redes de blockchain exigem taxas de gás (ex: BNB, ETH, MATIC) para processar transações. Recursos como o "Gas Shield" da VKX Wallet otimizam ou subsidiam taxas onde disponível, porém o congestionamento nativo da rede está fora do nosso controle.</li>
+          <li><strong>Risco de Smart Contracts:</strong> A interação com contratos inteligentes, protocolos de swap ou dApps envolve riscos inerentes de vulnerabilidade de código ou exploração de protocolos.</li>
+          <li><strong>Tecnologias Experimentais:</strong> A VKX Wallet disponibiliza camadas de atestação PQC (Post-Quantum Cryptography) e mecanismos de Vault fornecidos no estado técnico atual ("as-is").</li>
+        </ul>`
+      },
+      {
+        id: "compliance",
+        num: "05",
+        title: "Elegibilidade do Usuário e Atividades Proibidas",
+        content: `Você declara e garante que possui pelo menos 18 anos de idade ou a maioridade legal em sua jurisdição.
+        <br><br>Você concorda em NÃO utilizar a VKX Wallet para:
+        <ul class="list-disc pl-6 space-y-2 mt-3 text-gray-700">
+          <li>Praticar jogos de azar ilegais, lavagem de dinheiro, financiamento ao terrorismo ou fraudes.</li>
+          <li>Violar sanções internacionais ou restrições comerciais impostas pela OFAC, Nações Unidas, União Europeia ou Reino Unido.</li>
+          <li>Interferir, desabilitar ou explorar indevidamente o software, APIs ou infraestrutura da VKX Wallet.</li>
+        </ul>
+        A VKX Technologies reserva-se o direito de restringir o acesso a endpoints de API centralizados ou servidores relayer para endereços identificados em atividades ilícitas.`
+      },
+      {
+        id: "intellectual-property",
+        num: "06",
+        title: "Direitos de Propriedade Intelectual",
+        content: `Todos os direitos, títulos e interesses relativos à VKX Wallet—incluindo código-fonte, interfaces de usuário, marcas, logotipos, gráficos e layout—são de propriedade intelectual exclusiva da VKX Technologies e seus licenciadores. É concedida a você uma licença limitada, não exclusiva, intransferível e revogável para usar o aplicativo para fins pessoais e não comerciais.`
+      },
+      {
+        id: "no-advice",
+        num: "07",
+        title: "Ausência de Aconselhamento Financeiro, Tributário ou Jurídico",
+        content: `A VKX Wallet, seu assistente de IA Copilot, telemetria de portfólio e materiais institucionais constituem apenas ferramentas técnicas e dados informativos. Nenhum conteúdo da VKX Wallet representa conselho financeiro, de investimento, jurídico ou tributário. Consulte um profissional qualificado antes de tomar decisões financeiras.`
+      },
+      {
+        id: "disclaimer",
+        num: "08",
+        title: "Isenção de Garantias e Limitação de Responsabilidade",
+        content: `A VKX WALLET É FORNECIDA "COMO ESTÁ" E "CONFORME DISPONÍVEL", SEM GARANTIAS DE QUALQUER TIPO, EXPRESSAS OU IMPLÍCITAS.
+        <br><br>NA MÁXIMA EXTENSÃO PERMITIDA PELA LEGISLAÇÃO APLICÁVEL, A VKX TECHNOLOGIES E SEUS DIRETORES, CONSELHEIROS, EMPREGADOS E AGENTES NÃO SERÃO RESPONSÁVEIS POR DANOS INDIRETOS, INCIDENTAIS, ESPECIAIS OU PUNITIVOS, NEM POR PERDA DE LUCROS, DADOS, USO OU ATIVOS DIGITAIS DECORRENTES DO USO OU INCAPACIDADE DE USO DO APLICATIVO.`
+      },
+      {
+        id: "indemnification",
+        num: "09",
+        title: "Indenização",
+        content: `Você concorda em defender, indenizar e isentar a VKX Technologies, seus diretores, funcionários e agentes de e contra quaisquer reivindicações, responsabilidades, danos, perdas e despesas (incluindo honorários advocatícios razoáveis) decorrentes de sua violação destes Termos ou da legislação aplicável.`
+      },
+      {
+        id: "governing-law",
+        num: "10",
+        title: "Legislação Aplicável e Foro",
+        content: `Estes Termos serão regidos e interpretados de acordo com as leis da República Federativa do Brasil. Fica eleito o foro da comarca da sede da VKX Technologies para dirimir quaisquer controvérsias decorrentes deste documento.`
+      },
+      {
+        id: "contact",
+        num: "11",
+        title: "Identidade Corporativa e Contato Oficial",
+        content: `<strong>Razão Social:</strong> VKX Technologies LTDA<br>
+        <strong>CNPJ:</strong> 33.070.993/0001-27<br>
+        <strong>Telefone / WhatsApp:</strong> +55 (41) 3798-7800<br>
+        <strong>Domínio Oficial do Produto:</strong> <a href="https://wallet.vkxtech.com.br" class="text-emerald-600 underline font-semibold">https://wallet.vkxtech.com.br</a><br>
+        <strong>E-mail Jurídico Oficial:</strong> <a href="mailto:contato@vkxtech.com.br" class="text-emerald-600 underline font-semibold">contato@vkxtech.com.br</a><br>
+        <strong>Central de Suporte:</strong> <a href="https://wallet.vkxtech.com.br/support" class="text-emerald-600 underline font-semibold">https://wallet.vkxtech.com.br/support</a>`
+      }
+    ]
+  },
+  es: {
+    meta_title: "Términos de Servicio — VKX Wallet",
+    hero_tag: "VKX Wallet • Términos y Condiciones Legales",
+    hero_title: "Términos de <span>Servicio</span>",
+    hero_subtitle: "Términos Globales de Uso para el software no custodial VKX Wallet, servicios multichain e integraciones con terceros (incluyendo servicios fiat de Transak).",
+    last_updated: "Última Actualización: Julio de 2026 • Versión 2.5 Global",
+    product_notice_title: "Distinción entre Producto y Empresa",
+    product_notice_text: "VKX Wallet es una aplicación de software descentralizada y no custodial desarrollada por VKX Technologies (CNPJ: 33.070.993/0001-27). Este documento rige el acuerdo de usuario final del producto VKX Wallet de forma separada de los servicios corporativos.",
+    btn_download: "Descargar Wallet",
+    btn_support: "Centro de Soporte",
+    btn_privacy: "Política de Privacidad",
+    sections: [
+      {
+        id: "acceptance",
+        num: "01",
+        title: "Aceptación de los Términos",
+        content: `Al descargar, instalar, acceder o utilizar la aplicación móvil VKX Wallet, la interfaz web (wallet.vkxtech.com.br) o servicios relacionados, usted ("Usuario" o "usted") acepta expresamente cumplir con estos Términos de Servicio ("Términos"). Si no está de acuerdo con estos Términos, debe cesar de inmediato el acceso o uso de VKX Wallet.`
+      },
+      {
+        id: "non-custodial",
+        num: "02",
+        title: "Naturaleza No Custodial y Soberanía de Claves",
+        content: `VKX Wallet es estrictamente un software no custodial.
+        <ul class="list-disc pl-6 space-y-2 mt-3 text-gray-700">
+          <li><strong>Control Exclusivo:</strong> Usted mantiene el control exclusivo y total sobre sus claves privadas, frases de recuperación (BIP-39 de 12 palabras) y activos digitales.</li>
+          <li><strong>Sin Custodia ni Acceso:</strong> VKX Technologies no almacena, transmite, procesa ni posee acceso a sus frases de recuperación o claves privadas. No podemos recuperar claves perdidas.</li>
+          <li><strong>Responsabilidad del Usuario:</strong> Usted es el único responsable de mantener la confidencialidad y copia de seguridad de su frase de recuperación.</li>
+          <li><strong>Irreversibilidad:</strong> Las transacciones ejecutadas en cadenas de bloques son definitivas e irreversibles.</li>
+        </ul>`
+      },
+      {
+        id: "third-party",
+        num: "03",
+        title: "Integraciones de Terceros y Servicios Fiat de Transak",
+        content: `VKX Wallet integra servicios de terceros para mejorar la experiencia del usuario, incluyendo procesamiento de compra/venta fiat a cripto a través de <strong>Transak</strong>.
+        <ul class="list-disc pl-6 space-y-2 mt-3 text-gray-700">
+          <li><strong>Integración con Transak:</strong> Las funciones de compra/venta fiat se realizan directamente a través de Transak (Transak Limited).</li>
+          <li><strong>Relación Independiente:</strong> Al usar Transak dentro de VKX Wallet, usted establece una relación contractual directa con Transak. VKX Technologies no es un transmisor de dinero ni custodio de dinero fiat.</li>
+          <li><strong>Cumplimiento y KYC:</strong> Transak gestiona toda la verificación de identidad (KYC/KYB) y cumplimiento normativo según sus propios términos.</li>
+          <li><strong>Restricción en el Reino Unido:</strong> Buy/Sell no está disponible en el Reino Unido. El servicio Buy/Sell proporcionado por Transak no está disponible actualmente para usuarios ubicados en el Reino Unido. Esta restricción utiliza el código ISO <strong>GB</strong>.</li>
+        </ul>`
+      },
+      {
+        id: "risks",
+        num: "04",
+        title: "Divulgación de Riesgos de Blockchain y Criptoactivos",
+        content: `Operar con criptomonedas implica riesgos financieros significativos debido a la volatilidad del mercado, tarifas de red (gas) y características inherentes a las redes descentralizadas.`
+      },
+      {
+        id: "compliance",
+        num: "05",
+        title: "Elegibilidad del Usuario y Actividades Prohibidas",
+        content: `Usted declara tener al menos 18 años de edad y acepta no utilizar VKX Wallet para actividades ilícitas, lavado de dinero, financiamiento del terrorismo o violación de sanciones internacionales (OFAC, ONU, UE).`
+      },
+      {
+        id: "intellectual-property",
+        num: "06",
+        title: "Derechos de Propiedad Intelectual",
+        content: `Todos los derechos sobre la marca, código e interfaz de VKX Wallet pertenecen exclusivamente a VKX Technologies.`
+      },
+      {
+        id: "no-advice",
+        num: "07",
+        title: "Ausencia de Asesoramiento Financiero",
+        content: `Ningún contenido o herramienta dentro de VKX Wallet constituye asesoramiento financiero, legal o fiscal.`
+      },
+      {
+        id: "disclaimer",
+        num: "08",
+        title: "Limitación de Responsabilidad",
+        content: `VKX WALLET SE PROPORCIONA "TAL CUAL" Y "SEGÚN DISPONIBILIDAD". VKX TECHNOLOGIES NO SERÁ RESPONSABLE DE PÉRDIDAS DE FONDOS O DAÑOS DERIVADOS DEL USO DEL SOFTWARE.`
+      },
+      {
+        id: "indemnification",
+        num: "09",
+        title: "Indemnización",
+        content: `Usted acepta defender e indemnizar a VKX Technologies frente a cualquier reclamo derivado del incumplimiento de estos Términos.`
+      },
+      {
+        id: "governing-law",
+        num: "10",
+        title: "Ley Aplicable y Jurisdicción",
+        content: `Estos Términos se rigen por las leyes de la República Federativa de Brasil.`
+      },
+      {
+        id: "contact",
+        num: "11",
+        title: "Identidad Corporativa y Contacto Oficial",
+        content: `<strong>Entidad Legal:</strong> VKX Technologies LTDA<br>
+        <strong>CNPJ:</strong> 33.070.993/0001-27<br>
+        <strong>Teléfono / WhatsApp:</strong> +55 (41) 3798-7800<br>
+        <strong>Dominio Oficial:</strong> <a href="https://wallet.vkxtech.com.br" class="text-emerald-600 underline font-semibold">https://wallet.vkxtech.com.br</a><br>
+        <strong>Correo Oficial:</strong> <a href="mailto:contato@vkxtech.com.br" class="text-emerald-600 underline font-semibold">contato@vkxtech.com.br</a>`
+      }
+    ]
+  },
+  zh: {
+    meta_title: "服务条款 — VKX Wallet",
+    hero_tag: "VKX Wallet • 法律条款与条件",
+    hero_title: "服务 <span>条款</span>",
+    hero_subtitle: "适用于 VKX Wallet 非托管软件、多链服务及第三方集成（包括 Transak 法币服务）的全球使用条款。",
+    last_updated: "最后更新：2026年7月 • 版本 2.5 全球版",
+    product_notice_title: "产品与公司区分声明",
+    product_notice_text: "VKX Wallet 是由 VKX Technologies (CNPJ: 33.070.993/0001-27) 开发的去中心化非托管应用程序。本文件独立于公司企业服务，专门规范 VKX Wallet 产品的最终用户协议。",
+    btn_download: "下载钱包",
+    btn_support: "支持中心",
+    btn_privacy: "隐私政策",
+    sections: [
+      {
+        id: "acceptance",
+        num: "01",
+        title: "条款接受",
+        content: `通过下载、安装、访问或使用 VKX Wallet 移动应用程序、Web 界面 (wallet.vkxtech.com.br) 或相关服务，即表示您（"用户"或"您"）同意受本服务条款（"条款"）的约束。`
+      },
+      {
+        id: "non-custodial",
+        num: "02",
+        title: "非托管性质与密钥主权",
+        content: `VKX Wallet 是严格的非托管软件。
+        <ul class="list-disc pl-6 space-y-2 mt-3 text-gray-700">
+          <li><strong>完全控制：</strong> 您对私钥、助记词 (BIP-39 12字) 和数字资产拥有完全控制权。</li>
+          <li><strong>无托管无访问：</strong> VKX Technologies 不存储、不传输也不掌握您的助记词或私钥。我们无法恢复遗失的密钥。</li>
+          <li><strong>用户责任：</strong> 保管助记词安全以及设置本地 PIN/生物识别完全由您独立负责。</li>
+          <li><strong>不可逆性：</strong> 区块链交易均为最终且不可逆转。</li>
+        </ul>`
+      },
+      {
+        id: "third-party",
+        num: "03",
+        title: "第三方集成与 Transak 法币通道服务",
+        content: `VKX Wallet 集成了第三方服务（如 <strong>Transak</strong>）以提供法币购买和出售加密货币的功能。
+        <ul class="list-disc pl-6 space-y-2 mt-3 text-gray-700">
+          <li><strong>Transak 集成：</strong> 在应用内使用 Transak 服务时，您直接与 Transak 建立合同关系。VKX Technologies 并非支付网关或法币托管机构。</li>
+          <li><strong>合规与 KYC：</strong> Transak 根据其自身的条款独立负责身份验证 (KYC/KYB) 和反洗钱 (AML) 检查。</li>
+          <li><strong>英国地区限制：</strong> Buy/Sell 目前不向位于英国的用户提供。该限制使用 ISO 国家代码 <strong>GB</strong>。</li>
+        </ul>`
+      },
+      {
+        id: "risks",
+        num: "04",
+        title: "区块链及数字资产风险提示",
+        content: `加密货币交易存在显著的市场波动、网络 Gas 费用及智能合约技术风险。`
+      },
+      {
+        id: "compliance",
+        num: "05",
+        title: "用户资格与禁止行为",
+        content: `您声明年满 18 周岁，并同意绝不将 VKX Wallet 用于洗钱、恐怖融资、欺诈或违反国际制裁（OFAC、联合国、欧盟）的违法活动。`
+      },
+      {
+        id: "intellectual-property",
+        num: "06",
+        title: "知识产权",
+        content: `VKX Wallet 的所有代码、品牌和商标均归 VKX Technologies 独家所有。`
+      },
+      {
+        id: "no-advice",
+        num: "07",
+        title: "不构成财务建议",
+        content: `VKX Wallet 内的所有数据和 AI Copilot 助手信息仅供参考，不构成任何财务、投资或法律建议。`
+      },
+      {
+        id: "disclaimer",
+        num: "08",
+        title: "免责声明与责任限制",
+        content: `VKX WALLET 按"原样"提供。VKX TECHNOLOGIES 不对因使用本软件造成的资产损失承担任何间接或连带责任。`
+      },
+      {
+        id: "indemnification",
+        num: "09",
+        title: "赔偿条款",
+        content: `您同意赔偿并使 VKX Technologies 免受因违反本条款而引起的任何索赔或损失。`
+      },
+      {
+        id: "governing-law",
+        num: "10",
+        title: "管辖法律与争议解决",
+        content: `本条款受巴西联邦共和国法律管辖。`
+      },
+      {
+        id: "contact",
+        num: "11",
+        title: "公司身份与官方联系方式",
+        content: `<strong>法定实体：</strong> VKX Technologies LTDA<br>
+        <strong>公司注册号 (CNPJ)：</strong> 33.070.993/0001-27<br>
+        <strong>电话 / WhatsApp：</strong> +55 (41) 3798-7800<br>
+        <strong>官方产品域名：</strong> <a href="https://wallet.vkxtech.com.br" class="text-emerald-600 underline font-semibold">https://wallet.vkxtech.com.br</a><br>
+        <strong>官方法律邮箱：</strong> <a href="mailto:contato@vkxtech.com.br" class="text-emerald-600 underline font-semibold">contato@vkxtech.com.br</a>`
+      }
+    ]
+  },
+  ar: {
+    meta_title: "شروط الخدمة — VKX Wallet",
+    hero_tag: "VKX Wallet • الشروط والأحكام القانونية",
+    hero_title: "شروط <span>الخدمة</span>",
+    hero_subtitle: "شروط الاستخدام العالمية لبرنامج VKX Wallet غير المضمون والخدمات متعددة السلاسل وعمليات التكامل مع أطراف ثالثة (بما في ذلك خدمات Transak).",
+    last_updated: "آخر تحديث: يوليو 2026 • الإصدار 2.5 العالمي",
+    product_notice_title: "التمييز بين المنتج والشركة",
+    product_notice_text: "تطبيق VKX Wallet هو تطبيق غير حضانة لا مركزي تم تطويره بواسطة VKX Technologies (CNPJ: 33.070.993/0001-27). تحكم هذه الوثيقة اتفاقية المستخدم النهائي للمنتج بشكل منفصل عن الخدمات المؤسسية.",
+    btn_download: "تنزيل المحفظة",
+    btn_support: "مركز الدعم",
+    btn_privacy: "سياسة الخصوصية",
+    sections: [
+      {
+        id: "acceptance",
+        num: "01",
+        title: "قبول الشروط",
+        content: `تنزيل تطبيق VKX Wallet أو تثبيته أو الوصول إليه يمثل موافقة صريحة على الالتزام بشروط الخدمة هذه.`
+      },
+      {
+        id: "non-custodial",
+        num: "02",
+        title: "الطبيعة غير الحضانة وسيادة المفاتيح",
+        content: `تعد محفظة VKX Wallet برنامجًا غير حضانة بشكل صارم. أنت تحتفظ بالسيطرة الكاملة على مفاتيحك الخاصة وكلمات الاستعادة (BIP-39 من 12 كلمة). لا نحتفظ أو نصل إلى مفاتيحك الخاصة.`
+      },
+      {
+        id: "third-party",
+        num: "03",
+        title: "التكامل مع أطراف ثالثة وخدمات Transak",
+        content: `تعتمد عمليات شراء وبيع العملات الرقمية بالعملات النقدية داخل VKX Wallet على منصة <strong>Transak</strong> بشكل مستقل. خدمة Buy/Sell غير متاحة حاليًا للمستخدمين الموجودين في المملكة المتحدة. يستخدم هذا التقييد رمز الدولة ISO <strong>GB</strong>.`
+      },
+      {
+        id: "risks",
+        num: "04",
+        title: "إخلاء مسؤولية مخاطر البلوكشين",
+        content: `ينطوي التداول بالعملات الرقمية على مخاطر مالية وتذبذبات في الأسعار ورسوم شبكة الغاز.`
+      },
+      {
+        id: "compliance",
+        num: "05",
+        title: "الأهلية والأنشطة المحظورة",
+        content: `تقر بأن عمرك لا يقل عن 18 عامًا وتتعهد بعدم استخدام المحفظة في أنشطة غير قانونية أو غسيل أموال أو انتهاك للعقوبات الدولية.`
+      },
+      {
+        id: "intellectual-property",
+        num: "06",
+        title: "حقوق الملكية الفكرية",
+        content: `جميع الحقوق المتعلقة بالمحفظة والعلامة التجارية مملوكة حصريًا لشركة VKX Technologies.`
+      },
+      {
+        id: "no-advice",
+        num: "07",
+        title: "عدم تقديم استشارات مالية",
+        content: `لا تشكل البيانات أو المساعد AI Copilot استشارة مالية أو قانونية.`
+      },
+      {
+        id: "disclaimer",
+        num: "08",
+        title: "تحديد المسؤولية",
+        content: `تُقدم المحفظة "كما هي". لا تتحمل شركة VKX Technologies مسؤولية أي خسائر في الأصول.`
+      },
+      {
+        id: "indemnification",
+        num: "09",
+        title: "التعويض",
+        content: `تتعهد بتعويض شركة VKX Technologies عن أي مطالبات ناتجة عن انتهاك هذه الشروط.`
+      },
+      {
+        id: "governing-law",
+        num: "10",
+        title: "القانون الساري",
+        content: `تخضع هذه الشروط لقوانين جمهورية البرازيل الاتحادية.`
+      },
+      {
+        id: "contact",
+        num: "11",
+        title: "الهوية المؤسسية والاتصال الرسمي",
+        content: `<strong>الكيان القانوني:</strong> VKX Technologies LTDA<br>
+        <strong>السجل التجاري (CNPJ):</strong> 33.070.993/0001-27<br>
+        <strong>الهاتف / واتساب:</strong> +55 (41) 3798-7800<br>
+        <strong>الموقع الرسمي:</strong> <a href="https://wallet.vkxtech.com.br" class="text-emerald-600 underline font-semibold">https://wallet.vkxtech.com.br</a>`
+      }
+    ]
+  }
+};
+
+const content = termsTranslations[currentLang] || termsTranslations.en;
+%>
+<!DOCTYPE html>
+<html lang="<%= currentLang %>" <%- currentLang === 'ar' ? 'dir="rtl"' : '' %>>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content.meta_title %></title>
+  <meta name="description" content="Official Terms of Service for VKX Wallet non-custodial application and third-party integrations (Transak).">
+  <meta property="og:title" content="<%= content.meta_title %>">
+  <meta property="og:description" content="Global Terms of Service for VKX Wallet non-custodial crypto wallet.">
+  <meta property="og:url" content="https://wallet.vkxtech.com.br/terms">
+  <meta name="apple-itunes-app" content="app-id=6759741026, app-argument=vkxwallet://">
+  <link rel="canonical" href="https://wallet.vkxtech.com.br/terms">
+  <link rel="icon" href="/brand/VKX_Favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/brand/favicon.ico" sizes="any">
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/vkx-tokens.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .font-sora {
+      font-family: 'Sora', sans-serif;
+    }
+    .glass-card {
+      background: #ffffff;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #059669 0%, #2563eb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-emerald-600 selection:text-white bg-slate-50 text-slate-900">
+
+  <!-- Mobile Smart App Banner -->
+  <div id="smart-app-banner" class="w-full bg-[#0c1017] text-white border-b border-white/10 px-4 py-2.5 flex items-center justify-between z-[60] relative text-xs shadow-md">
+      <div class="flex items-center gap-3 min-w-0">
+          <button id="close-smart-banner" onclick="dismissSmartBanner()" class="text-white/40 hover:text-white text-lg font-light leading-none shrink-0 px-1 py-0.5" aria-label="Fechar">&times;</button>
+          <img src="/brand/VKX_Technologies_OnDark.svg" alt="VKX Wallet" class="w-9 h-9 rounded-xl border border-white/10 bg-white p-1 object-contain shrink-0 shadow-sm" />
+          <div class="flex flex-col min-w-0 leading-tight">
+              <span class="font-bold text-white text-[13px] truncate font-outfit tracking-tight">VKX Wallet - Secure web3</span>
+              <span class="text-[11px] text-white/60 truncate">Abrir no app VKX Wallet</span>
+          </div>
+      </div>
+      <a href="<%= officialWalletUrl %>/download" onclick="handleSmartBannerClick(event)" class="shrink-0 bg-[#007AFF] hover:bg-[#0062cc] active:scale-95 text-white font-extrabold text-xs px-4 py-1.5 rounded-full tracking-wider shadow-md transition-all ml-2">
+          ABRIR
+      </a>
+  </div>
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="<%= officialWalletUrl %>" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center group-hover:border-emerald-400 transition-all">
+          <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-sora font-extrabold text-lg text-slate-900 group-hover:text-emerald-600 transition-colors">VKX Wallet</span>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-600">Legal Portal</span>
+        </div>
+      </a>
+
+      <!-- Language Selector & Actions -->
+      <div class="flex items-center gap-3">
+        
+        <!-- Voltar para VKX Wallet Button -->
+        <a href="<%= officialWalletUrl %>" class="inline-flex items-center gap-1.5 text-xs font-extrabold text-slate-700 hover:text-emerald-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 px-3.5 py-1.5 rounded-full transition-all shadow-sm">
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-emerald-600"></i>
+          <span><%= currentLang === 'pt' ? 'Voltar para Wallet' : (currentLang === 'es' ? 'Volver a Wallet' : (currentLang === 'zh' ? '返回 Wallet' : (currentLang === 'ar' ? 'العودة للمحفظة' : 'Back to Wallet'))) %></span>
+        </a>
+
+        <!-- Language Switcher -->
+        <div class="relative inline-block text-left hidden md:block">
+          <div class="flex items-center gap-1 bg-slate-100 border border-slate-200 rounded-full px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-inner">
+            <i data-lucide="globe" class="w-3.5 h-3.5 text-emerald-600"></i>
+            <a href="?lang=en" class="px-1.5 py-0.5 rounded hover:text-emerald-600 <%= currentLang === 'en' ? 'text-emerald-700 font-extrabold bg-white shadow-sm' : '' %>">EN</a>
+            <span class="text-slate-300">|</span>
+            <a href="?lang=pt" class="px-1.5 py-0.5 rounded hover:text-emerald-600 <%= currentLang === 'pt' ? 'text-emerald-700 font-extrabold bg-white shadow-sm' : '' %>">PT</a>
+            <span class="text-slate-300">|</span>
+            <a href="?lang=es" class="px-1.5 py-0.5 rounded hover:text-emerald-600 <%= currentLang === 'es' ? 'text-emerald-700 font-extrabold bg-white shadow-sm' : '' %>">ES</a>
+            <span class="text-slate-300">|</span>
+            <a href="?lang=zh" class="px-1.5 py-0.5 rounded hover:text-emerald-600 <%= currentLang === 'zh' ? 'text-emerald-700 font-extrabold bg-white shadow-sm' : '' %>">ZH</a>
+            <span class="text-slate-300">|</span>
+            <a href="?lang=ar" class="px-1.5 py-0.5 rounded hover:text-emerald-600 <%= currentLang === 'ar' ? 'text-emerald-700 font-extrabold bg-white shadow-sm' : '' %>">AR</a>
+          </div>
+        </div>
+
+        <a href="<%= officialWalletUrl %>/download" class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-full transition-all shadow-md shadow-emerald-600/20">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
+          <%= content.btn_download %>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-8 pb-12 overflow-hidden bg-gradient-to-b from-emerald-50/50 via-white to-slate-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+      
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-extrabold uppercase tracking-wider mb-6">
+        <i data-lucide="file-text" class="w-3.5 h-3.5 text-emerald-600"></i>
+        <%= content.hero_tag %>
+      </div>
+
+      <h1 class="font-sora text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+        <%- content.hero_title %>
+      </h1>
+
+      <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-6 font-normal">
+        <%= content.hero_subtitle %>
+      </p>
+
+      <div class="inline-block text-xs font-bold text-slate-700 bg-white border border-slate-200 px-4 py-2 rounded-xl shadow-sm">
+        <%= content.last_updated %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product vs Company Banner -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-10">
+    <div class="glass-card rounded-2xl p-6 border-l-4 border-l-emerald-600 bg-emerald-50/60 border border-emerald-100 flex flex-col sm:flex-row gap-5 items-start">
+      <div class="p-3 bg-emerald-100 rounded-xl text-emerald-700 shrink-0 border border-emerald-200">
+        <i data-lucide="building-2" class="w-6 h-6"></i>
+      </div>
+      <div>
+        <h3 class="font-sora font-bold text-slate-900 text-base mb-1.5"><%= content.product_notice_title %></h3>
+        <p class="text-slate-700 text-sm leading-relaxed"><%= content.product_notice_text %></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Legal Document Body -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 pb-24 flex-1">
+    <div class="space-y-8">
+      <% content.sections.forEach(sec => { %>
+        <article id="<%= sec.id %>" class="glass-card rounded-2xl p-6 sm:p-8 hover:border-emerald-300 transition-all duration-300 bg-white">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-emerald-700 font-sora font-black text-sm tracking-wider uppercase bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
+              <%= sec.num %>
+            </span>
+            <h2 class="font-sora font-bold text-xl sm:text-2xl text-slate-900 tracking-tight">
+              <%= sec.title %>
+            </h2>
+          </div>
+
+          <div class="text-slate-700 text-sm sm:text-base leading-relaxed space-y-4 prose max-w-none">
+            <%- sec.content %>
+          </div>
+        </article>
+      <% }); %>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-10 text-slate-600 text-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div>
+        <p class="font-sora font-bold text-slate-900 text-sm mb-1">VKX Wallet • VKX Technologies</p>
+        <p class="text-slate-500">CNPJ: 33.070.993/0001-27 | Non-Custodial Software Architecture</p>
+      </div>
+
+      <div class="flex items-center gap-6 font-semibold">
+        <a href="<%= officialWalletUrl %>/privacy-policy" class="hover:text-emerald-600 transition-colors text-slate-700"><%= content.btn_privacy %></a>
+        <a href="<%= officialWalletUrl %>/support" class="hover:text-emerald-600 transition-colors text-slate-700"><%= content.btn_support %></a>
+        <a href="<%= officialMainSiteUrl %>" class="hover:text-emerald-600 transition-colors text-slate-700">VKX Group Corporate</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    function dismissSmartBanner() {
+        const banner = document.getElementById('smart-app-banner');
+        if (banner) {
+            banner.style.display = 'none';
+            sessionStorage.setItem('vkx_smart_banner_dismissed', 'true');
+        }
+    }
+
+    function handleSmartBannerClick(e) {
+        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if (isMobile) {
+            e.preventDefault();
+            const start = Date.now();
+            window.location.href = "vkxwallet://";
+            setTimeout(() => {
+                if (Date.now() - start < 2500 && document.visibilityState !== 'hidden') {
+                    window.location.href = "<%= officialWalletUrl %>/download";
+                }
+            }, 1800);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if (sessionStorage.getItem('vkx_smart_banner_dismissed') === 'true') {
+            const banner = document.getElementById('smart-app-banner');
+            if (banner) banner.style.display = 'none';
+        }
+    });
+  </script>
+</body>
+</html>
+

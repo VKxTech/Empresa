@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segurança - VKX Wallet</title>
+    <meta name="description" content="Como a VKX Wallet protege suas chaves, o que a proteção não cobre, criptografia pós-quântica e como relatar uma falha de segurança.">
+    <link rel="alternate" hreflang="en" href="https://wallet.vkxtech.com.br/wallet-security">
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/vkx-tokens.css">
+    <style>
+        /* Estilos PRÓPRIOS e sem @layer de propósito.
+           O Tailwind v4 emite as utilities dentro de `@layer utilities`, e
+           camada CSS perde para regra sem camada — então o `body` do
+           vkx-tokens.css vencia `bg-white` e a página saía com texto escuro
+           sobre fundo escuro. Aqui usamos os TOKENS do site, então a página
+           acompanha o tema em vez de brigar com ele. */
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--vkx-bg);
+            color: var(--vkx-text-muted);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-size: 16px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--vkx-violet-cta, #6c5cff); }
+
+        .topbar {
+            position: sticky; top: 0; z-index: 50;
+            display: flex; align-items: center; height: 60px;
+            padding-inline: 20px;
+            background: var(--vkx-bg);
+            border-bottom: 1px solid var(--vkx-border);
+        }
+        .topbar a {
+            font-weight: 700; font-size: 20px; text-decoration: none;
+            color: var(--vkx-text);
+        }
+
+        main { max-width: 760px; margin: 0 auto; padding-inline: 20px; padding-block: 44px 80px; }
+
+        .stamp {
+            font-size: 11px; font-weight: 700; letter-spacing: .12em;
+            text-transform: uppercase; color: var(--vkx-violet-cta, #6c5cff);
+            margin: 0 0 14px;
+        }
+
+        h1 {
+            color: var(--vkx-text);
+            font-size: clamp(30px, 6vw, 42px);
+            font-weight: 800; line-height: 1.12; letter-spacing: -.02em;
+            margin: 0 0 22px; text-wrap: balance;
+        }
+
+        h2 {
+            color: var(--vkx-text);
+            font-size: 24px; font-weight: 700; line-height: 1.25;
+            margin: 52px 0 14px; text-wrap: balance;
+        }
+
+        h3 {
+            color: var(--vkx-text);
+            font-size: 16.5px; font-weight: 700;
+            margin: 30px 0 8px;
+        }
+
+        p { margin: 0 0 15px; max-width: 68ch; }
+        strong { color: var(--vkx-text); font-weight: 600; }
+
+        ul, ol { margin: 0 0 15px; padding-left: 22px; max-width: 68ch; }
+        li { margin-bottom: 8px; }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: .875em;
+            background: var(--vkx-card);
+            border: 1px solid var(--vkx-border);
+            padding: .08em .4em; border-radius: 4px;
+            color: var(--vkx-text);
+        }
+
+        .callout {
+            border-left: 3px solid var(--vkx-violet-cta, #6c5cff);
+            background: var(--vkx-card);
+            padding: 15px 18px; margin: 18px 0 20px;
+            color: var(--vkx-text); font-weight: 600;
+            max-width: 68ch; border-radius: 0 6px 6px 0;
+        }
+
+        .tbl { overflow-x: auto; margin: 18px 0 22px; }
+        table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 30rem; }
+        th, td { text-align: left; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--vkx-border); vertical-align: top; }
+        th {
+            font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+            color: var(--vkx-text-muted); font-weight: 600;
+        }
+        td strong { font-weight: 600; }
+
+        hr { border: 0; border-top: 1px solid var(--vkx-border); margin: 52px 0; }
+
+        .back { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--vkx-border); font-size: 14.5px; }
+        .back a { font-weight: 600; text-decoration: none; }
+    
+        .topbar { justify-content: space-between; }
+        .topbar .lang {
+            font-size: 13px; font-weight: 600; letter-spacing: .04em;
+            text-transform: uppercase; color: var(--vkx-text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+      <a href="/wallet">VKX Wallet</a>
+      <a href="/wallet-security" class="lang">English</a>
+    </div>
+
+    <main>
+        <p class="stamp">Última revisão: 15 de setembro de 2026</p>
+        <h1>Segurança</h1>
+        <p>A VKX Wallet é uma carteira de <strong>autocustódia</strong>. As chaves que controlam seus fundos são geradas no seu aparelho, ficam no seu aparelho e nunca são transmitidas para nós. Não temos como mover seus fundos, congelar sua conta ou recuperar seu acesso caso você perca a frase de recuperação.</p>
+        <p>Este documento descreve <strong>como</strong> isso é feito, e — igualmente importante — <strong>contra o que essa proteção não serve</strong>. Se você é pesquisador de segurança, vá direto para <a href="#8-divulgação-responsável">Divulgação responsável</a>.</p>
+        <hr>
+        <h2>1. Como as chaves são geradas</h2>
+        <p>A carteira é criada a partir de <strong>128 bits de entropia</strong> obtidos do gerador criptográfico do sistema operacional — <code>SecRandomCopyBytes</code> no iOS e o dispositivo de entropia do kernel no Android. Não usamos geradores da linguagem nem nada derivado de horário, identificador de aparelho ou entrada do usuário.</p>
+        <p>Esses 128 bits são codificados como uma <strong>frase de 12 palavras</strong> no padrão <strong>BIP-39</strong>, e dela derivam todos os endereços, por <strong>BIP-44</strong>:</p>
+        <div class="tbl"><table>
+            <thead><tr><th>Rede</th><th>Caminho de derivação</th></tr></thead>
+            <tbody>
+                <tr><td>Ethereum, BNB Chain, Polygon, Arbitrum, Base</td><td><code>m/44'/60'/0'/0/{índice}</code></td></tr>
+                <tr><td>Bitcoin (SegWit nativo)</td><td><code>m/84'/0'/0'/0/{índice}</code></td></tr>
+                <tr><td>TRON</td><td><code>m/44'/195'/0'/0/{índice}</code></td></tr>
+                <tr><td>Solana (ed25519)</td><td><code>m/44'/501'/{índice}'/0'</code></td></tr>
+            </tbody></table></div>
+        <p>São padrões públicos. A consequência prática para você é que <strong>a sua frase de 12 palavras não depende da VKX</strong>: ela restaura seus fundos em qualquer carteira compatível, hoje ou dentro de dez anos, mesmo que a VKX deixe de existir.</p>
+        <h2>2. Onde as chaves ficam</h2>
+        <p>A chave privada e a frase de recuperação são cifradas com <strong>AES-256-GCM</strong>. A chave de cifragem é derivada do seu PIN com <strong>scrypt</strong>, e os parâmetros usados viajam dentro do próprio arquivo cifrado — então um arquivo antigo continua abrindo depois de reforçarmos os parâmetros.</p>
+        <p>Os arquivos cifrados são guardados no <strong>armazenamento protegido do sistema</strong>: Keychain no iOS, Keystore no Android. Eles são marcados como <strong>exclusivos deste aparelho</strong>, o que significa que <strong>não são incluídos em backup nem migram para um celular novo</strong>.</p>
+        <p>Isso tem uma consequência que você precisa conhecer: <strong>restaurar o backup do seu celular em outro aparelho não traz a sua carteira de volta.</strong> A recuperação é feita com as 12 palavras — e é por isso que insistimos tanto que você as guarde fora do aparelho.</p>
+        <p>No Android, o aplicativo também declara <code>allowBackup="false"</code>, então os dados do app não vão para o backup do Google.</p>
+        <h2>3. Como o PIN entra nisso</h2>
+        <p>O PIN de 6 dígitos <strong>não é uma tela de bloqueio</strong>: ele é a senha que cifra suas chaves. Sem o PIN correto, o arquivo cifrado é um bloco de bytes inútil.</p>
+        <p>Por isso ele é tratado como senha:</p>
+        <ul>
+            <li><strong>3 tentativas</strong> e então uma espera, que começa em 30 segundos e cresce até 5 minutos.</li>
+            <li>O custo do scrypt existe justamente para tornar caro tentar PINs em massa. Em aparelhos com aceleração criptográfica nativa usamos o parâmetro mais forte (<code>N=32768</code>, 32 MiB de memória por tentativa).</li>
+            <li>Se você ativa o acesso por biometria, o PIN é guardado no Keychain/Keystore <strong>exigindo autenticação do sistema para ser lido</strong> (Face ID, Touch ID ou biometria do Android). Em aparelho <strong>sem</strong> biometria configurada, o PIN simplesmente <strong>não é armazenado</strong>.</li>
+        </ul>
+        <h2>4. O que sai do aparelho</h2>
+        <p><strong>Nunca sai:</strong> a frase de recuperação e as chaves privadas. Não há caminho no aplicativo que as envie para qualquer servidor — nosso ou de terceiros.</p>
+        <p><strong>Sai:</strong> seus <strong>endereços públicos</strong>, para que possamos mostrar saldos e histórico, e os dados que você fornece de propósito em operações de compra e venda com moeda local (onde a regulação exige identificação). Ao vincular sua carteira a uma conta, o servidor recebe o identificador da conta e o endereço público — nada além disso.</p>
+        <p>Transações são assinadas <strong>no seu aparelho</strong>. O servidor pode montar uma transação e sugerir uma rota, mas a assinatura — a única coisa que move fundos — acontece localmente.</p>
+        <h2>5. Proteção da tela e da área de transferência</h2>
+        <ul>
+            <li>Toda tela que exibe a frase de recuperação <strong>bloqueia captura de tela e gravação</strong>, tanto no cadastro quanto na tela de backup.</li>
+            <li>Se você copiar a frase, ela é <strong>removida da área de transferência após 60 segundos</strong> — e só se ainda estiver lá, para não apagar algo que você copiou depois. Isso existe porque teclados de terceiros e gerenciadores de área de transferência conseguem ler esse conteúdo, e o iOS o sincroniza entre os seus aparelhos.</li>
+        </ul>
+        <hr>
+        <h2>6. Criptografia pós-quântica</h2>
+        <p>Um computador quântico suficientemente grande quebraria as assinaturas que hoje protegem praticamente todas as criptomoedas. Isso ainda não existe, mas dados copiados hoje podem ser atacados depois.</p>
+        <p>A VKX usa <strong>ML-DSA-65</strong> — a assinatura pós-quântica padronizada pelo NIST em <strong>FIPS 204</strong>, antes conhecida como Dilithium3 — em dois lugares. Descrevemos os dois com precisão, e logo depois o que isso <strong>não</strong> resolve.</p>
+        <h3>Prova de autoria de cada transação</h3>
+        <p>Cada carteira tem um par de chaves ML-DSA-65 próprio, gerado no aparelho, com a chave secreta cifrada em repouso. Toda transação recebe, <strong>em paralelo à assinatura normal</strong>, uma assinatura pós-quântica que registra que aquele aparelho autorizou aquela operação.</p>
+        <p>Está ativo e obrigatório em produção.</p>
+        <p>Dois detalhes de engenharia que importam para você:</p>
+        <ul>
+            <li>A assinatura pós-quântica é feita <strong>depois</strong> que a transação já existe na rede e <strong>nunca bloqueia</strong> o envio. Se ela falhar, sua transação sai normalmente — segurança adicional não pode virar motivo de indisponibilidade.</li>
+            <li>Ela <strong>não participa da validação na blockchain</strong>. Nenhuma rede sabe verificar ML-DSA hoje. O que ela oferece é uma prova de autoria que <strong>continua válida contra um adversário quântico</strong>, para efeito de auditoria e contestação.</li>
+        </ul>
+        <h3>Backup portátil com autenticidade pós-quântica</h3>
+        <p>O backup portátil da carteira é cifrado com <strong>AES-256-GCM</strong>, com chave derivada por <strong>scrypt (N=32768)</strong> a partir de um segredo seu de <strong>no mínimo 16 caracteres</strong> — não do PIN de 6 dígitos —, e é <strong>assinado com ML-DSA-65</strong>.</p>
+        <p>A assinatura serve para você poder confiar no arquivo: ninguém consegue falsificar ou adulterar um backup VKX sem a chave secreta, nem com um computador quântico.</p>
+        <p>O AES-256 é o motivo de a cifragem não ser o elo fraco: contra ataque quântico ele mantém o equivalente a 128 bits de segurança, que continua fora de alcance.</p>
+        <p>Este recurso requer assinatura ativa.</p>
+        <h3>O que a criptografia pós-quântica NÃO faz aqui</h3>
+        <p>Esta é a parte que costuma ser omitida, e é a que mais importa:</p>
+        <div class="callout"><strong>Seus fundos na blockchain não ficam resistentes a computação quântica.</strong></div>
+        <p>Bitcoin, Ethereum, Solana e as demais redes validam transações com ECDSA (secp256k1) e ed25519. Ambas cairiam diante de um computador quântico suficientemente grande — e isso é um problema <strong>das redes</strong>, não da carteira. Nenhuma carteira pode consertar isso sozinha: depende das próprias blockchains migrarem para assinaturas pós-quânticas.</p>
+        <p>Qualquer carteira que anuncie "fundos à prova de quântico" está vendendo algo que não existe. O que existe, e é o que entregamos, é: <strong>proteger o que está sob nosso controle</strong> — a autoria das suas operações e a integridade do seu backup — com algoritmo padronizado pelo NIST.</p>
+        <hr>
+        <h2>7. Modelo de ameaça</h2>
+        <p>Segurança só significa algo quando se diz <strong>contra o quê</strong>. Esta seção é deliberadamente honesta sobre os limites.</p>
+        <h3>Contra o que protegemos</h3>
+        <div class="tbl"><table>
+            <thead><tr><th>Ameaça</th><th>Como</th></tr></thead>
+            <tbody>
+                <tr><td>Nosso servidor ser invadido</td><td>Não temos suas chaves. Não há o que roubar de nós.</td></tr>
+                <tr><td>Nossa empresa encerrar</td><td>Suas 12 palavras funcionam em qualquer carteira BIP-39.</td></tr>
+                <tr><td>Aparelho perdido ou roubado, bloqueado</td><td>Chaves cifradas no armazenamento do sistema; PIN com espera progressiva.</td></tr>
+                <tr><td>Backup do celular restaurado em outro aparelho</td><td>Itens marcados como exclusivos do aparelho, fora do backup.</td></tr>
+                <tr><td>Print acidental da frase</td><td>Captura bloqueada nas telas que a exibem.</td></tr>
+                <tr><td>Segredo esquecido na área de transferência</td><td>Limpeza automática em 60 segundos.</td></tr>
+                <tr><td>Rede hostil observando o tráfego</td><td>Nenhum material de chave trafega.</td></tr>
+            </tbody></table></div>
+        <h3>Contra o que NÃO protegemos</h3>
+        <p>Estes são limites reais, não descuidos. Nenhuma carteira de software resolve estes casos, e quem afirmar o contrário está vendendo algo:</p>
+        <ul>
+            <li><strong>Aparelho comprometido.</strong> Malware com privilégio de root ou jailbreak pode ler o armazenamento protegido e capturar a tela. Nesse cenário, o que separa o atacante dos seus fundos é o custo de quebrar o seu PIN. Um PIN de 6 dígitos tem 1 milhão de combinações: é uma barreira real com scrypt, mas <strong>não é infinita</strong>.</li>
+            <li><strong>Você entregar a frase.</strong> Nenhum mecanismo técnico impede que alguém seja convencido a digitar as 12 palavras num site falso. <strong>Nós nunca pedimos a sua frase — por nenhum canal, em nenhuma circunstância.</strong></li>
+            <li><strong>Você aprovar uma transação maliciosa.</strong> A carteira mostra o que está sendo assinado, mas a decisão é sua.</li>
+            <li><strong>Aparelho desbloqueado nas mãos de outra pessoa</strong>, se ela souber seu PIN.</li>
+            <li><strong>Falha nas bibliotecas de terceiros</strong> que usamos.</li>
+            <li><strong>Computação quântica contra as blockchains.</strong> Ver <a href="#6-criptografia-pós-quântica">Criptografia pós-quântica</a>: protegemos a autoria das operações e o backup, mas a validação on-chain depende das redes.</li>
+        </ul>
+        <h3>Atualizações remotas — declaração explícita</h3>
+        <p>O aplicativo recebe <strong>atualizações de código pela rede</strong> (Expo / EAS Update), sem passar pela loja. Isso nos permite corrigir um problema em minutos em vez de dias, e foi usado exatamente para isso.</p>
+        <p>A consequência de segurança, dita com clareza: <strong>temos capacidade técnica de alterar o comportamento do aplicativo no seu aparelho.</strong> Não há como você verificar, hoje, que o código em execução é o que descrevemos aqui.</p>
+        <p>Não achamos aceitável que isso fique implícito. O trabalho em andamento para resolver é <strong>builds reproduzíveis</strong> — permitindo que qualquer pessoa compile o aplicativo e confira que o pacote publicado corresponde ao código. Até que isso exista, esta declaração é a informação honesta que podemos dar.</p>
+        <h3>Código-fonte e auditoria independente</h3>
+        <p>Três coisas que preferimos declarar a deixar você supor:</p>
+        <ul>
+            <li><strong>Parte do código é pública.</strong> Os dois módulos que protegem suas chaves no aparelho — a cifragem em repouso e a derivação da chave de cifragem a partir do seu PIN — estão em <a href="https://github.com/VkxProtocol/VKX-Wallet">github.com/VkxProtocol/VKX-Wallet</a>, sob licença MIT. São os arquivos que rodam no aplicativo, não uma versão reescrita para exibição.</li>
+            <li><strong>A geração de chave e a derivação de endereços também são públicas.</strong> O código de BIP-39 e BIP-44 está no mesmo repositório, e a suíte dele deriva a partir da frase que o próprio BIP-39 usa como vetor de teste, comparando com referências publicadas fora da VKX: o primeiro endereço de recebimento dos vetores do <strong>BIP-84</strong> e o endereço Ethereum que aquela frase produz em qualquer carteira. É essa a verificação por trás da nossa promessa de que suas 12 palavras funcionam em qualquer lugar.</li>
+            <li><strong>Ainda não passamos por auditoria de terceiro.</strong> Quando isso acontecer, o relatório será publicado aqui, com os achados incluídos.</li>
+        </ul>
+        <p>O que você pode conferir sozinho hoje: clone o repositório, rode <code>npm install &amp;&amp; npm test</code>, e a suíte valida a derivação da chave do seu PIN contra o vetor publicado no <strong>RFC 7914 §12</strong> e a derivação dos seus endereços contra os vetores do <strong>BIP-84</strong> — os próprios padrões. Ela também trava as propriedades que uma implementação sutilmente quebrada falharia: que os caminhos síncrono e assíncrono devolvem os mesmos bytes, que os backends nativo e JavaScript concordam, e que os parâmetros de custo realmente alteram a saída.</p>
+        <p>O que ainda depende de confiança: as afirmações desta página sobre captura de tela, área de transferência e onde os segredos ficam guardados. Elas são cobertas por testes automáticos em cada publicação, mas os testes são nossos e vivem em código que não é público. É exatamente por isso que os itens acima importam.</p>
+        <hr>
+        <h2 id="divulgacao">8. Divulgação responsável</h2>
+        <p>Se você encontrou uma falha, queremos saber antes dos usuários.</p>
+        <p>Há dois caminhos, e a diferença é só se você usa a carteira ou não.</p>
+        <p><strong>Se você tem o aplicativo instalado</strong> — abra um ticket em <strong>Configurações → Central de Suporte → Criar ticket</strong>, categoria <strong>Segurança</strong>. É o caminho preferido: é autenticado, guarda o histórico da conversa, aceita até três anexos e já nos entrega a versão do aplicativo e o aparelho, informação que teríamos de pedir de volta por e-mail.</p>
+        <p><strong>Se você não é usuário</strong> — escreva para <code>security@vkxtech.com.br</code>. Existe justamente para isso: não queremos que instalar a carteira e criar uma conta seja condição para nos avisar de uma falha.</p>
+        <p>Nos dois casos, inclua o passo a passo para reproduzir e o impacto que você enxerga. Prova de conceito ajuda. Pelo ticket você pode anexar prints.</p>
+        <p><strong>O que você pode esperar de nós:</strong></p>
+        <div class="tbl"><table>
+            <thead><tr><th>Prazo</th><th>Compromisso</th></tr></thead>
+            <tbody>
+                <tr><td>2 dias úteis</td><td>Confirmação de que recebemos e lemos</td></tr>
+                <tr><td>7 dias</td><td>Nossa avaliação de severidade e um plano</td></tr>
+                <tr><td>90 dias</td><td>Correção publicada, ou uma explicação do porquê ainda não</td></tr>
+            </tbody></table></div>
+        <p>Relatos de segurança não passam por triagem automática: a categoria <strong>Segurança</strong> e o endereço acima vão direto para uma pessoa.</p>
+        <p><strong>O que pedimos de você:</strong></p>
+        <ul>
+            <li>Não explore além do necessário para demonstrar a falha.</li>
+            <li>Não acesse, altere ou exfiltre dados de outras pessoas. Use contas suas.</li>
+            <li>Não execute ataques de negação de serviço nem teste de carga.</li>
+            <li><strong>Fale conosco primeiro, em privado.</strong> Publicar a falha antes da correção expõe quem usa a carteira — inclusive quem não tem como se proteger sozinho. Peça o que precisar de prazo; o que pedimos é não tornar público antes de existir correção.</li>
+        </ul>
+        <p><strong>Nosso compromisso:</strong> não acionamos a justiça contra quem pesquisa de boa-fé e segue estas regras. Se quiser, damos crédito público pelo achado.</p>
+        <h3>Como funciona, do relato à publicação</h3>
+        <ol>
+            <li><strong>Você nos conta em privado.</strong> É a etapa que dá tempo de corrigir antes de alguém mal-intencionado ler a mesma informação.</li>
+            <li><strong>Corrigimos</strong> e publicamos a correção.</li>
+            <li><strong>Nós publicamos o achado</strong> no histórico desta página, com crédito a você.</li>
+        </ol>
+        <p>O crédito é seu, e você escolhe a forma:</p>
+        <ul>
+            <li><strong>seu nome ou pseudônimo</strong>, ou</li>
+            <li><strong>o endereço da sua carteira</strong> — assim o crédito é verificável: você pode provar a autoria do achado a qualquer momento assinando uma mensagem com a mesma carteira, sem depender de nós confirmarmos nada, ou</li>
+            <li><strong>anônimo</strong>, se preferir.</li>
+        </ul>
+        <p><strong>Não temos programa de recompensa monetária.</strong> Preferimos dizer isso do que anunciar valores que não honraríamos. O que oferecemos é o que está descrito aqui: resposta rápida, correção publicada, crédito verificável pelo achado e a garantia de não acionar a justiça contra quem pesquisa de boa-fé.</p>
+        <hr>
+        <h2>9. Histórico de correções de segurança</h2>
+        <p>Publicamos o que corrigimos, inclusive o que estava errado antes. Uma página de segurança que só lista acertos não informa nada.</p>
+        <h3>15 de setembro de 2026</h3>
+        <ul>
+            <li><strong>Chave privada cifrada estava no armazenamento comum do aplicativo</strong>, não no Keychain/Keystore. A frase de recuperação e o PIN já estavam protegidos; a chave privada, não. No iOS, isso significava que ela era incluída no backup do aparelho. Corrigido, com migração automática no desbloqueio.</li>
+            <li><strong>Itens do armazenamento protegido podiam migrar para outro aparelho</strong> em restauração de backup. Passaram a ser exclusivos do aparelho.</li>
+            <li><strong>Frase de recuperação exibida no cadastro sem bloqueio de captura de tela.</strong> A tela de backup já bloqueava; o cadastro, não. Corrigido.</li>
+            <li><strong>Frase copiada permanecia na área de transferência indefinidamente.</strong> Agora é removida após 60 segundos.</li>
+            <li><strong>Parâmetros de cifragem podiam ser rebaixados.</strong> A rotina que atualizava o formato de armazenamento tratava um parâmetro mais forte como "desatualizado" e o reduzia. Agora a migração ocorre apenas no sentido de fortalecer.</li>
+        </ul>
+        <hr>
+        <h2>Como verificar o que está escrito aqui</h2>
+        <p>As afirmações deste documento correspondem a comportamentos testados automaticamente a cada publicação do aplicativo. Os testes cobrem, entre outros pontos: que todo segredo vá para o armazenamento protegido e saia da cópia insegura; que os itens sejam exclusivos do aparelho; que toda tela que exiba a frase bloqueie captura; que segredo copiado tenha prazo de limpeza; e que a migração de parâmetros de cifragem nunca enfraqueça.</p>
+        <p>Se você identificar uma afirmação aqui que não corresponda ao comportamento real, isso é exatamente o tipo de relato que pedimos em <a href="#8-divulgação-responsável">Divulgação responsável</a>.</p>
+        <div class="back"><a href="/wallet">&larr; Voltar para a VKX Wallet</a></div>
+    </main>
+</body>
+</html>

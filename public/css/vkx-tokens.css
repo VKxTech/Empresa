@@ -1,0 +1,274 @@
+/*
+ * VKX Digital Brand System v1.0
+ * Arquivos variaveis WOFF2 servidos localmente em /fonts (latin + latin-ext).
+ */
+
+@font-face{font-family:"Sora Variable";font-style:normal;font-weight:100 800;font-display:swap;src:url("/fonts/sora-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:"Sora Variable";font-style:normal;font-weight:100 800;font-display:swap;src:url("/fonts/sora-latin.woff2") format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:"Inter Variable";font-style:normal;font-weight:100 900;font-display:swap;src:url("/fonts/inter-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:"Inter Variable";font-style:normal;font-weight:100 900;font-display:swap;src:url("/fonts/inter-latin.woff2") format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+
+:root {
+  color-scheme: dark;
+
+  /* Brand */
+  --vkx-obsidian: #07080d;
+  --vkx-ink: #0d0f16;
+  --vkx-surface: #12141d;
+  --vkx-surface-2: #191c27;
+  --vkx-border: #2b2f3c;
+  --vkx-white: #f7f8fc;
+  --vkx-muted: #a7acbc;
+  --vkx-violet: #6c5cff;
+  --vkx-violet-light: #8b7cff;
+  --vkx-blue: #4d7cff;
+  /* Preenchimento de CTA: #6C5CFF + branco fica em 4.55:1, no limite do AA e
+     medido abaixo disso quando o glow entra na conta. Este tom é o mesmo
+     violeta um passo mais escuro e chega a 5.6:1 com texto branco. */
+  --vkx-violet-cta: #5f4ee8;
+
+  /* Semantic */
+  --vkx-success: #22c58b;
+  --vkx-warning: #f4b740;
+  --vkx-danger: #ff5d73;
+  --vkx-info: #52a8ff;
+
+  /* Theme roles */
+  --vkx-bg: var(--vkx-obsidian);
+  --vkx-bg-elevated: var(--vkx-ink);
+  --vkx-card: var(--vkx-surface);
+  --vkx-card-hover: var(--vkx-surface-2);
+  --vkx-text: var(--vkx-white);
+  --vkx-text-muted: var(--vkx-muted);
+  --vkx-focus: var(--vkx-violet-light);
+
+  /* Gradients */
+  --vkx-gradient-primary: linear-gradient(135deg, #6c5cff 0%, #4d7cff 100%);
+  --vkx-gradient-surface: linear-gradient(180deg, #12141d 0%, #07080d 100%);
+  --vkx-glow: radial-gradient(circle, rgb(108 92 255 / 42%) 0%, transparent 68%);
+
+  /* Typography */
+  --vkx-font-display: "Sora Variable", Sora, Inter, system-ui, sans-serif;
+  --vkx-font-body: "Inter Variable", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --vkx-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --vkx-text-display: clamp(3rem, 6.3vw, 4.5rem);
+  --vkx-text-h1: clamp(2.5rem, 5vw, 3.5rem);
+  --vkx-text-h2: clamp(2rem, 3.8vw, 2.5rem);
+  --vkx-text-h3: clamp(1.5rem, 2.6vw, 1.75rem);
+  --vkx-text-lg: clamp(1.125rem, 1.6vw, 1.25rem);
+  --vkx-text-base: 1rem;
+  --vkx-text-sm: 0.875rem;
+  --vkx-text-xs: 0.75rem;
+
+  /* 8-point spacing system */
+  --vkx-space-1: 0.25rem;
+  --vkx-space-2: 0.5rem;
+  --vkx-space-3: 0.75rem;
+  --vkx-space-4: 1rem;
+  --vkx-space-6: 1.5rem;
+  --vkx-space-8: 2rem;
+  --vkx-space-10: 2.5rem;
+  --vkx-space-12: 3rem;
+  --vkx-space-16: 4rem;
+  --vkx-space-20: 5rem;
+  --vkx-space-24: 6rem;
+  --vkx-space-30: 7.5rem;
+
+  /* Layout */
+  --vkx-container: 75rem;
+  --vkx-gutter: clamp(1.25rem, 4vw, 2rem);
+  --vkx-section-space: clamp(3.5rem, 8vw, 7.5rem);
+  --vkx-header-height: 4.5rem;
+
+  /* Shape */
+  --vkx-radius-sm: 0.75rem;
+  --vkx-radius-md: 1rem;
+  --vkx-radius-lg: 1.25rem;
+  --vkx-radius-xl: 1.75rem;
+  --vkx-radius-pill: 999px;
+
+  /* Elevation */
+  --vkx-shadow-sm: 0 8px 24px rgb(0 0 0 / 20%);
+  --vkx-shadow-lg: 0 24px 80px rgb(0 0 0 / 34%);
+  --vkx-shadow-violet: 0 20px 70px rgb(108 92 255 / 24%);
+
+  /* Motion */
+  --vkx-duration-micro: 120ms;
+  --vkx-duration-ui: 200ms;
+  --vkx-duration-content: 360ms;
+  --vkx-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Layering */
+  --vkx-z-base: 0;
+  --vkx-z-sticky: 20;
+  --vkx-z-overlay: 40;
+  --vkx-z-modal: 60;
+  --vkx-z-toast: 80;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --vkx-bg: #f7f8fc;
+  --vkx-bg-elevated: #ffffff;
+  --vkx-card: #ffffff;
+  --vkx-card-hover: #f0eeff;
+  --vkx-border: #d9dce5;
+  --vkx-text: #07080d;
+  --vkx-text-muted: #555a69;
+}
+
+html {
+  background: var(--vkx-bg);
+  color: var(--vkx-text);
+  font-family: var(--vkx-font-body);
+  font-size: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  background: var(--vkx-bg);
+  color: var(--vkx-text);
+  font-size: var(--vkx-text-base);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+.vkx-display {
+  margin: 0;
+  font-family: var(--vkx-font-display);
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.vkx-display {
+  font-size: var(--vkx-text-display);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+h1 {
+  font-size: var(--vkx-text-h1);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  font-size: var(--vkx-text-h2);
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+}
+
+h3 {
+  font-size: var(--vkx-text-h3);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.vkx-container {
+  width: min(calc(100% - (2 * var(--vkx-gutter))), var(--vkx-container));
+  margin-inline: auto;
+}
+
+.vkx-section {
+  padding-block: var(--vkx-section-space);
+}
+
+.vkx-eyebrow {
+  color: var(--vkx-violet-light);
+  font-size: var(--vkx-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.vkx-card {
+  border: 1px solid var(--vkx-border);
+  border-radius: var(--vkx-radius-lg);
+  background: var(--vkx-card);
+  box-shadow: var(--vkx-shadow-sm);
+  transition:
+    transform var(--vkx-duration-ui) var(--vkx-ease-out),
+    background-color var(--vkx-duration-ui) var(--vkx-ease-out),
+    border-color var(--vkx-duration-ui) var(--vkx-ease-out);
+}
+
+.vkx-card:hover {
+  border-color: rgb(108 92 255 / 55%);
+  background: var(--vkx-card-hover);
+  transform: translateY(-2px);
+}
+
+.vkx-button {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: var(--vkx-space-2);
+  padding: 0.75rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: var(--vkx-radius-sm);
+  font: 600 0.9375rem/1 var(--vkx-font-body);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--vkx-duration-micro) ease-out,
+    background-color var(--vkx-duration-ui) var(--vkx-ease-out),
+    border-color var(--vkx-duration-ui) var(--vkx-ease-out);
+}
+
+.vkx-button--primary {
+  background: var(--vkx-violet-cta);
+  color: #ffffff;
+  box-shadow: var(--vkx-shadow-violet);
+}
+
+.vkx-button--primary:hover {
+  background: #5343d4;
+  transform: translateY(-1px);
+}
+
+.vkx-button--secondary {
+  border-color: var(--vkx-border);
+  background: transparent;
+  color: var(--vkx-text);
+}
+
+.vkx-button--secondary:hover {
+  background: var(--vkx-card-hover);
+}
+
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--vkx-focus);
+  outline-offset: 3px;
+}
+
+.vkx-data {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 47.99rem) {
+  :root {
+    --vkx-header-height: 4rem;
+  }
+
+  .vkx-card:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

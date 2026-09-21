@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VKX Wallet — Transak Integration Walkthrough</title>
+    <meta name="description" content="Official video demonstration of Transak Fiat On/Off-Ramp integration inside VKX Wallet.">
+    <link rel="stylesheet" href="/css/output.css">
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/vkx-tokens.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b0f17; color: #e2e8f0; }
+        .font-outfit { font-family: 'Outfit', sans-serif; }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-white">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-white/10 h-20 flex items-center">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-3">
+                <img src="/brand/VKX_Technologies_OnDark.svg" alt="VKX Logo" class="w-10 h-10 rounded-xl border border-white/10 bg-white/5 p-1.5 object-contain">
+                <div>
+                    <span class="font-outfit font-black text-xl text-white tracking-tight">VKX Wallet</span>
+                    <span class="block text-[10px] text-emerald-400 font-bold uppercase tracking-widest">Transak Demo</span>
+                </div>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="/transak.mp4" download class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow-lg shadow-emerald-500/20">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Download MP4</span>
+                </a>
+                <a href="/wallet/terms" class="hidden md:inline-flex text-xs font-semibold text-slate-400 hover:text-white transition-colors">
+                    Terms of Service
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Section -->
+    <main class="container mx-auto px-6 pt-32 pb-20 max-w-5xl flex-grow">
+        <!-- Hero Header -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 uppercase tracking-wider">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Official Integration Walkthrough
+            </div>
+            <h1 class="text-4xl md:text-6xl font-outfit font-black mb-6 tracking-tight">
+                Transak <span class="text-gradient">Fiat On/Off-Ramp</span> Demo
+            </h1>
+            <p class="text-slate-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+                Demonstration video showing the native integration of Transak fiat purchasing and selling services inside the VKX Wallet non-custodial application.
+            </p>
+        </div>
+
+        <!-- Video Player Container -->
+        <div class="glass-card rounded-3xl p-4 md:p-6 mb-12 shadow-2xl relative overflow-hidden group">
+            <div class="absolute -top-40 -left-40 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative rounded-2xl overflow-hidden bg-black border border-white/10 shadow-2xl">
+                <video 
+                    controls 
+                    autoplay 
+                    muted 
+                    playsinline 
+                    poster="/og-wallet.png"
+                    class="w-full aspect-video object-contain bg-black"
+                >
+                    <source src="/transak.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video streaming. Please download the video directly below.
+                </video>
+            </div>
+
+            <!-- Video Toolbar -->
+            <div class="mt-6 flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10 text-xs text-slate-400">
+                <div class="flex items-center gap-3">
+                    <span class="flex items-center gap-1.5 font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-lg">
+                        <i data-lucide="video" class="w-4 h-4"></i>
+                        transak.mp4
+                    </span>
+                    <span class="hidden sm:inline-block text-slate-500">|</span>
+                    <span class="hidden sm:inline-block">Format: MP4 Video (Full HD)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="/transak.mp4" target="_blank" class="hover:text-emerald-400 transition-colors flex items-center gap-1 font-semibold">
+                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Direct URL
+                    </a>
+                    <a href="/transak.mp4" download class="bg-white/10 hover:bg-white/20 text-white font-bold px-4 py-2 rounded-xl transition-all flex items-center gap-2">
+                        <i data-lucide="download" class="w-3.5 h-3.5"></i> Download Video
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- United Kingdom Restriction Evidence -->
+        <section class="mb-12" aria-labelledby="uk-restriction-title">
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold px-3.5 py-1.5 rounded-full mb-4 uppercase tracking-wider">
+                    <i data-lucide="map-pin-off" class="w-4 h-4"></i>
+                    Regional restriction evidence
+                </div>
+                <h2 id="uk-restriction-title" class="font-outfit font-black text-2xl md:text-3xl text-white mb-3">
+                    Buy/Sell is unavailable in the United Kingdom
+                </h2>
+                <p class="text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                    This recording demonstrates that selecting the United Kingdom (ISO country code GB)
+                    blocks access to the Transak-powered Buy/Sell flow inside VKX Wallet.
+                </p>
+            </div>
+
+            <div class="glass-card rounded-3xl p-4 md:p-6 shadow-2xl relative overflow-hidden">
+                <div class="absolute -top-40 -right-40 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="relative rounded-2xl overflow-hidden bg-black border border-white/10 shadow-2xl">
+                    <video controls muted playsinline preload="metadata" poster="/og-wallet.png" class="w-full aspect-video object-contain bg-black">
+                        <source src="/gbt.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video streaming. Please download the video directly below.
+                    </video>
+                </div>
+
+                <div class="mt-6 flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10 text-xs text-slate-400">
+                    <div class="flex items-center gap-3">
+                        <span class="flex items-center gap-1.5 font-mono text-amber-300 bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 rounded-lg">
+                            <i data-lucide="video" class="w-4 h-4"></i>
+                            gbt.mp4
+                        </span>
+                        <span class="hidden sm:inline-block text-slate-500">|</span>
+                        <span class="hidden sm:inline-block">United Kingdom access restriction</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <a href="/gbt.mp4" target="_blank" class="hover:text-amber-300 transition-colors flex items-center gap-1 font-semibold">
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Direct URL
+                        </a>
+                        <a href="/gbt.mp4" download class="bg-white/10 hover:bg-white/20 text-white font-bold px-4 py-2 rounded-xl transition-all flex items-center gap-2">
+                            <i data-lucide="download" class="w-3.5 h-3.5"></i> Download Video
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Highlights Grid -->
+        <div class="grid md:grid-cols-3 gap-6 mb-16">
+            <div class="glass-card p-6 rounded-2xl">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
+                    <i data-lucide="credit-card" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-outfit font-bold text-lg text-white mb-2">Fiat On-Ramp Integration</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Users purchase crypto natively using Credit/Debit Cards, Pix, and global bank transfers powered directly by Transak.
+                </p>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl">
+                <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-4">
+                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-outfit font-bold text-lg text-white mb-2">Non-Custodial Security</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    VKX Wallet guarantees self-custody with BIP-39 12-word seed phrases. Transak handles compliance independently.
+                </p>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl">
+                <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-4">
+                    <i data-lucide="zap" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-outfit font-bold text-lg text-white mb-2">Gasless & Multichain</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    Seamless delivery of purchased crypto to BSC, Ethereum, Polygon, Arbitrum, Base, and Avalanche wallets.
+                </p>
+            </div>
+        </div>
+
+        <!-- Technical Metadata Details -->
+        <div class="glass-card p-8 rounded-3xl border border-white/10">
+            <h2 class="font-outfit font-bold text-xl text-white mb-6 flex items-center gap-3">
+                <i data-lucide="file-text" class="text-emerald-400"></i>
+                Application & Integration Details
+            </h2>
+            <div class="grid sm:grid-cols-2 gap-6 text-sm">
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-slate-500 font-bold block mb-1">Entity / Vendor</span>
+                    <span class="font-semibold text-slate-200">VKX Technologies LTDA</span>
+                    <span class="block text-xs text-slate-400">CNPJ: 33.070.993/0001-27</span>
+                </div>
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-slate-500 font-bold block mb-1">Product</span>
+                    <span class="font-semibold text-slate-200">VKX Wallet (Gen 2.0)</span>
+                    <span class="block text-xs text-slate-400">Non-Custodial Smart Wallet</span>
+                </div>
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-slate-500 font-bold block mb-1">Integration Partner</span>
+                    <span class="font-semibold text-slate-200">Transak (Transak Limited)</span>
+                    <span class="block text-xs text-slate-400">Fiat On/Off-Ramp Provider</span>
+                </div>
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-slate-500 font-bold block mb-1">Official Legal Terms</span>
+                    <a href="/wallet/terms" class="font-semibold text-emerald-400 hover:underline">
+                        wallet.vkxtech.com.br/terms ↗
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-white/10 py-8">
+        <div class="container mx-auto px-6 text-center text-xs text-slate-500">
+            <p class="font-bold uppercase tracking-widest mb-2">VKX Technologies LTDA &bull; CNPJ 33.070.993/0001-27</p>
+            <p>&copy; 2026 VKX Technologies LTDA. Official Transak Integration Walkthrough Page.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+
