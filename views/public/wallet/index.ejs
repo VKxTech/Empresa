@@ -3,16 +3,19 @@ const officialWalletUrl = 'https://wallet.vkxtech.com.br';
 const officialDownloadBase = `${officialWalletUrl}/download`;
 const officialSupportUrl = `${officialWalletUrl}/support`;
 const officialPrivacyUrl = `${officialWalletUrl}/privacy-policy`;
+const officialTermsUrl = `${officialWalletUrl}/terms`;
 const officialSecurityUrl = `${officialWalletUrl}/security-architecture`;
 const officialMainSiteUrl = 'https://vkxtech.com.br';
-const officialBlogUrl = 'https://www.vkinha.com/blog';
+const officialBlogUrl = '/blog';
 const downloadHref = ref ? `${officialDownloadBase}?ref=${encodeURIComponent(ref)}` : officialDownloadBase;
 const uiLang = ['pt', 'en', 'es'].includes(lang) ? lang : 'en';
 
 const walletContent = {
   pt: {
-    nav_problem: 'O Problema',
+    nav_problem: 'Por que VKX',
+    nav_product: 'Produto real',
     nav_vault: 'Vault',
+    nav_quantum: 'Pós-Quântica',
     nav_gas: 'Gas Shield',
     nav_multichain: 'Multichain',
     nav_comparison: 'Comparativo',
@@ -22,9 +25,14 @@ const walletContent = {
     pill_product: 'Velocidade Máxima',
     pill_simple: 'Fácil & Intuitiva',
     pill_secure: 'Segurança Blindada',
-    hero_title: 'Uma wallet cripto <span>rápida, fácil e segura</span> para o uso real.',
-    hero_desc: 'Mova e guarde seus ativos com autocustódia total. A VKX Wallet elimina os gargalos que te travam: taxas de gás com o Gas Shield BNB, riscos de golpes com o Vault e complexidade com IA integrada.',
-    
+    hero_title: 'Compre, invista e mova ativos em uma wallet <span>realmente multichain.</span>',
+    hero_desc: 'Compre cripto com Pix, cartão, euros ou dólares por parceiros integrados. Acesse ações tokenizadas e ETFs, faça swaps como ETH → SOL ou BNB → SOL e proteja sua autocustódia com o VKX Shield.',
+
+    seo_title: 'Comprar Cripto com Pix, Euro e Cartão | Wallet Multichain VKX',
+    seo_description: 'Compre criptomoedas com Pix, euros, dólares ou cartão via parceiros integrados. Acesse ativos tokenizados, ETFs, swaps cross-chain, 9 redes e segurança avançada na VKX Wallet.',
+    seo_keywords: 'comprar criptomoeda com pix, comprar cripto com euros, comprar cripto com cartão, Transak wallet, ações tokenizadas, ETFs tokenizados, swap ETH para SOL, swap BNB para SOL, wallet multichain, Robinhood Chain, carteira não custodial, VKX Wallet',
+    og_title: 'VKX Wallet — Fiat, ativos tokenizados e swaps multichain em um só app',
+
     proof_users_title: '+5.000',
     proof_users_desc: 'Usuários ativos',
     proof_protected_title: '+US$ 500k',
@@ -109,8 +117,10 @@ const walletContent = {
     footer_disclaimer: 'VKX Wallet é um software de autocustódia. Não atuamos como custodiante, corretora ou banco. Seus fundos e chaves privadas permanecem exclusivamente sob seu controle. Use com responsabilidade.'
   },
   en: {
-    nav_problem: 'The Problem',
+    nav_problem: 'Why VKX',
+    nav_product: 'Real product',
     nav_vault: 'Vault',
+    nav_quantum: 'Post-Quantum',
     nav_gas: 'Gas Shield',
     nav_multichain: 'Multichain',
     nav_comparison: 'Comparison',
@@ -120,9 +130,14 @@ const walletContent = {
     pill_product: 'Maximum Speed',
     pill_simple: 'Easy & Intuitive',
     pill_secure: 'Advanced Security',
-    hero_title: 'A <span>fast, easy, and secure</span> crypto wallet built for real-world use.',
-    hero_desc: 'Move and store your assets with total self-custody. VKX Wallet eliminates the bottlenecks that stop you: transaction fees with BNB Gas Shield, scam risks with Vault, and complexity with integrated AI.',
-    
+    hero_title: 'Buy, invest, and move assets in a <span>truly multichain wallet.</span>',
+    hero_desc: 'Buy crypto with cards, euros, dollars, or local payment methods through integrated partners. Access tokenized stocks and ETFs, swap ETH → SOL or BNB → SOL, and secure your self-custody with VKX Shield.',
+
+    seo_title: 'Buy Crypto with Euros, Dollars or Card | VKX Multichain Wallet',
+    seo_description: 'Buy crypto with euros, dollars, cards, or local payment methods through integrated partners. Access tokenized assets, ETFs, cross-chain swaps, 9 networks, and advanced security.',
+    seo_keywords: 'buy crypto with euros, buy crypto with credit card, how to use Transak, tokenized stocks wallet, tokenized ETFs, ETH to SOL swap, BNB to SOL swap, multichain wallet, Robinhood Chain wallet, self-custody wallet, VKX Wallet',
+    og_title: 'VKX Wallet — Fiat, tokenized assets, and multichain swaps in one app',
+
     proof_users_title: '+5,000',
     proof_users_desc: 'Active users',
     proof_protected_title: '+$500k',
@@ -207,8 +222,10 @@ const walletContent = {
     footer_disclaimer: 'VKX Wallet is self-custody software. We do not act as custodian, exchange, or bank. Your funds and private keys remain strictly in your control. Use responsibly.'
   },
   es: {
-    nav_problem: 'El Problema',
+    nav_problem: 'Por qué VKX',
+    nav_product: 'Producto real',
     nav_vault: 'Vault',
+    nav_quantum: 'Post-Cuántica',
     nav_gas: 'Gas Shield',
     nav_multichain: 'Multichain',
     nav_comparison: 'Comparativa',
@@ -218,9 +235,14 @@ const walletContent = {
     pill_product: 'Máxima Velocidad',
     pill_simple: 'Fácil & Intuitiva',
     pill_secure: 'Seguridad Blindada',
-    hero_title: 'Una wallet cripto <span>rápida, fácil y segura</span> para el uso real.',
-    hero_desc: 'Mueve y guarda tus activos con autocustodia total. VKX Wallet elimina los cuellos de botella que te frenan: comisiones de gas con BNB Gas Shield, riesgos de estafas con Vault y complejidad con IA integrada.',
-    
+    hero_title: 'Compra, invierte y mueve activos en una wallet <span>realmente multichain.</span>',
+    hero_desc: 'Compra cripto con tarjeta, euros, dólares o métodos locales mediante socios integrados. Accede a acciones tokenizadas y ETFs, cambia ETH → SOL o BNB → SOL y protege tu autocustodia con VKX Shield.',
+
+    seo_title: 'Comprar Cripto con Euros, Dólares o Tarjeta | VKX Wallet',
+    seo_description: 'Compra criptomonedas con euros, dólares, tarjeta o métodos locales mediante socios integrados. Accede a activos tokenizados, ETFs, swaps cross-chain, 9 redes y seguridad avanzada.',
+    seo_keywords: 'comprar criptomonedas con euros, comprar cripto con tarjeta, cómo usar Transak, acciones tokenizadas, ETFs tokenizados, swap ETH a SOL, swap BNB a SOL, wallet multichain, Robinhood Chain, billetera no custodial, VKX Wallet',
+    og_title: 'VKX Wallet — Fiat, activos tokenizados y swaps multichain en una app',
+
     proof_users_title: '+5.000',
     proof_users_desc: 'Usuarios activos',
     proof_protected_title: '+US$ 500k',
@@ -306,22 +328,290 @@ const walletContent = {
   }
 };
 const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
+
+const productShowcase = {
+  pt: {
+    eyebrow: 'O produto, por dentro',
+    title: 'Uma infraestrutura financeira inteira em uma única wallet.',
+    intro: 'Estas são telas reais da VKX Wallet. Da entrada em moeda local à autocustódia multichain, cada jornada foi desenhada para reduzir etapas sem esconder rede, rota ou segurança.',
+    proof: 'Captura real do aplicativo',
+    fiat_title: 'Compre cripto com Pix, euros, dólares e cartão',
+    fiat_body: 'Escolha quanto deseja pagar em moeda local e receba o ativo diretamente na sua carteira. No Brasil, use Pix; em países elegíveis, use EUR, USD, cartão ou outros métodos oferecidos pela Transak.',
+    fiat_note: 'Métodos, limites, taxas e disponibilidade dependem do país, do parceiro e da verificação de identidade.',
+    invest_title: 'Ações e ETFs tokenizados dentro da wallet',
+    invest_body: 'Explore ativos do mundo real representados on-chain — incluindo ações e ETFs tokenizados — e compre sem sair da experiência VKX, quando disponíveis para sua região e perfil.',
+    invest_note: 'Ativos tokenizados não são ações custodiadas pela VKX. Emissão, negociação, liquidez e elegibilidade dependem dos provedores e da legislação aplicável.',
+    swap_title: 'Swaps cross-chain, sem peregrinar entre bridges',
+    swap_body: 'Troque ativos entre redes no mesmo fluxo: ETH → SOL, BNB → SOL, BNB → BTC e outras rotas compatíveis. A wallet identifica a origem, o destino e apresenta a cotação antes da confirmação.',
+    networks_title: 'Nove redes. Uma experiência coerente.',
+    networks_body: 'BNB Smart Chain, Ethereum, Base, Arbitrum, Polygon, Bitcoin, Tron, Solana e Robinhood Chain em uma interface única, com endereços e ativos separados por rede.',
+    shield_title: 'VKX Shield: segurança avançada em camadas',
+    shield_body: 'Autocustódia, proteção apoiada por hardware quando disponível, dispositivos confiáveis, recuperação protegida e registro de provas de assinatura — com controles claros para o usuário.',
+    journey_eyebrow: 'Do dinheiro local ao ativo on-chain',
+    journey_title: 'Como comprar cripto e ativos tokenizados na VKX',
+    step1_title: '1. Escolha Comprar',
+    step1_body: 'Na tela inicial, toque em Comprar, informe sua moeda local e selecione o ativo e a rede de recebimento.',
+    step2_title: '2. Pague pelo parceiro disponível',
+    step2_body: 'Conclua o fluxo com Pix, cartão, EUR ou USD. A Transak ou outro parceiro elegível processa pagamento, KYC e cotação.',
+    step3_title: '3. Use o saldo na wallet',
+    step3_body: 'Receba cripto em autocustódia; depois, mantenha, envie, faça swap ou acesse ações e ETFs tokenizados na área Investir.',
+    transak_title: 'Como usar a Transak na VKX Wallet?',
+    transak_body: 'Abra Comprar, defina moeda, valor, token e rede. Revise a cotação, prossiga para a Transak, conclua a verificação solicitada e pague com um método disponível. O ativo é entregue no endereço exibido no fluxo.',
+    transak_cta: 'Ver demonstração da integração',
+    availability: 'Disponibilidade responsável',
+    availability_body: 'A VKX é uma interface de autocustódia. Serviços fiat e ativos tokenizados são fornecidos por terceiros independentes e podem não estar disponíveis em todos os países. Nada nesta página constitui recomendação de investimento.',
+    account_title: 'Conta, benefícios e controle em um só lugar',
+    account_body: 'Perfil, chaves, carteiras vinculadas, programa de indicação, suporte e o histórico de créditos e economias ficam reunidos em um único painel dentro do aplicativo.',
+    fiat_tags: ['Pix no Brasil', 'EUR e USD', 'Cartão', 'Entrega na sua wallet'],
+    invest_tags: ['Ações', 'ETFs', 'RWA', 'Trading'],
+    swap_tags: ['BNB → SOL', 'BNB → BTC', 'Cotação antes de confirmar'],
+    account_tags: ['Carteiras vinculadas', 'Indicação', 'Suporte', 'Benefícios'],
+    networks_list: ['Robinhood Chain', 'BNB Smart Chain', 'Ethereum', 'Base', 'Arbitrum One', 'Polygon', 'Bitcoin', 'Tron', 'Solana'],
+    shield_items: ['Modo cofre blindado na nuvem', 'Recuperação garantida sem semente', 'Trava de segurança por hardware', 'Sincronização segura multi-tela', 'Registro de provas de assinatura'],
+    proof_one: 'Autocustódia real',
+    proof_two: '9 redes em um app',
+    nav_label: 'Produto'
+  },
+  en: {
+    eyebrow: 'Inside the product',
+    title: 'A complete financial stack inside one wallet.',
+    intro: 'These are real VKX Wallet screens. From local-currency onboarding to multichain self-custody, every journey is designed to remove steps without hiding the network, route, or security model.',
+    proof: 'Real app screen',
+    fiat_title: 'Buy crypto with euros, dollars, cards, and local methods',
+    fiat_body: 'Choose how much to pay in your local currency and receive the asset directly in your wallet. Eligible users can pay in EUR, USD, by card, or through local methods offered by Transak; Pix is available in Brazil.',
+    fiat_note: 'Payment methods, limits, fees, and availability depend on country, partner, and identity verification.',
+    invest_title: 'Tokenized stocks and ETFs inside the wallet',
+    invest_body: 'Explore on-chain representations of real-world assets — including tokenized stocks and ETFs — and buy without leaving the VKX experience, when available for your region and profile.',
+    invest_note: 'Tokenized assets are not shares custodied by VKX. Issuance, trading, liquidity, and eligibility depend on providers and applicable law.',
+    swap_title: 'Cross-chain swaps without bridge hopping',
+    swap_body: 'Move between networks in one flow: ETH → SOL, BNB → SOL, BNB → BTC, and other supported routes. The wallet identifies source and destination and shows a quote before confirmation.',
+    networks_title: 'Nine networks. One coherent experience.',
+    networks_body: 'BNB Smart Chain, Ethereum, Base, Arbitrum, Polygon, Bitcoin, Tron, Solana, and Robinhood Chain in one interface, with addresses and assets clearly separated by network.',
+    shield_title: 'VKX Shield: advanced layered security',
+    shield_body: 'Self-custody, hardware-backed protection when available, trusted devices, protected recovery, and signature-proof records — with clear controls for the user.',
+    journey_eyebrow: 'From local money to an on-chain asset',
+    journey_title: 'How to buy crypto and tokenized assets with VKX',
+    step1_title: '1. Choose Buy',
+    step1_body: 'From the home screen, tap Buy, enter your local currency, and select the asset and receiving network.',
+    step2_title: '2. Pay through an available partner',
+    step2_body: 'Complete the flow with card, EUR, USD, or an available local method. Transak or another eligible partner handles payment, KYC, and the quote.',
+    step3_title: '3. Use your wallet balance',
+    step3_body: 'Receive crypto in self-custody, then hold, send, swap, or access tokenized stocks and ETFs in the Invest area.',
+    transak_title: 'How do I use Transak in VKX Wallet?',
+    transak_body: 'Open Buy and choose currency, amount, token, and network. Review the quote, continue to Transak, complete any requested verification, and pay with an available method. The asset is delivered to the address shown in the flow.',
+    transak_cta: 'Watch the integration demo',
+    availability: 'Responsible availability',
+    availability_body: 'VKX is a self-custody interface. Fiat services and tokenized assets are provided by independent third parties and may not be available in every country. Nothing on this page is investment advice.',
+    account_title: 'Account, benefits, and control in one place',
+    account_body: 'Profile, keys, linked wallets, the referral programme, support, and your history of credits and savings all sit in a single panel inside the app.',
+    fiat_tags: ['Pix in Brazil', 'EUR and USD', 'Card', 'Delivered to your wallet'],
+    invest_tags: ['Stocks', 'ETFs', 'RWA', 'Trading'],
+    swap_tags: ['BNB → SOL', 'BNB → BTC', 'Quote before you confirm'],
+    account_tags: ['Linked wallets', 'Referrals', 'Support', 'Benefits'],
+    networks_list: ['Robinhood Chain', 'BNB Smart Chain', 'Ethereum', 'Base', 'Arbitrum One', 'Polygon', 'Bitcoin', 'Tron', 'Solana'],
+    shield_items: ['Cloud armoured vault mode', 'Guaranteed seedless recovery', 'Hardware security lock', 'Secure multi-screen sync', 'Signature proof registry'],
+    proof_one: 'True self-custody',
+    proof_two: '9 networks, one app',
+    nav_label: 'Product'
+  },
+  es: {
+    eyebrow: 'El producto por dentro',
+    title: 'Una infraestructura financiera completa en una sola wallet.',
+    intro: 'Estas son pantallas reales de VKX Wallet. Desde la entrada con moneda local hasta la autocustodia multichain, cada recorrido reduce pasos sin ocultar red, ruta ni seguridad.',
+    proof: 'Pantalla real de la aplicación',
+    fiat_title: 'Compra cripto con euros, dólares, tarjeta y métodos locales',
+    fiat_body: 'Elige cuánto pagar en tu moneda local y recibe el activo directamente en tu billetera. Usuarios elegibles pueden pagar en EUR, USD, con tarjeta o con métodos locales ofrecidos por Transak; Pix está disponible en Brasil.',
+    fiat_note: 'Métodos, límites, tarifas y disponibilidad dependen del país, del socio y de la verificación de identidad.',
+    invest_title: 'Acciones y ETFs tokenizados dentro de la wallet',
+    invest_body: 'Explora representaciones on-chain de activos del mundo real — incluidas acciones y ETFs tokenizados — y compra sin salir de VKX, cuando estén disponibles para tu región y perfil.',
+    invest_note: 'Los activos tokenizados no son acciones custodiadas por VKX. Emisión, negociación, liquidez y elegibilidad dependen de proveedores y legislación aplicable.',
+    swap_title: 'Swaps cross-chain sin saltar entre bridges',
+    swap_body: 'Cambia entre redes en un solo flujo: ETH → SOL, BNB → SOL, BNB → BTC y otras rutas compatibles. La wallet identifica origen y destino y muestra la cotización antes de confirmar.',
+    networks_title: 'Nueve redes. Una experiencia coherente.',
+    networks_body: 'BNB Smart Chain, Ethereum, Base, Arbitrum, Polygon, Bitcoin, Tron, Solana y Robinhood Chain en una interfaz, con direcciones y activos separados por red.',
+    shield_title: 'VKX Shield: seguridad avanzada por capas',
+    shield_body: 'Autocustodia, protección por hardware cuando está disponible, dispositivos confiables, recuperación protegida y registro de pruebas de firma — con controles claros.',
+    journey_eyebrow: 'Del dinero local al activo on-chain',
+    journey_title: 'Cómo comprar cripto y activos tokenizados con VKX',
+    step1_title: '1. Elige Comprar',
+    step1_body: 'En Inicio, toca Comprar, indica tu moneda local y selecciona el activo y la red de recepción.',
+    step2_title: '2. Paga mediante un socio disponible',
+    step2_body: 'Completa el flujo con tarjeta, EUR, USD o un método local. Transak u otro socio elegible gestiona pago, KYC y cotización.',
+    step3_title: '3. Usa el saldo en tu wallet',
+    step3_body: 'Recibe cripto en autocustodia; después, conserva, envía, cambia o accede a acciones y ETFs tokenizados en Invertir.',
+    transak_title: '¿Cómo usar Transak en VKX Wallet?',
+    transak_body: 'Abre Comprar y elige moneda, importe, token y red. Revisa la cotización, continúa a Transak, completa la verificación solicitada y paga con un método disponible. El activo se entrega en la dirección mostrada.',
+    transak_cta: 'Ver demostración de la integración',
+    availability: 'Disponibilidad responsable',
+    availability_body: 'VKX es una interfaz de autocustodia. Los servicios fiat y activos tokenizados pertenecen a terceros independientes y pueden no estar disponibles en todos los países. Esta página no ofrece asesoramiento de inversión.',
+    account_title: 'Cuenta, beneficios y control en un solo lugar',
+    account_body: 'Perfil, claves, billeteras vinculadas, programa de referidos, soporte y el historial de créditos y ahorros se reúnen en un único panel dentro de la aplicación.',
+    fiat_tags: ['Pix en Brasil', 'EUR y USD', 'Tarjeta', 'Entrega en tu wallet'],
+    invest_tags: ['Acciones', 'ETFs', 'RWA', 'Trading'],
+    swap_tags: ['BNB → SOL', 'BNB → BTC', 'Cotización antes de confirmar'],
+    account_tags: ['Billeteras vinculadas', 'Referidos', 'Soporte', 'Beneficios'],
+    networks_list: ['Robinhood Chain', 'BNB Smart Chain', 'Ethereum', 'Base', 'Arbitrum One', 'Polygon', 'Bitcoin', 'Tron', 'Solana'],
+    shield_items: ['Modo bóveda blindada en la nube', 'Recuperación garantizada sin semilla', 'Bloqueo de seguridad por hardware', 'Sincronización segura multipantalla', 'Registro de pruebas de firma'],
+    proof_one: 'Autocustodia real',
+    proof_two: '9 redes en una app',
+    nav_label: 'Producto'
+  }
+};
+const product = productShowcase[uiLang] || productShowcase.en;
+const walletShots = {
+  home: uiLang === 'pt' ? '/wallet/inicialpt.jpg' : '/wallet/balanceen.jpg',
+  buy: '/wallet/comprarptpix.jpg',
+  invest: uiLang === 'pt' ? '/wallet/açõespt.jpg' : '/wallet/açõesen.jpg',
+  swap: '/wallet/swpcrossen.jpg',
+  swapAlt: '/wallet/swap2en.jpg',
+  networks: '/wallet/multichain.jpg',
+  shield: '/wallet/shieldpt.jpg',
+  menu: '/wallet/Menupt.jpg'
+};
+// Os nomes de arquivo com acento precisam ir codificados para a URL: sem isso
+// o caminho cru quebra em servidor Linux e no CDN da Vercel.
+const shot = (key) => encodeURI(walletShots[key]);
+
+// FAQ (fonte única): alimenta o acordeão visível E o JSON-LD FAQPage.
+// A 1ª pergunta captura a busca ampla "como criar uma carteira cripto".
+const walletFaq = {
+  pt: [
+    { q: 'Como comprar criptomoeda com euros na VKX Wallet?', a: 'Abra Comprar, selecione EUR como moeda de pagamento, escolha o token e a rede de recebimento e avance para a cotação do parceiro integrado. A Transak poderá solicitar verificação de identidade antes de liberar cartão, transferência ou outro método disponível no seu país. Revise taxas e valor final antes de confirmar.' },
+    { q: 'Como comprar criptomoeda com Pix?', a: 'No Brasil, toque em Comprar, informe o valor em reais, selecione o ativo e a rede e escolha Pix quando o método estiver disponível. O parceiro de pagamento exibe a cotação e as instruções; após a confirmação, o criptoativo é enviado diretamente para o endereço da sua VKX Wallet.' },
+    { q: 'Posso comprar cripto com cartão de crédito ou débito?', a: 'Sim, usuários elegíveis podem comprar por cartão através da Transak e de outros parceiros integrados. Bandeiras aceitas, moedas, limites, taxas, KYC e disponibilidade variam por país e ficam visíveis antes da confirmação.' },
+    { q: 'Como usar a Transak dentro da VKX Wallet?', a: 'Na tela Comprar, defina moeda, valor, token e rede. Confira a estimativa, avance para o ambiente da Transak, conclua o KYC solicitado e pague com um método disponível. Nunca envie sua frase secreta: a Transak precisa apenas dos dados de conformidade e do endereço público de entrega.' },
+    { q: 'Como comprar ações tokenizadas com euros ou dólares?', a: 'Primeiro adicione saldo cripto com EUR ou USD pelo fluxo Comprar. Depois abra Investir, escolha Ações ou ETFs, verifique o ativo tokenizado, a rede, o provedor, as taxas e a elegibilidade regional e confirme com o saldo disponível. Não se trata de compra direta de ações custodiadas pela VKX.' },
+    { q: 'O que são ações e ETFs tokenizados?', a: 'São tokens emitidos por terceiros que representam exposição econômica a um ativo de referência. Eles podem ter regras, horários, liquidez, direitos e riscos diferentes de uma ação ou cota tradicional. Consulte os termos do emissor e a legislação da sua região antes de operar.' },
+    { q: 'Como fazer swap de ETH para SOL ou BNB para SOL?', a: 'Abra Swap, selecione o ativo e a rede de origem, depois SOL na Solana como destino. A VKX consulta uma rota compatível, apresenta cotação, taxas e prazo estimado. Confirme somente após revisar todos os dados; rotas dependem de liquidez e disponibilidade.' },
+    { q: 'Como usar a Robinhood Chain na VKX Wallet?', a: 'Abra o seletor de redes e escolha Robinhood Chain. Confira se o ativo e o endereço de destino são compatíveis antes de receber, enviar ou investir. Recursos, ativos, ambiente de rede e disponibilidade podem mudar; valide sempre os detalhes exibidos no aplicativo.' },
+    { q: 'Como criar uma carteira cripto?', a: 'Criar uma carteira cripto na VKX Wallet leva menos de 2 minutos: baixe o app grátis para Android ou iOS, toque em "Criar carteira", anote sua frase de recuperação de 12 palavras em papel e pronto. Você passa a ter uma carteira não custodial com segurança pós-quântica, sem cadastro e sem custódia de terceiros. Suas chaves privadas nunca saem do seu aparelho.' },
+    { q: 'O que torna a VKX Wallet a mais rápida, fácil e segura do mercado?', a: 'A VKX une a soberania da autocustódia com uma usabilidade focada em resolver as maiores barreiras do mercado. É a mais rápida porque integra rotas diretas de cross-chain que eliminam intermediários; a mais fácil porque possui o Gas Shield BNB para transações sem a necessidade de adquirir tokens de gás adicionais; e a mais segura porque o Vault adiciona políticas de proteção avançadas baseadas em hardware contra saques acidentais e golpes.' },
+    { q: 'A VKX Wallet é não custodial? Minha frase de recuperação está protegida?', a: 'Sim, a VKX Wallet é 100% de autocustódia (não custodial). Suas palavras-chave nunca saem do seu aparelho e são protegidas por criptografia local. E para garantir proteção máxima contra erros, golpes e vazamentos de chaves, seus fundos armazenados no Vault contam com regras e travas de segurança ativas que reduzem o risco de saques imediatos e não autorizados.' },
+    { q: 'O que é a segurança pós-quântica da VKX Wallet?', a: 'A VKX Wallet gera localmente uma chave criptográfica pós-quântica que nunca sai do dispositivo, adicionando prontidão futura contra computadores quânticos sem alterar as transações nativas das blockchains atuais. As transações usam ECDSA ou Ed25519, enquanto a VKX cria uma prova criptográfica híbrida adicional vinculada ao dispositivo original para registrar integridade e autenticidade.' },
+    { q: 'Como funciona o Gas Shield sem taxa de gás na BNB Chain?', a: 'Se você tem saldo em USDT na BNB Chain mas não possui BNB para pagar as taxas, as carteiras comuns travam sua operação. Na VKX, o Gas Shield detecta essa ausência e subsidia o pagamento do gás diretamente no fluxo da transação. Você envia seus ativos sem precisar comprar BNB por fora. O recurso sem gás é exclusivo da BNB Chain; nas demais redes você paga a taxa de rede normalmente.' },
+    { q: 'Quais blockchains a VKX Wallet suporta?', a: 'A VKX Wallet reúne 9 redes: BNB Smart Chain, Ethereum, Base, Arbitrum, Polygon, Solana, Tron, Bitcoin e Robinhood Chain, com expansão contínua. Recursos e ativos disponíveis podem variar por rede.' },
+    { q: 'Posso ter mais de uma carteira na VKX Wallet?', a: 'Sim! A VKX Wallet oferece suporte completo a múltiplas contas e carteiras. Você pode criar novas carteiras ou importar chaves privadas/frases de recuperação existentes, gerenciando todas de forma totalmente separada dentro do mesmo aplicativo.' },
+    { q: 'O que acontece se eu perder ou quebrar meu celular?', a: 'Como a VKX Wallet é de autocustódia, seus fundos estão seguros na blockchain, e não no aparelho físico. Você pode recuperar o acesso total à sua carteira em qualquer outro dispositivo compatível digitando a sua frase de recuperação de 12 palavras. Recomendamos guardar essa frase em papel em local seguro.' },
+    { q: 'Como a VKX Wallet trata segurança e transparência?', a: 'A VKX é de autocustódia: as chaves permanecem sob controle do usuário e são protegidas localmente. A arquitetura de segurança possui publicação técnica pública e evolui com revisões contínuas. Nenhum sistema elimina todos os riscos; proteja sua frase de recuperação e confira rede, endereço e permissões antes de assinar.' }
+  ],
+  en: [
+    { q: 'How can I buy cryptocurrency with euros?', a: 'Open Buy, select EUR as your payment currency, choose the token and receiving network, and continue to the integrated partner quote. Transak may request identity verification before enabling card, bank transfer, or another method available in your country. Review fees and the final amount before confirming.' },
+    { q: 'Can I buy crypto with a credit or debit card?', a: 'Eligible users can buy with a card through Transak and other integrated partners. Supported cards, currencies, limits, fees, KYC, and availability vary by country and are shown before confirmation.' },
+    { q: 'How do I use Transak inside VKX Wallet?', a: 'On the Buy screen, set currency, amount, token, and network. Review the estimate, continue to Transak, complete any requested KYC, and pay using an available method. Never disclose your recovery phrase; a fiat provider only needs compliance information and the public delivery address.' },
+    { q: 'How can I buy tokenized stocks with euros or dollars?', a: 'First fund your wallet with crypto through the EUR or USD Buy flow. Then open Invest, choose Stocks or ETFs, verify the tokenized asset, network, provider, fees, and regional eligibility, and confirm using your available balance. VKX does not directly custody traditional shares.' },
+    { q: 'What are tokenized stocks and ETFs?', a: 'They are third-party-issued tokens designed to provide economic exposure to a reference asset. Their rules, trading hours, liquidity, rights, and risks may differ from traditional shares or funds. Read the issuer terms and local rules before transacting.' },
+    { q: 'How do I swap ETH to SOL or BNB to SOL?', a: 'Open Swap, select the source asset and network, then choose SOL on Solana as the destination. VKX requests a supported route and displays the quote, fees, and estimated time. Confirm only after checking all details; routes depend on liquidity and availability.' },
+    { q: 'How do I use Robinhood Chain in VKX Wallet?', a: 'Open the network selector and choose Robinhood Chain. Confirm that the asset and destination address are compatible before receiving, sending, or investing. Network environment, features, assets, and availability can change, so rely on the details shown in the app.' },
+    { q: 'How do I create a crypto wallet?', a: 'Creating a crypto wallet with VKX Wallet takes under 2 minutes: download the free app for Android or iOS, tap "Create wallet", write down your 12-word recovery phrase on paper, and you are done. You now own a non-custodial wallet with post-quantum security, with no sign-up and no third-party custody. Your private keys never leave your device.' },
+    { q: 'What makes VKX Wallet the fastest, easiest, and most secure wallet on the market?', a: 'VKX merges self-custody with a UX built to solve key blockchain barriers. It is the fastest because of integrated direct cross-chain routing; the easiest because of the BNB Gas Shield for gasless token transfers; and the safest because the Vault introduces advanced device-linked hardware security policies against unauthorized withdrawals and human errors.' },
+    { q: 'Is VKX Wallet non-custodial? Is my recovery seed phrase secure?', a: 'Yes, VKX Wallet is 100% self-custodial (non-custodial). Your keys never leave your device and are encrypted locally. To ensure maximum protection against mistakes and seed exposure, funds stored in the Vault feature active security rules and time-locks that prevent immediate unauthorized withdrawals, giving you an extra safety net.' },
+    { q: 'What is VKX Wallet post-quantum security?', a: 'VKX Wallet generates a post-quantum cryptographic key locally that never leaves the device, adding future readiness against quantum computers without changing native blockchain transactions. Transactions use ECDSA or Ed25519 while VKX creates an additional hybrid cryptographic proof tied to the originating device to record integrity and authenticity.' },
+    { q: 'How does the gasless Gas Shield on the BNB Chain work?', a: 'If you hold USDT on the BNB Chain but have no BNB to pay fees, traditional wallets block your transaction. With VKX Gas Shield, the app detects this and sponsors the transaction fee directly in the transaction flow, so you transfer assets without buying external BNB. The gasless feature is exclusive to the BNB Chain; on other networks you pay the network fee normally.' },
+    { q: 'Which blockchains does VKX Wallet support?', a: 'VKX Wallet brings together 9 networks: BNB Smart Chain, Ethereum, Base, Arbitrum, Polygon, Solana, Tron, Bitcoin, and Robinhood Chain, with ongoing expansion. Available assets and features may vary by network.' },
+    { q: 'Can I have more than one wallet inside VKX Wallet?', a: 'Yes! VKX Wallet offers complete support for multiple accounts and wallets. You can generate new wallets or import additional existing private keys/recovery phrases, keeping them fully isolated and organized within a single app.' },
+    { q: 'What happens if I lose or break my mobile phone?', a: 'Since VKX Wallet is fully self-custodial, your funds exist on the blockchain, not on the physical device. You can recover full access to your wallet on any compatible device by entering your 12-word recovery phrase. Always write down your seed phrase on paper and store it securely.' },
+    { q: 'How does VKX Wallet approach security and transparency?', a: 'VKX is self-custodial: keys remain under the user’s control and are protected locally. Its security architecture has a public technical publication and evolves through continuous review. No system removes every risk; protect your recovery phrase and verify the network, address, and permissions before signing.' }
+  ],
+  es: [
+    { q: '¿Cómo comprar criptomonedas con euros?', a: 'Abre Comprar, selecciona EUR como moneda de pago, elige token y red de recepción y continúa a la cotización del socio integrado. Transak puede solicitar verificación de identidad antes de habilitar tarjeta, transferencia u otro método disponible en tu país. Revisa tarifas e importe final antes de confirmar.' },
+    { q: '¿Puedo comprar cripto con tarjeta de crédito o débito?', a: 'Los usuarios elegibles pueden comprar con tarjeta mediante Transak y otros socios integrados. Tarjetas, monedas, límites, tarifas, KYC y disponibilidad varían según el país y se muestran antes de confirmar.' },
+    { q: '¿Cómo usar Transak dentro de VKX Wallet?', a: 'En Comprar, define moneda, importe, token y red. Revisa la estimación, continúa a Transak, completa el KYC solicitado y paga con un método disponible. Nunca compartas tu frase de recuperación; el proveedor solo necesita los datos de cumplimiento y la dirección pública de entrega.' },
+    { q: '¿Cómo comprar acciones tokenizadas con euros o dólares?', a: 'Primero añade saldo cripto mediante Comprar con EUR o USD. Después abre Invertir, elige Acciones o ETFs, verifica activo tokenizado, red, proveedor, tarifas y elegibilidad regional y confirma con tu saldo. VKX no custodia directamente acciones tradicionales.' },
+    { q: '¿Qué son las acciones y los ETFs tokenizados?', a: 'Son tokens emitidos por terceros que buscan ofrecer exposición económica a un activo de referencia. Sus reglas, horarios, liquidez, derechos y riesgos pueden ser distintos de acciones o fondos tradicionales. Revisa los términos del emisor y la normativa local.' },
+    { q: '¿Cómo hacer swap de ETH a SOL o BNB a SOL?', a: 'Abre Swap, selecciona el activo y la red de origen y después SOL en Solana como destino. VKX consulta una ruta compatible y muestra cotización, tarifas y tiempo estimado. Confirma solo después de revisar los datos; las rutas dependen de liquidez y disponibilidad.' },
+    { q: '¿Cómo usar Robinhood Chain en VKX Wallet?', a: 'Abre el selector de redes y elige Robinhood Chain. Confirma que activo y dirección sean compatibles antes de recibir, enviar o invertir. El entorno, los activos, las funciones y la disponibilidad pueden cambiar; valida siempre la información mostrada en la app.' },
+    { q: '¿Cómo crear una billetera cripto?', a: 'Crear una billetera cripto con VKX Wallet toma menos de 2 minutos: descarga la app gratis para Android o iOS, toca "Crear billetera", anota tu frase de recuperación de 12 palabras en papel y listo. Tienes una billetera no custodial con seguridad poscuántica, sin registro y sin custodia de terceros. Tus llaves privadas nunca salen de tu dispositivo.' },
+    { q: '¿Qué hace a VKX Wallet la más rápida, fácil y segura del mercado?', a: 'VKX une la soberanía de la autocustodia con una usabilidad enfocada en resolver las mayores barreras del mercado. Es la más rápida porque integra rutas directas de cross-chain que eliminan intermediarios; la más fácil porque posee el Gas Shield BNB para transacciones sin necesidad de adquirir tokens de gas adicionales; y la más segura porque el Vault añade políticas de protección avanzadas basadas en hardware contra retiros accidentales y estafas.' },
+    { q: '¿VKX Wallet es no custodial? ¿Mi frase de recuperación está protegida?', a: 'Sí, VKX Wallet es 100% autocustodial (no custodial). Tus palabras clave nunca salen de tu dispositivo y se protegen localmente. Y para garantizar protección máxima contra errores, estafas y fugas de llaves, tus fondos en el Vault cuentan con reglas y bloqueos de seguridad activos que reducen el riesgo de retiros inmediatos y no autorizados.' },
+    { q: '¿Qué es la seguridad poscuántica de VKX Wallet?', a: 'VKX Wallet genera localmente una clave criptográfica poscuántica que nunca sale del dispositivo, añadiendo preparación futura frente a las computadoras cuánticas sin alterar las transacciones nativas de las blockchains actuales. Las transacciones usan ECDSA o Ed25519 mientras VKX crea una prueba criptográfica híbrida adicional vinculada al dispositivo original.' },
+    { q: '¿Cómo funciona el Gas Shield sin comisión de gas en BNB Chain?', a: 'Si tienes saldo en USDT en BNB Chain pero no posees BNB para pagar las comisiones, las wallets comunes detienen tu operación. En VKX, Gas Shield detecta esto y subsidia el pago del gas directamente en el flujo de la transacción. Envías tus activos sin tener que comprar BNB externamente. La función sin gas es exclusiva de BNB Chain; en las demás redes pagas la comisión de red normalmente.' },
+    { q: '¿Qué blockchains soporta VKX Wallet?', a: 'VKX Wallet reúne 9 redes: BNB Smart Chain, Ethereum, Base, Arbitrum, Polygon, Solana, Tron, Bitcoin y Robinhood Chain, con expansión continua. Los activos y funciones disponibles pueden variar por red.' },
+    { q: '¿Puedo tener más de una billetera en VKX Wallet?', a: '¡Sí! VKX Wallet ofrece soporte completo para múltiples cuentas y billeteras. Puedes generar nuevas billeteras o importar claves privadas/frases de recuperación existentes, administrándolas de forma totalmente separada dentro de la misma aplicación.' },
+    { q: '¿Qué pasa si pierdo o se rompe mi teléfono móvil?', a: 'Dado que VKX Wallet es autocustodial, tus fondos están en la blockchain, no en el dispositivo físico. Puedes restaurar el acceso completo a tu billetera en cualquier dispositivo compatible ingresando tu frase de recuperación de 12 palabras. Guarda esta frase escrita a mano en un lugar seguro.' },
+    { q: '¿Cómo aborda VKX Wallet la seguridad y transparencia?', a: 'VKX es autocustodial: las claves permanecen bajo control del usuario y se protegen localmente. Su arquitectura de seguridad cuenta con una publicación técnica pública y evoluciona mediante revisiones continuas. Ningún sistema elimina todos los riesgos; protege tu frase y verifica red, dirección y permisos antes de firmar.' }
+  ]
+};
+const faqList = walletFaq[uiLang] || walletFaq.en;
+const ogLocale = uiLang === 'pt' ? 'pt_BR' : uiLang === 'es' ? 'es_ES' : 'en_US';
+
+// JSON-LD structured data (schema.org)
+const softwareLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MobileApplication',
+  name: 'VKX Wallet',
+  operatingSystem: 'Android, iOS',
+  applicationCategory: 'FinanceApplication',
+  url: officialWalletUrl,
+  downloadUrl: officialDownloadBase,
+  image: 'https://wallet.vkxtech.com.br/og-wallet.png',
+  // As mesmas telas exibidas na seção #produto. encodeURI cobre o nome com
+  // acento; sem isso a URL declarada ao buscador não resolve.
+  screenshot: [
+    'inicialpt.jpg', 'comprarptpix.jpg', 'açõespt.jpg',
+    'swpcrossen.jpg', 'multichain.jpg', 'shieldpt.jpg'
+  ].map((file) => encodeURI('https://wallet.vkxtech.com.br/wallet/' + file)),
+  description: landing.seo_description,
+  inLanguage: uiLang,
+  featureList: (uiLang === 'pt'
+    ? ['Compra de cripto com Pix, cartão, EUR e USD via parceiros integrados', 'Ações e ETFs tokenizados', 'Swaps cross-chain', 'Autocustódia total (não custodial)', 'Segurança pós-quântica híbrida', 'Gas Shield na BNB Chain', 'Multichain: BNB Smart Chain, Ethereum, Base, Arbitrum, Polygon, Solana, Tron, Bitcoin e Robinhood Chain']
+    : uiLang === 'es'
+      ? ['Compra de cripto con tarjeta, EUR y USD mediante socios integrados', 'Acciones y ETFs tokenizados', 'Swaps cross-chain', 'Autocustodia total', 'Seguridad poscuántica híbrida', 'Gas Shield en BNB Chain', 'Multichain: BNB Smart Chain, Ethereum, Base, Arbitrum, Polygon, Solana, Tron, Bitcoin y Robinhood Chain']
+      : ['Buy crypto with cards, EUR, USD, and local methods through integrated partners', 'Tokenized stocks and ETFs', 'Cross-chain swaps', 'Full self-custody', 'Hybrid post-quantum security', 'Gas Shield on BNB Chain', 'Multichain: BNB Smart Chain, Ethereum, Base, Arbitrum, Polygon, Solana, Tron, Bitcoin, and Robinhood Chain']),
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  publisher: { '@type': 'Organization', name: 'VKX Tech', url: officialMainSiteUrl }
+};
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqList.map(function (f) {
+    return { '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } };
+  })
+};
+const howToLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: product.journey_title,
+  description: product.transak_body,
+  image: 'https://wallet.vkxtech.com.br/wallet/comprarptpix.jpg',
+  totalTime: 'PT5M',
+  step: [
+    { '@type': 'HowToStep', position: 1, name: product.step1_title, text: product.step1_body },
+    { '@type': 'HowToStep', position: 2, name: product.step2_title, text: product.step2_body },
+    { '@type': 'HowToStep', position: 3, name: product.step3_title, text: product.step3_body }
+  ]
+};
 %>
 <!DOCTYPE html>
-<html lang="<%= lang %>">
+<html lang="<%= uiLang %>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VKX Wallet | <%= uiLang === 'pt' ? 'Uma wallet rápida, fácil e segura para o uso real' : uiLang === 'es' ? 'Una wallet rápida, fácil y segura para el uso real' : 'A fast, easy, and secure crypto wallet for real-world use' %></title>
-  <meta name="description" content="<%= landing.hero_desc %>">
-  <meta property="og:title" content="VKX Wallet">
-  <meta property="og:description" content="<%= landing.hero_desc %>">
-  <meta property="og:url" content="https://wallet.vkxtech.com.br">
+  <title><%= landing.seo_title %></title>
+  <meta name="description" content="<%= landing.seo_description %>">
+  <meta name="keywords" content="<%= landing.seo_keywords %>">
+  <meta name="author" content="VKX Tech">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="VKX Wallet">
+  <meta property="og:locale" content="<%= ogLocale %>">
+  <meta property="og:title" content="<%= landing.og_title %>">
+  <meta property="og:description" content="<%= landing.seo_description %>">
+  <meta property="og:url" content="https://wallet.vkxtech.com.br/?lang=<%= uiLang %>">
   <meta property="og:image" content="https://wallet.vkxtech.com.br/og-wallet.png">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= landing.og_title %>">
+  <meta name="twitter:description" content="<%= landing.seo_description %>">
   <meta name="twitter:image" content="https://wallet.vkxtech.com.br/og-wallet.png">
-  <link rel="canonical" href="https://wallet.vkxtech.com.br">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="canonical" href="https://wallet.vkxtech.com.br/?lang=<%= uiLang %>">
+  <link rel="alternate" hreflang="pt" href="https://wallet.vkxtech.com.br/?lang=pt">
+  <link rel="alternate" hreflang="en" href="https://wallet.vkxtech.com.br/?lang=en">
+  <link rel="alternate" hreflang="es" href="https://wallet.vkxtech.com.br/?lang=es">
+  <link rel="alternate" hreflang="x-default" href="https://wallet.vkxtech.com.br/?lang=en">
+  <link rel="icon" href="/brand/VKX_Favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/brand/favicon.ico" sizes="any">
+  <script type="application/ld+json"><%- JSON.stringify(softwareLd) %></script>
+  <script type="application/ld+json"><%- JSON.stringify(faqLd) %></script>
+  <script type="application/ld+json"><%- JSON.stringify(howToLd) %></script>
   
   <% if (clarityProjectId) { %>
   <!-- Microsoft Clarity -->
@@ -347,31 +637,33 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     fbq('track', 'PageView');
   </script>
   <% } %>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/vkx-tokens.css">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root {
-      --bg: #fcfdfc;
-      --bg-gradient: radial-gradient(circle at 12% 16%, rgba(5, 150, 105, 0.04), transparent 35%),
-                      radial-gradient(circle at 85% 82%, rgba(37, 99, 235, 0.03), transparent 30%),
-                      linear-gradient(180deg, #fcfdfc 0%, #ffffff 100%);
-      --surface: #ffffff;
-      --surface-hover: #ffffff;
-      --ink: #0c1a15;
-      --muted: #4b5563;
-      --line: rgba(5, 150, 105, 0.12);
-      --line-glowing: rgba(5, 150, 105, 0.35);
-      --green: #059669;
-      --green-deep: #045c43;
-      --green-glow: rgba(5, 150, 105, 0.06);
-      --green-soft: rgba(5, 150, 105, 0.03);
-      --blue: #2563eb;
+      /* Derivado de /css/vkx-tokens.css — sistema de marca VKX v1.0. */
+      color-scheme: dark;
+      --bg: #07080d;
+      --bg-gradient:
+        radial-gradient(circle at 12% 16%, rgb(108 92 255 / 10%), transparent 42%),
+        radial-gradient(circle at 85% 82%, rgb(77 124 255 / 7%), transparent 34%),
+        linear-gradient(180deg, #0d0f16 0%, #07080d 100%);
+      --surface: #12141d;
+      --surface-hover: #191c27;
+      --ink: #f7f8fc;
+      --muted: #a7acbc;
+      --line: rgb(247 248 252 / 12%);
+      --line-glowing: rgb(108 92 255 / 45%);
+      --green: #8b7cff;
+      --green-deep: #5f4ee8;
+      --green-glow: rgb(108 92 255 / 14%);
+      --green-soft: rgb(108 92 255 / 7%);
+      --blue: #4d7cff;
       --radius: 20px;
-      --shadow: 0 12px 30px -10px rgba(4, 63, 49, 0.05);
-      --shadow-glow: 0 0 20px rgba(5, 150, 105, 0.05);
+      --shadow: 0 24px 80px rgb(0 0 0 / 34%);
+      --shadow-glow: 0 20px 70px rgb(108 92 255 / 24%);
     }
     
     * {
@@ -386,7 +678,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       background: var(--bg);
       background-image: var(--bg-gradient);
       color: var(--ink);
-      font-family: 'Manrope', sans-serif;
+      font-family: var(--vkx-font-body);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
@@ -417,7 +709,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgb(18 20 29 / 80%);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--line);
       transition: 0.3s;
@@ -443,14 +735,14 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .brand-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.05));
-      border: 1px solid var(--line);
-      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .brand-mark img {
+      width: auto;
+      height: 24px;
+      min-width: 128px;
     }
     
     .brand-mark img {
@@ -465,15 +757,15 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .brand-copy strong {
-      font-family: 'Sora', sans-serif;
+      font-family: var(--vkx-font-display);
       font-size: 1.1rem;
       letter-spacing: -0.02em;
     }
     
     .brand-copy span {
-      font-size: 0.65rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--green);
     }
@@ -487,9 +779,10 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 18px;
       font-size: 0.85rem;
-      font-weight: 700;
+      font-weight: 500;
+      white-space: nowrap;
       color: var(--muted);
     }
     
@@ -536,34 +829,34 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .btn-secondary {
-      background: rgba(0, 0, 0, 0.03);
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgb(0 0 0 / 3%);
+      border: 1px solid rgb(0 0 0 / 8%);
       color: var(--ink);
     }
     
     .btn-secondary:hover {
-      background: rgba(0, 0, 0, 0.06);
+      background: rgb(0 0 0 / 6%);
       border-color: var(--green);
     }
     
     .btn-light {
-      background: #fff;
-      color: #030605;
+      background: var(--surface);
+      color: #f7f8fc;
       font-weight: 800;
     }
     
     .btn-light:hover {
-      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 25px rgb(18 20 29 / 20%);
     }
     
     .btn-ghost {
       background: transparent;
-      border: 1px solid rgba(0, 0, 0, 0.12);
+      border: 1px solid rgb(0 0 0 / 12%);
       color: var(--ink);
     }
     
     .btn-ghost:hover {
-      background: rgba(0, 0, 0, 0.02);
+      background: rgb(0 0 0 / 2%);
       border-color: var(--green);
     }
     
@@ -577,7 +870,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       grid-template-columns: 1.1fr 0.9fr;
       gap: 40px;
       align-items: center;
-      background: linear-gradient(135deg, rgba(5, 150, 105, 0.03) 0%, rgba(255, 255, 255, 0.95) 100%);
+      background: linear-gradient(135deg, rgb(108 92 255 / 3%) 0%, rgb(18 20 29 / 95%) 100%);
       padding: 48px;
       border-radius: 32px;
       border: 1px solid var(--line);
@@ -607,8 +900,8 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .pill.blue-pill {
-      background: rgba(59, 130, 246, 0.08);
-      border-color: rgba(59, 130, 246, 0.2);
+      background: rgb(77 124 255 / 8%);
+      border-color: rgb(77 124 255 / 20%);
       color: var(--blue);
     }
     
@@ -627,14 +920,14 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     
     h1 {
       margin: 0 0 20px;
-      font-family: 'Sora', sans-serif;
+      font-family: var(--vkx-font-display);
       font-size: clamp(2rem, 4vw, 3.6rem);
       line-height: 1.1;
       letter-spacing: -0.04em;
     }
     
     h1 span {
-      background: linear-gradient(90deg, #10b981, #3b82f6);
+      background: linear-gradient(90deg, #6c5cff, #4d7cff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -663,8 +956,8 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     
     .proof-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+      gap: 20px 28px;
     }
     
     .proof-item {
@@ -672,9 +965,10 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .proof-number {
-      font-family: 'Sora', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 800;
+      font-family: var(--vkx-font-display);
+      font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+      font-weight: 700;
+      white-space: nowrap;
       color: var(--green);
       display: block;
       margin-bottom: 4px;
@@ -709,8 +1003,8 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       width: 290px;
       height: 560px;
       border-radius: 40px;
-      background: #0b110e;
-      border: 12px solid #1a2420;
+      background: #0d0f16;
+      border: 12px solid #12141d;
       box-shadow: var(--shadow), var(--shadow-glow);
       position: relative;
       overflow: hidden;
@@ -723,7 +1017,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     .phone-notch {
       width: 100px;
       height: 18px;
-      background: #1a2420;
+      background: #12141d;
       border-radius: 0 0 12px 12px;
       position: absolute;
       top: 0;
@@ -742,13 +1036,13 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     
     .mock-logo {
       font-weight: 800;
-      font-family: 'Sora', sans-serif;
+      font-family: var(--vkx-font-display);
       color: var(--green);
     }
     
     .mock-balance-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgb(18 20 29 / 03%);
+      border: 1px solid rgb(18 20 29 / 05%);
       border-radius: 16px;
       padding: 16px;
       position: relative;
@@ -775,7 +1069,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .mock-balance-val {
-      font-family: 'Sora', sans-serif;
+      font-family: var(--vkx-font-display);
       font-size: 1.4rem;
       font-weight: 800;
       color: #fff;
@@ -803,8 +1097,8 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .mock-act-btn {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgb(18 20 29 / 04%);
+      border: 1px solid rgb(18 20 29 / 05%);
       border-radius: 12px;
       padding: 10px 0;
       text-align: center;
@@ -822,8 +1116,8 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .mock-vault-status {
-      background: rgba(59, 130, 246, 0.04);
-      border: 1px solid rgba(59, 130, 246, 0.15);
+      background: rgb(77 124 255 / 4%);
+      border: 1px solid rgb(77 124 255 / 15%);
       border-radius: 16px;
       padding: 12px;
       display: flex;
@@ -831,11 +1125,11 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       justify-content: space-between;
     }
     
-    .mock-vault-info h4 {
+    .mock-vault-info div {
       margin: 0;
       font-size: 0.75rem;
       color: #fff;
-      font-family: 'Sora', sans-serif;
+      font-family: var(--vkx-font-display);
     }
     
     .mock-vault-info p {
@@ -845,14 +1139,14 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .mock-vault-amount {
-      font-family: 'Sora', sans-serif;
+      font-family: var(--vkx-font-display);
       font-size: 0.85rem;
       font-weight: 800;
       color: var(--blue);
     }
     
     .mock-ai-copilot {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(59, 130, 246, 0.04) 100%);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgb(77 124 255 / 4%) 100%);
       border: 1px dashed var(--line);
       border-radius: 16px;
       padding: 12px;
@@ -915,7 +1209,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     
     h2 {
       margin: 0 0 16px;
-      font-family: 'Sora', sans-serif;
+      font-family: var(--vkx-font-display);
       font-size: clamp(1.8rem, 3.2vw, 2.8rem);
       line-height: 1.2;
       letter-spacing: -0.03em;
@@ -967,7 +1261,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .problem-card h3 {
-      font-family: 'Sora', sans-serif;
+      font-family: var(--vkx-font-display);
       font-size: 1.1rem;
       margin: 0 0 12px;
       color: var(--ink);
@@ -1028,7 +1322,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     
     /* Vault Flow Graphic */
     .vault-flow-graphic {
-      background: rgba(5, 150, 105, 0.02);
+      background: rgb(108 92 255 / 2%);
       border: 1px solid var(--line);
       border-radius: 24px;
       padding: 32px;
@@ -1053,7 +1347,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     
     .flow-node.active-node {
       border-color: var(--green);
-      box-shadow: 0 0 15px rgba(5, 150, 105, 0.06);
+      box-shadow: 0 0 15px rgb(108 92 255 / 6%);
     }
     
     .flow-node.vault-node {
@@ -1065,7 +1359,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       width: 40px;
       height: 40px;
       border-radius: 10px;
-      background: rgba(5, 150, 105, 0.05);
+      background: rgb(108 92 255 / 5%);
       display: grid;
       place-items: center;
       color: var(--green);
@@ -1076,7 +1370,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       background: rgba(37, 99, 235, 0.05);
     }
     
-    .node-info h4 {
+    .node-info h3 {
       margin: 0;
       font-size: 0.9rem;
       color: var(--ink);
@@ -1106,6 +1400,22 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       z-index: 1;
     }
     
+    /* Post-Quantum Security */
+    .pq-section { background: linear-gradient(145deg, #0d0f16, #12141d); color: #fff; }
+    .pq-section h2, .pq-section h3 { color: #fff; }
+    .pq-hero { max-width: 820px; margin-bottom: 34px; }
+    .pq-hero .section-desc { color: rgba(255,255,255,.72); }
+    .pq-kicker { color: #8b7cff; font: 800 .8rem 'Sora',sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+    .pq-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .pq-card { padding: 24px; border: 1px solid rgba(88,230,173,.2); border-radius: 20px; background: rgba(255,255,255,.045); }
+    .pq-card > svg { width: 28px; height: 28px; color: #8b7cff; margin-bottom: 14px; }
+    .pq-card h3 { font: 800 1rem 'Sora',sans-serif; margin: 0 0 10px; }
+    .pq-card p, .pq-transparency p { color: rgba(255,255,255,.66); font-size: .86rem; line-height: 1.7; margin: 0; }
+    .pq-transparency { margin-top: 20px; padding: 24px; border-radius: 20px; background: rgba(88,230,173,.08); display: flex; justify-content: space-between; gap: 24px; align-items: center; }
+    .pq-transparency h3 { margin: 0 0 7px; font: 800 1rem 'Sora',sans-serif; }
+    .pq-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+    .pq-links a { color: #8b7cff; border: 1px solid rgba(88,230,173,.25); border-radius: 999px; padding: 9px 12px; font-size: .72rem; font-weight: 800; }
+    @media (max-width: 860px) { .pq-grid { grid-template-columns: 1fr; } .pq-transparency { align-items: flex-start; flex-direction: column; } .pq-links { justify-content: flex-start; } }
     /* Gas Shield Simulator Section */
     .gas-layout {
       display: grid;
@@ -1115,7 +1425,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .simulator-box {
-      background: #ffffff;
+      background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 30px;
@@ -1132,7 +1442,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .sim-title {
-      font-family: 'Sora', sans-serif;
+      font-family: var(--vkx-font-display);
       font-size: 1rem;
       font-weight: 800;
       color: var(--ink);
@@ -1143,9 +1453,9 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       font-weight: 800;
       padding: 4px 10px;
       border-radius: 100px;
-      background: rgba(5, 150, 105, 0.08);
+      background: rgb(108 92 255 / 8%);
       color: var(--green);
-      border: 1px solid rgba(5, 150, 105, 0.15);
+      border: 1px solid rgb(108 92 255 / 15%);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
@@ -1158,8 +1468,8 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .sim-balance-card {
-      background: rgba(5, 150, 105, 0.02);
-      border: 1px solid rgba(5, 150, 105, 0.08);
+      background: rgb(108 92 255 / 2%);
+      border: 1px solid rgb(108 92 255 / 8%);
       padding: 14px;
       border-radius: 12px;
     }
@@ -1172,7 +1482,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .sim-bal-val {
-      font-family: 'Sora', sans-serif;
+      font-family: var(--vkx-font-display);
       font-size: 1.1rem;
       font-weight: 700;
       color: var(--ink);
@@ -1183,8 +1493,8 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .sim-console {
-      background: #f4f6f5;
-      border: 1px solid rgba(5, 150, 105, 0.12);
+      background: var(--surface-hover);
+      border: 1px solid rgb(108 92 255 / 12%);
       border-radius: 12px;
       padding: 16px;
       font-family: monospace;
@@ -1200,7 +1510,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       opacity: 0;
       transform: translateY(4px);
       transition: all 0.3s;
-      color: #4b5563;
+      color: #a7acbc;
     }
     
     .sim-console-line.show {
@@ -1215,7 +1525,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     
     .sim-action-btn {
       width: 100%;
-      background: var(--green);
+      background: var(--green-deep);
       color: #ffffff;
       border: none;
       padding: 14px;
@@ -1230,7 +1540,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     
     .sim-action-btn:hover {
       background: var(--green-deep);
-      box-shadow: 0 5px 15px rgba(5, 150, 105, 0.2);
+      box-shadow: 0 5px 15px rgb(108 92 255 / 20%);
     }
     
     /* Cross-Chain Section */
@@ -1242,7 +1552,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .router-box {
-      background: #ffffff;
+      background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 30px;
@@ -1269,8 +1579,8 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .router-select select {
-      background: #ffffff;
-      border: 1px solid rgba(6, 78, 59, 0.15);
+      background: var(--surface);
+      border: 1px solid rgb(7 8 13 / 15%);
       border-radius: 10px;
       padding: 12px;
       color: var(--ink);
@@ -1279,7 +1589,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .router-select select option {
-      background: #ffffff;
+      background: var(--surface);
       color: var(--ink);
     }
     
@@ -1297,8 +1607,8 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .router-amount-box input {
-      background: #ffffff;
-      border: 1px solid rgba(6, 78, 59, 0.15);
+      background: var(--surface);
+      border: 1px solid rgb(7 8 13 / 15%);
       border-radius: 10px;
       padding: 12px;
       color: var(--ink);
@@ -1307,8 +1617,8 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .router-result {
-      background: rgba(5, 150, 105, 0.02);
-      border: 1px solid rgba(5, 150, 105, 0.08);
+      background: rgb(108 92 255 / 2%);
+      border: 1px solid rgb(108 92 255 / 8%);
       border-radius: 12px;
       padding: 20px;
       min-height: 120px;
@@ -1320,7 +1630,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .router-result-placeholder {
-      color: #4b5563;
+      color: #a7acbc;
       text-align: center;
       font-size: 0.8rem;
     }
@@ -1349,15 +1659,11 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     /* Comparison Table Section */
-    .comparison-section {
-      background: linear-gradient(180deg, rgba(5, 150, 105, 0.02) 0%, transparent 100%);
-    }
-    
     .table-container {
       overflow-x: auto;
       border-radius: var(--radius);
       border: 1px solid var(--line);
-      background: #ffffff;
+      background: var(--surface);
       box-shadow: var(--shadow);
     }
     
@@ -1369,15 +1675,15 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     
     th, td {
       padding: 20px 24px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      border-bottom: 1px solid rgb(0 0 0 / 6%);
       font-size: 0.9rem;
     }
     
     th {
-      font-family: 'Sora', sans-serif;
+      font-family: var(--vkx-font-display);
       font-weight: 800;
       color: var(--ink);
-      background: rgba(5, 150, 105, 0.04);
+      background: rgb(108 92 255 / 4%);
     }
     
     td:first-child, th:first-child {
@@ -1386,7 +1692,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     
     /* VKX Highlight Column */
     td.vkx-col, th.vkx-col {
-      background: rgba(5, 150, 105, 0.03);
+      background: rgb(108 92 255 / 3%);
       color: var(--ink);
       font-weight: 800;
     }
@@ -1404,7 +1710,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
     
     .status-partial {
-      color: #b45309;
+      color: #f4b740;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -1445,7 +1751,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       border: none;
       padding: 22px 28px;
       text-align: left;
-      font-family: 'Sora', sans-serif;
+      font-family: var(--vkx-font-display);
       font-weight: 800;
       font-size: 1rem;
       color: var(--ink);
@@ -1501,7 +1807,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+      background: radial-gradient(circle at 80% 20%, rgb(18 20 29 / 15%) 0%, transparent 60%);
       pointer-events: none;
     }
     
@@ -1515,7 +1821,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     .cta p {
       margin: 0 0 32px;
       max-width: 600px;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgb(247 248 252 / 88%);
       font-size: 1.05rem;
       line-height: 1.6;
     }
@@ -1532,7 +1838,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     /* Footer */
     footer {
       padding: 40px 0 120px; /* spacing for mobile sticky button */
-      background: #f4f6f5;
+      background: var(--surface-hover);
       border-top: 1px solid var(--line);
     }
     
@@ -1560,7 +1866,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     .footer-note {
       width: 100%;
       margin-top: 24px;
-      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      border-top: 1px solid rgb(0 0 0 / 6%);
       padding-top: 20px;
       font-size: 0.75rem;
       line-height: 1.6;
@@ -1576,11 +1882,11 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: rgba(0, 0, 0, 0.02);
+      background: rgb(0 0 0 / 2%);
       display: grid;
       place-items: center;
       transition: all 0.2s;
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      border: 1px solid rgb(0 0 0 / 5%);
       color: var(--ink);
     }
     
@@ -1607,7 +1913,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       top: 100%;
       right: 0;
       width: 80px;
-      background: #ffffff;
+      background: var(--surface);
       border: 1px solid var(--line);
       border-radius: 10px;
       box-shadow: var(--shadow);
@@ -1626,7 +1932,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       font-weight: 800;
       text-align: center;
       color: var(--ink);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid rgb(0 0 0 / 5%);
     }
     
     .lang-dropdown a:last-child {
@@ -1644,7 +1950,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgb(18 20 29 / 85%);
       backdrop-filter: blur(20px);
       border-top: 1px solid var(--line);
       padding: 16px;
@@ -1655,12 +1961,12 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
 
     /* Newsletter Section Styles */
     .newsletter-section {
-      background: linear-gradient(180deg, transparent 0%, rgba(5, 150, 105, 0.01) 100%);
+      background: linear-gradient(180deg, transparent 0%, rgb(108 92 255 / 1%) 100%);
       padding: 80px 0;
     }
     
     .newsletter-card {
-      background: #ffffff;
+      background: var(--surface);
       border: 1px solid var(--line);
       border-radius: 24px;
       padding: 48px;
@@ -1672,7 +1978,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
 
     .newsletter-card h2 {
       margin: 0 0 24px;
-      font-family: 'Sora', sans-serif;
+      font-family: var(--vkx-font-display);
       font-weight: 800;
       font-size: clamp(1.4rem, 2.5vw, 1.8rem);
       color: var(--ink);
@@ -1714,8 +2020,8 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
 
     .email-input-wrap input {
       width: 100%;
-      background: #ffffff;
-      border: 1px solid rgba(6, 78, 59, 0.15);
+      background: var(--surface);
+      border: 1px solid rgb(7 8 13 / 15%);
       border-radius: 999px;
       padding: 16px 24px;
       font-size: 0.95rem;
@@ -1727,14 +2033,14 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     .email-input-wrap input:focus {
       outline: none;
       border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.08);
+      box-shadow: 0 0 0 3px rgb(108 92 255 / 8%);
     }
 
     .recaptcha-badge {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: #ffffff;
+      background: var(--surface);
       border: 1px solid #dcdcdc;
       border-radius: 4px;
       padding: 6px 12px;
@@ -1744,12 +2050,12 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
 
     .recaptcha-text {
       font-size: 0.65rem;
-      color: #555;
+      color: #a7acbc;
       line-height: 1.2;
     }
 
     .recaptcha-text a {
-      color: #1a73e8;
+      color: #4d7cff;
       text-decoration: none;
     }
 
@@ -1758,7 +2064,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
 
     .btn-subscribe {
-      background: #064e3b;
+      background: #0d0f16;
       color: #ffffff;
       border: none;
       border-radius: 999px;
@@ -1776,7 +2082,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     }
 
     .btn-subscribe:hover {
-      background: #043f31;
+      background: #5f4ee8;
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(4, 63, 49, 0.15);
     }
@@ -1882,6 +2188,447 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
         align-items: flex-start;
       }
     }
+    /* Product evidence, institutional story, and lightweight 3D presentation */
+    .hero-shell {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 690px;
+    }
+
+    .hero-shell::before {
+      content: '';
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      right: -160px;
+      top: -180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgb(108 92 255 / 30%), transparent 68%);
+      filter: blur(8px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .wallet-hero-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: .58;
+      z-index: -1;
+    }
+
+    .hero-copy,
+    .real-device-stage {
+      position: relative;
+      z-index: 2;
+    }
+
+    .real-device-stage {
+      min-height: 590px;
+      display: grid;
+      place-items: center;
+      perspective: 1200px;
+    }
+
+    .real-device {
+      width: min(330px, 78vw);
+      position: relative;
+      transform: rotateY(-8deg) rotateX(2deg);
+      transform-style: preserve-3d;
+      transition: transform .5s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .real-device:hover {
+      transform: rotateY(-2deg) rotateX(0) translateY(-8px);
+    }
+
+    .real-device::before {
+      content: '';
+      position: absolute;
+      inset: 8% -12% -5%;
+      background: radial-gradient(circle at 50% 45%, rgb(108 92 255 / 36%), transparent 68%);
+      filter: blur(32px);
+      transform: translateZ(-40px);
+      z-index: -1;
+    }
+
+    .real-app-shot {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 38px;
+      border: 1px solid rgb(255 255 255 / 16%);
+      box-shadow: 0 42px 100px rgb(0 0 0 / 62%), 0 0 0 8px rgb(255 255 255 / 3%);
+    }
+
+    .floating-proof {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 14px;
+      border: 1px solid rgb(255 255 255 / 12%);
+      border-radius: 14px;
+      background: rgb(15 17 26 / 88%);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 18px 48px rgb(0 0 0 / 38%);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .floating-proof i { width: 16px; color: #8b7cff; }
+    .floating-proof.one { left: -82px; top: 23%; transform: translateZ(55px); }
+    .floating-proof.two { right: -88px; bottom: 24%; transform: translateZ(70px); }
+
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: -12px;
+      margin-bottom: 28px;
+    }
+
+    .trust-strip span {
+      padding: 7px 10px;
+      border-radius: 9px;
+      background: rgb(255 255 255 / 4%);
+      border: 1px solid var(--line);
+      color: #c9ccda;
+      font-size: .7rem;
+      font-weight: 700;
+    }
+
+    .product-proof-section {
+      padding: 104px 0;
+      position: relative;
+      overflow: clip;
+    }
+
+    .product-proof-section::before {
+      content: '';
+      position: absolute;
+      inset: 4% auto auto 50%;
+      width: 70vw;
+      height: 70vw;
+      max-width: 850px;
+      max-height: 850px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      border: 1px solid rgb(108 92 255 / 10%);
+      box-shadow: inset 0 0 110px rgb(108 92 255 / 4%);
+      pointer-events: none;
+    }
+
+    .showcase-intro {
+      max-width: 860px;
+      margin: 0 auto 68px;
+      text-align: center;
+      position: relative;
+    }
+
+    .showcase-intro .section-desc { margin-inline: auto; }
+    /* A .trust-strip nasceu para encostar num título (margin-top negativa).
+       Aqui ela vem depois de um parágrafo e precisa do respiro de volta. */
+    .showcase-intro .trust-strip {
+      justify-content: center;
+      margin-top: 22px;
+      margin-bottom: 0;
+    }
+
+    .feature-showcase {
+      display: grid;
+      gap: 34px;
+      position: relative;
+    }
+
+    .feature-row {
+      min-height: 650px;
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      align-items: center;
+      gap: clamp(40px, 7vw, 92px);
+      padding: clamp(28px, 5vw, 64px);
+      border-radius: 32px;
+      background: linear-gradient(145deg, rgb(19 21 31 / 96%), rgb(10 11 18 / 96%));
+      border: 1px solid var(--line);
+      box-shadow: 0 34px 100px rgb(0 0 0 / 24%);
+      overflow: hidden;
+    }
+
+    .feature-row.reverse .feature-media { order: 2; }
+    .feature-row.reverse .feature-copy { order: 1; }
+
+    .feature-copy { position: relative; z-index: 2; }
+    .feature-copy h3 {
+      margin: 13px 0 17px;
+      max-width: 650px;
+      font-family: var(--vkx-font-display);
+      font-size: clamp(1.75rem, 3vw, 2.75rem);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+    }
+
+    .feature-copy > p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .feature-kicker {
+      color: #a89eff;
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .feature-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 24px 0;
+    }
+
+    .feature-tags span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgb(108 92 255 / 9%);
+      border: 1px solid rgb(108 92 255 / 21%);
+      color: #d7d3ff;
+      font-size: .74rem;
+      font-weight: 800;
+    }
+
+    .feature-note {
+      padding: 14px 16px;
+      border-left: 2px solid #6c5cff;
+      border-radius: 0 12px 12px 0;
+      background: rgb(108 92 255 / 6%);
+      color: #aeb2c2;
+      font-size: .78rem;
+      line-height: 1.55;
+    }
+
+    .feature-media {
+      min-height: 540px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .feature-media::before {
+      content: '';
+      position: absolute;
+      width: 85%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgb(108 92 255 / 22%), transparent 66%);
+      filter: blur(16px);
+    }
+
+    .screen-card {
+      width: min(330px, 82vw);
+      position: relative;
+      z-index: 1;
+      border-radius: 34px;
+      transform: rotate(2deg);
+      transition: transform .45s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reverse .screen-card { transform: rotate(-2deg); }
+    .feature-row:hover .screen-card { transform: rotate(0) translateY(-8px) scale(1.01); }
+
+    .screen-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 30px;
+      border: 1px solid rgb(255 255 255 / 14%);
+      box-shadow: 0 32px 80px rgb(0 0 0 / 54%);
+    }
+
+    /* Par de telas do swap: duas rotas reais (BNB → SOL e BNB → BTC) lado a
+       lado. A segunda entra atrás e deslocada, e o hover abre o leque. */
+    .screen-duo {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: min(330px, 82vw);
+    }
+    .screen-duo .screen-card { grid-area: 1 / 1; }
+    .screen-duo .screen-card.behind {
+      transform: rotate(-7deg) translate(-38px, 20px) scale(.9);
+      opacity: .75;
+      filter: saturate(.9);
+    }
+    .feature-row:hover .screen-duo .screen-card.behind {
+      transform: rotate(-10deg) translate(-58px, 26px) scale(.92);
+      opacity: .95;
+    }
+    .screen-duo .screen-card.front { transform: rotate(3deg); }
+    .feature-row:hover .screen-duo .screen-card.front {
+      transform: rotate(0) translate(14px, -8px) scale(1.01);
+    }
+
+    .screen-proof-label {
+      position: absolute;
+      right: -18px;
+      top: 26px;
+      padding: 8px 11px;
+      border-radius: 999px;
+      border: 1px solid rgb(139 124 255 / 40%);
+      background: rgb(8 9 14 / 90%);
+      color: #c6bfff;
+      font-size: .65rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      backdrop-filter: blur(12px);
+    }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 26px;
+    }
+
+    .capability-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(190px, .72fr);
+      gap: 28px;
+      align-items: center;
+      min-height: 520px;
+      padding: 34px;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #141621, #0b0c12);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .capability-card h3 {
+      margin: 12px 0;
+      font-family: var(--vkx-font-display);
+      font-size: clamp(1.45rem, 2.3vw, 2.1rem);
+      line-height: 1.12;
+    }
+
+    .capability-card p { color: var(--muted); line-height: 1.65; }
+    .capability-card img {
+      width: 100%;
+      max-width: 245px;
+      justify-self: end;
+      border-radius: 25px;
+      border: 1px solid rgb(255 255 255 / 12%);
+      box-shadow: 0 25px 65px rgb(0 0 0 / 48%);
+      transform: rotate(3deg) translateX(12px);
+    }
+
+    .capability-card.shield-card img { transform: rotate(-3deg) translateX(12px); }
+
+    .purchase-guide {
+      margin-top: 82px;
+      padding: clamp(34px, 6vw, 70px);
+      border-radius: 32px;
+      background: linear-gradient(145deg, rgb(108 92 255 / 12%), rgb(18 20 29 / 96%) 52%);
+      border: 1px solid rgb(108 92 255 / 25%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .purchase-guide h2 { max-width: 780px; margin-bottom: 34px; }
+
+    .guide-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .guide-step {
+      padding: 24px;
+      border-radius: 20px;
+      background: rgb(7 8 13 / 64%);
+      border: 1px solid var(--line);
+    }
+
+    .guide-step i { width: 25px; color: #9c90ff; }
+    .guide-step h3 { margin: 18px 0 9px; font-size: 1rem; }
+    .guide-step p { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.65; }
+
+    .transak-explainer {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 30px;
+      margin-top: 18px;
+      padding: 24px;
+      border-radius: 20px;
+      background: rgb(7 8 13 / 52%);
+      border: 1px solid var(--line);
+    }
+
+    .transak-explainer h3 { margin: 0 0 8px; font-size: 1.05rem; }
+    .transak-explainer p { margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.65; }
+
+    .availability-note {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-top: 18px;
+      color: #aeb2c2;
+      font-size: .75rem;
+      line-height: 1.55;
+    }
+    .availability-note i { flex: 0 0 auto; width: 18px; color: #8b7cff; }
+
+    @media (max-width: 1050px) {
+      .floating-proof { display: none; }
+      .capability-card { grid-template-columns: 1fr; }
+      .capability-card img { max-width: 230px; justify-self: center; transform: none; }
+      .capability-card.shield-card img { transform: none; }
+    }
+
+    @media (max-width: 820px) {
+      .hero-shell { min-height: 0; }
+      .wallet-hero-canvas { opacity: .35; }
+      .real-device-stage { min-height: auto; padding: 10px 0 4px; }
+      .real-device { transform: none; width: min(300px, 76vw); }
+      .product-proof-section { padding: 76px 0; }
+      .feature-row,
+      .feature-row.reverse { grid-template-columns: 1fr; min-height: 0; padding: 30px 22px; gap: 18px; }
+      .feature-row .feature-media,
+      .feature-row.reverse .feature-media { order: 2; min-height: auto; padding-top: 16px; }
+      .feature-row .feature-copy,
+      .feature-row.reverse .feature-copy { order: 1; }
+      .capability-grid { grid-template-columns: 1fr; }
+      .capability-card { min-height: 0; }
+      .guide-steps { grid-template-columns: 1fr; }
+      .transak-explainer { grid-template-columns: 1fr; }
+      /* No celular a tela de trás sairia da margem: fica só a da frente. */
+      .screen-duo { width: min(300px, 76vw); }
+      .screen-duo .screen-card.behind { display: none; }
+      .screen-duo .screen-card.front { transform: none; }
+      .screen-proof-label { right: -6px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .real-device,
+      .screen-card,
+      .screen-duo .screen-card,
+      .capability-card img { transform: none !important; transition: none !important; }
+      .screen-duo .screen-card.behind { display: none; }
+      .wallet-hero-canvas { display: none; }
+    }
   </style>
 </head>
 <body data-ref="<%= ref || '' %>" data-download-base="<%= officialDownloadBase %>">
@@ -1889,23 +2636,24 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
   <header class="topbar" id="topbar">
     <div class="container topbar-inner">
       <a href="<%= officialWalletUrl %>" class="brand" aria-label="VKX Wallet">
-        <div class="brand-mark" style="background: #064e3b; padding: 6px;">
-          <img src="/logo.png" alt="VKX Logo">
+        <div class="brand-mark">
+          <img src="/brand/VKX_Technologies_OnDark.svg" alt="VKX Logo">
         </div>
         <div class="brand-copy">
-          <strong style="color: var(--ink);">VKX Wallet</strong>
-          <span><%= uiLang === 'pt' ? 'Rápida, Fácil, Segura' : uiLang === 'es' ? 'Rápida, Fácil, Segura' : 'Fast, Easy, Secure' %></span>
+          <strong style="color: var(--ink);">Wallet</strong>
         </div>
       </a>
       
       <div class="nav">
         <nav class="nav-links" aria-label="Navegação principal">
+          <a href="#produto"><%= product.nav_label %></a>
           <a href="#problema"><%= landing.nav_problem %></a>
           <a href="#vault"><%= landing.nav_vault %></a>
-          <a href="#gas-shield"><%= landing.nav_gas %></a>
+          <a href="#post-quantum"><%= landing.nav_quantum %></a>
+                    <a href="#gas-shield"><%= landing.nav_gas %></a>
           <a href="#multichain"><%= landing.nav_multichain %></a>
-          <a href="#comparativo"><%= landing.nav_comparison %></a>
           <a href="#faq"><%= landing.nav_faq %></a>
+          <a href="/blog">Blog</a>
         </nav>
         
         <!-- Language Switcher -->
@@ -1994,7 +2742,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
             
             <div class="mock-vault-status">
               <div class="mock-vault-info">
-                <h4>🔒 Vault Protegido</h4>
+                <div>🔒 Vault Protegido</div>
                 <p><%= uiLang === 'pt' ? 'Reserva com time-lock' : uiLang === 'es' ? 'Reserva con time-lock' : 'Time-locked reserve' %></p>
               </div>
               <span class="mock-vault-amount">$500.00</span>
@@ -2004,7 +2752,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
               <i data-lucide="sparkles" class="mock-ai-sparkle" style="width: 14px; height: 14px;"></i>
               <div class="mock-ai-header">
                 <i data-lucide="cpu" style="width: 12px; height: 12px;"></i>
-                <span>VKINHA Copilot</span>
+                <span>VKX Copilot</span>
               </div>
               <p class="mock-ai-text">
                 <%= uiLang === 'pt' 
@@ -2015,6 +2763,188 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
               </p>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <%# ===================================================================
+        O PRODUTO POR DENTRO — capturas reais do aplicativo.
+        Cada bloco abaixo corresponde a uma tela de verdade em public/wallet:
+        compra em moeda local, ativos tokenizados, swap cross-chain, conta,
+        seletor de redes e Quantum Shield. O texto vem de `productShowcase`
+        e as imagens de `walletShots`, para nada ser escrito duas vezes.
+        =================================================================== %>
+    <section class="product-proof-section" id="produto">
+      <canvas class="wallet-hero-canvas" id="proof-canvas" aria-hidden="true"></canvas>
+      <div class="container">
+        <div class="showcase-intro reveal">
+          <div class="eyebrow"><i data-lucide="smartphone"></i><%= product.eyebrow %></div>
+          <h2><%= product.title %></h2>
+          <p class="section-desc"><%= product.intro %></p>
+          <div class="trust-strip">
+            <% product.fiat_tags.forEach((tag) => { %><span><%= tag %></span><% }) %>
+          </div>
+        </div>
+
+        <%# Tela inicial em destaque: a prova de que o restante da página existe. %>
+        <div class="real-device-stage reveal">
+          <div class="real-device">
+            <img
+              class="real-app-shot"
+              src="<%= shot('home') %>"
+              alt="<%= product.eyebrow %> — VKX Wallet"
+              width="589"
+              height="1280"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="floating-proof one"><i data-lucide="key-round"></i><%= product.proof_one %></div>
+            <div class="floating-proof two"><i data-lucide="layers"></i><%= product.proof_two %></div>
+          </div>
+        </div>
+
+        <div class="feature-showcase">
+          <%# 1. Compra em moeda local: Pix, euros, dólares e cartão. %>
+          <article class="feature-row reveal">
+            <div class="feature-copy">
+              <span class="feature-kicker"><%= product.eyebrow %></span>
+              <h3><%= product.fiat_title %></h3>
+              <p><%= product.fiat_body %></p>
+              <div class="feature-tags">
+                <% product.fiat_tags.forEach((tag) => { %><span><i data-lucide="check"></i><%= tag %></span><% }) %>
+              </div>
+              <p class="feature-note"><%= product.fiat_note %></p>
+            </div>
+            <div class="feature-media">
+              <div class="screen-card">
+                <img src="<%= shot('buy') %>" alt="<%= product.fiat_title %>" width="589" height="1280" loading="lazy" decoding="async" />
+                <span class="screen-proof-label"><%= product.proof %></span>
+              </div>
+            </div>
+          </article>
+
+          <%# 2. Ações, ETFs e RWA tokenizados. %>
+          <article class="feature-row reverse reveal">
+            <div class="feature-copy">
+              <span class="feature-kicker">VKX Invest</span>
+              <h3><%= product.invest_title %></h3>
+              <p><%= product.invest_body %></p>
+              <div class="feature-tags">
+                <% product.invest_tags.forEach((tag) => { %><span><i data-lucide="trending-up"></i><%= tag %></span><% }) %>
+              </div>
+              <p class="feature-note"><%= product.invest_note %></p>
+            </div>
+            <div class="feature-media">
+              <div class="screen-card">
+                <img src="<%= shot('invest') %>" alt="<%= product.invest_title %>" width="589" height="1280" loading="lazy" decoding="async" />
+                <span class="screen-proof-label"><%= product.proof %></span>
+              </div>
+            </div>
+          </article>
+
+          <%# 3. Swap cross-chain: duas rotas reais, lado a lado. %>
+          <article class="feature-row reveal">
+            <div class="feature-copy">
+              <span class="feature-kicker">Cross-chain</span>
+              <h3><%= product.swap_title %></h3>
+              <p><%= product.swap_body %></p>
+              <div class="feature-tags">
+                <% product.swap_tags.forEach((tag) => { %><span><i data-lucide="repeat"></i><%= tag %></span><% }) %>
+              </div>
+            </div>
+            <div class="feature-media">
+              <div class="screen-duo">
+                <div class="screen-card behind">
+                  <img src="<%= shot('swapAlt') %>" alt="<%= product.swap_title %> — BNB → BTC" width="589" height="1280" loading="lazy" decoding="async" />
+                </div>
+                <div class="screen-card front">
+                  <img src="<%= shot('swap') %>" alt="<%= product.swap_title %> — BNB → SOL" width="589" height="1280" loading="lazy" decoding="async" />
+                  <span class="screen-proof-label"><%= product.proof %></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <%# 4. Conta, carteiras vinculadas e benefícios. %>
+          <article class="feature-row reverse reveal">
+            <div class="feature-copy">
+              <span class="feature-kicker"><%= product.availability %></span>
+              <h3><%= product.account_title %></h3>
+              <p><%= product.account_body %></p>
+              <div class="feature-tags">
+                <% product.account_tags.forEach((tag) => { %><span><i data-lucide="user-round"></i><%= tag %></span><% }) %>
+              </div>
+            </div>
+            <div class="feature-media">
+              <div class="screen-card">
+                <img src="<%= shot('menu') %>" alt="<%= product.account_title %>" width="589" height="1280" loading="lazy" decoding="async" />
+                <span class="screen-proof-label"><%= product.proof %></span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <%# Redes e segurança: as duas telas que sustentam o resto do produto. %>
+        <div class="capability-grid">
+          <article class="capability-card reveal">
+            <div>
+              <span class="feature-kicker">Multichain</span>
+              <h3><%= product.networks_title %></h3>
+              <p><%= product.networks_body %></p>
+              <div class="feature-tags">
+                <% product.networks_list.forEach((net) => { %><span><%= net %></span><% }) %>
+              </div>
+            </div>
+            <img src="<%= shot('networks') %>" alt="<%= product.networks_title %>" width="589" height="1280" loading="lazy" decoding="async" />
+          </article>
+
+          <article class="capability-card shield-card reveal">
+            <div>
+              <span class="feature-kicker">VKX Shield</span>
+              <h3><%= product.shield_title %></h3>
+              <p><%= product.shield_body %></p>
+              <div class="feature-tags">
+                <% product.shield_items.forEach((item) => { %><span><i data-lucide="shield-check"></i><%= item %></span><% }) %>
+              </div>
+            </div>
+            <img src="<%= shot('shield') %>" alt="<%= product.shield_title %>" width="589" height="1280" loading="lazy" decoding="async" />
+          </article>
+        </div>
+
+        <%# Os 3 passos: mesma fonte que alimenta o schema HowTo mais acima. %>
+        <div class="purchase-guide reveal">
+          <span class="feature-kicker"><%= product.journey_eyebrow %></span>
+          <h2><%= product.journey_title %></h2>
+          <div class="guide-steps">
+            <div class="guide-step">
+              <i data-lucide="wallet"></i>
+              <h3><%= product.step1_title %></h3>
+              <p><%= product.step1_body %></p>
+            </div>
+            <div class="guide-step">
+              <i data-lucide="credit-card"></i>
+              <h3><%= product.step2_title %></h3>
+              <p><%= product.step2_body %></p>
+            </div>
+            <div class="guide-step">
+              <i data-lucide="circle-check-big"></i>
+              <h3><%= product.step3_title %></h3>
+              <p><%= product.step3_body %></p>
+            </div>
+          </div>
+
+          <div class="transak-explainer">
+            <div>
+              <h3><%= product.transak_title %></h3>
+              <p><%= product.transak_body %></p>
+            </div>
+            <a href="/transak" class="btn btn-secondary"><i data-lucide="play"></i><%= product.transak_cta %></a>
+          </div>
+
+          <p class="availability-note">
+            <i data-lucide="info"></i>
+            <span><strong><%= product.availability %>.</strong> <%= product.availability_body %></span>
+          </p>
         </div>
       </div>
     </section>
@@ -2087,7 +3017,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
           <div class="flow-node active-node">
             <div class="node-icon"><i data-lucide="wallet"></i></div>
             <div class="node-info">
-              <h4><%= uiLang === 'pt' ? 'Carteira Principal (Hot)' : uiLang === 'es' ? 'Wallet Principal (Hot)' : 'Primary Wallet (Hot)' %></h4>
+              <h3><%= uiLang === 'pt' ? 'Carteira Principal (Hot)' : uiLang === 'es' ? 'Wallet Principal (Hot)' : 'Primary Wallet (Hot)' %></h3>
               <p><%= uiLang === 'pt' ? 'Uso diário com transações rápidas' : uiLang === 'es' ? 'Uso diario con transacciones rápidas' : 'Daily use with quick transactions' %></p>
             </div>
           </div>
@@ -2097,7 +3027,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
           <div class="flow-node vault-node">
             <div class="node-icon"><i data-lucide="lock"></i></div>
             <div class="node-info">
-              <h4><%= uiLang === 'pt' ? 'Vault VKX (Cofre)' : uiLang === 'es' ? 'Vault VKX (Cofre)' : 'VKX Vault' %></h4>
+              <h3><%= uiLang === 'pt' ? 'Vault VKX (Cofre)' : uiLang === 'es' ? 'Vault VKX (Cofre)' : 'VKX Vault' %></h3>
               <p><%= uiLang === 'pt' ? 'Reserva cripto isolada da seed phrase direta' : uiLang === 'es' ? 'Reserva cripto aislada de la frase seed directa' : 'Crypto reserve isolated from direct seed phrase' %></p>
             </div>
           </div>
@@ -2107,7 +3037,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
           <div class="flow-node active-node" style="border-color: var(--blue);">
             <div class="node-icon" style="color: var(--blue);"><i data-lucide="shield-check"></i></div>
             <div class="node-info">
-              <h4><%= uiLang === 'pt' ? 'Regras de Proteção Ativa' : uiLang === 'es' ? 'Reglas de Protección Activa' : 'Active Protection Rules' %></h4>
+              <h3><%= uiLang === 'pt' ? 'Regras de Proteção Ativa' : uiLang === 'es' ? 'Reglas de Protección Activa' : 'Active Protection Rules' %></h3>
               <p><%= uiLang === 'pt' ? 'Time-lock, coautorização e alertas contra golpes' : uiLang === 'es' ? 'Time-lock, coautorización y alertas anti-estafas' : 'Time-lock, co-authorization and anti-scam alerts' %></p>
             </div>
           </div>
@@ -2115,6 +3045,27 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       </div>
     </section>
 
+    <!-- POST-QUANTUM SECURITY -->
+    <section class="section pq-section" id="post-quantum">
+      <div class="container">
+        <div class="pq-hero reveal">
+          <div class="eyebrow"><i data-lucide="shield-check"></i><%= uiLang === 'pt' ? 'Proteção Enterprise Grade' : uiLang === 'es' ? 'Protección Enterprise Grade' : 'Enterprise Grade Protection' %></div>
+          <h2><%= uiLang === 'pt' ? 'Segurança — VKX Wallet' : uiLang === 'es' ? 'Seguridad — VKX Wallet' : 'Security — VKX Wallet' %></h2>
+          <p class="pq-kicker">Post-Quantum Ready Protection</p>
+          <p class="section-desc"><%= uiLang === 'pt' ? 'A VKX Wallet foi construída com segurança por design: autocustódia total, armazenamento protegido por hardware quando disponível, verificações de integridade do dispositivo e evolução contínua contra novos vetores de ameaça.' : uiLang === 'es' ? 'VKX Wallet fue construida con seguridad por diseño: autocustodia total, almacenamiento protegido por hardware, verificaciones de integridad y evolución continua.' : 'VKX Wallet is secure by design: full self-custody, hardware-backed storage when available, continuous device-integrity checks, and proactive evolution against emerging threats.' %></p>
+        </div>
+        <div class="pq-grid">
+          <article class="pq-card reveal"><i data-lucide="atom"></i><h3>Post-Quantum Readiness</h3><p><%= uiLang === 'pt' ? 'Uma chave criptográfica pós-quântica é gerada localmente e nunca sai do dispositivo. Ela adiciona prontidão futura sem alterar as transações nativas das blockchains atuais.' : uiLang === 'es' ? 'Una clave criptográfica poscuántica se genera localmente y nunca sale del dispositivo, sin alterar las transacciones nativas actuales.' : 'A post-quantum cryptographic key is generated locally and never leaves the device, adding future readiness without changing native blockchain transactions.' %></p></article>
+          <article class="pq-card reveal"><i data-lucide="fingerprint"></i><h3>Hybrid Signing Model</h3><p><%= uiLang === 'pt' ? 'As transações usam ECDSA ou Ed25519, enquanto a VKX cria uma prova criptográfica adicional vinculada ao dispositivo original para registrar integridade e autenticidade.' : uiLang === 'es' ? 'Las transacciones usan ECDSA o Ed25519 mientras VKX crea una prueba criptográfica adicional vinculada al dispositivo original.' : 'Transactions use ECDSA or Ed25519 while VKX creates an additional cryptographic proof tied to the originating device.' %></p></article>
+          <article class="pq-card reveal"><i data-lucide="shield"></i><h3>Quantum Shield</h3><p><%= uiLang === 'pt' ? 'O Quantum Shield combina backup criptografado da proteção pós-quântica, dispositivos confiáveis, monitoramento de integridade e registro de provas criptográficas. Recurso por assinatura.' : uiLang === 'es' ? 'Quantum Shield combina respaldo cifrado, dispositivos confiables, monitoreo de integridad y registro de pruebas. Función por suscripción.' : 'Quantum Shield combines encrypted protection backup, trusted devices, integrity monitoring, and a cryptographic proof registry. Subscription feature.' %></p></article>
+          <article class="pq-card reveal"><i data-lucide="lock-keyhole"></i><h3><%= uiLang === 'pt' ? 'Segurança por Design' : uiLang === 'es' ? 'Seguridad por Diseño' : 'Security by Design' %></h3><p><%= uiLang === 'pt' ? 'Chaves sob controle do usuário, enclaves seguros quando disponíveis e verificações constantes do ambiente de execução.' : uiLang === 'es' ? 'Claves bajo control del usuario, enclaves seguros cuando estén disponibles y verificaciones constantes del entorno.' : 'User-controlled keys, secure enclaves when available, and continuous execution-environment checks.' %></p></article>
+        </div>
+        <div class="pq-transparency reveal">
+          <div><h3><%= uiLang === 'pt' ? 'Transparência e pesquisa pública' : uiLang === 'es' ? 'Transparencia e investigación pública' : 'Transparency and public research' %></h3><p><%= uiLang === 'pt' ? 'A arquitetura está publicada para escrutínio técnico e pesquisa contínua.' : uiLang === 'es' ? 'La arquitectura está publicada para revisión técnica e investigación continua.' : 'The architecture is published for technical scrutiny and continuous research.' %></p></div>
+          <div class="pq-links"><a href="https://vkxtech.com.br/security-architecture" target="_blank" rel="noopener">Technical architecture ↗</a><a href="https://github.com/VKxTech/Vkx--Security-archtecture_1.0" target="_blank" rel="noopener">GitHub repository ↗</a><a href="https://zenodo.org/records/18512818" target="_blank" rel="noopener">Zenodo publication ↗</a></div>
+        </div>
+      </div>
+    </section>
     <!-- PILAR 2 - GAS SHIELD -->
     <section class="section" id="gas-shield">
       <div class="container gas-layout">
@@ -2159,19 +3110,24 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
           <h2><%= landing.cross_title %></h2>
           <p class="section-desc" style="margin-bottom: 24px;"><%= landing.cross_desc %></p>
           
-          <h4 style="margin: 0 0 16px; font-family: 'Sora', sans-serif; color: var(--ink);"><%= landing.cross_networks_title %></h4>
+          <h3 style="margin: 0 0 16px; font-family: var(--vkx-font-display); color: var(--ink);"><%= landing.cross_networks_title %></h3>
           <div class="chips" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px;">
-            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #f0b90b;"></span>BNB Chain</div>
-            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #8247e5;"></span>Polygon</div>
-            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #28a0f0;"></span>Arbitrum</div>
-            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0052ff;"></span>Base</div>
-            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #627eea;"></span>Ethereum</div>
-            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #14f195;"></span>Solana</div>
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #f0b90b;"></span>BNB Chain</div>
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #8247e5;"></span>Polygon</div>
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #28a0f0;"></span>Arbitrum</div>
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0052ff;"></span>Base</div>
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #627eea;"></span>Ethereum</div>
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #14f195;"></span>Solana</div>
+            <%# As três abaixo faltavam: o seletor de redes do app (multichain.jpg)
+                lista nove, e a página anunciava seis. %>
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #f7931a;"></span>Bitcoin</div>
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #eb0029;"></span>Tron</div>
+            <div class="chip" style="display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); padding: 8px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; color: var(--ink); box-shadow: var(--shadow);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #ccff00;"></span>Robinhood Chain</div>
           </div>
         </div>
         
         <div class="router-box reveal">
-          <h3 style="font-family: 'Sora', sans-serif; font-size: 1rem; margin: 0 0 20px; color: var(--ink);"><%= landing.cross_router_title %></h3>
+          <h3 style="font-family: var(--vkx-font-display); font-size: 1rem; margin: 0 0 20px; color: var(--ink);"><%= landing.cross_router_title %></h3>
           
           <div class="router-grid">
             <div class="router-select">
@@ -2226,81 +3182,6 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
       </div>
     </section>
 
-    <!-- TABELA COMPARATIVA -->
-    <section class="section comparison-section" id="comparativo">
-      <div class="container">
-        <div class="section-head reveal" style="text-align: center; margin: 0 auto 48px;">
-          <div class="eyebrow"><i data-lucide="git-compare"></i><%= landing.comp_tag %></div>
-          <h2><%= landing.comp_title %></h2>
-          <p class="section-desc"><%= landing.comp_desc %></p>
-        </div>
-        
-        <div class="table-container reveal">
-          <table>
-            <thead>
-              <tr>
-                <th><%= landing.comp_col_feature %></th>
-                <th class="vkx-col"><%= landing.comp_col_vkx %></th>
-                <th><%= landing.comp_col_trust %></th>
-                <th><%= landing.comp_col_meta %></th>
-                <th><%= landing.comp_col_safe %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><%= uiLang === 'pt' ? 'Autocustódia' : uiLang === 'es' ? 'Autocustodia' : 'Self-custody' %></td>
-                <td class="vkx-col"><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
-                <td><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
-                <td><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
-                <td><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
-              </tr>
-              <tr>
-                <td><%= uiLang === 'pt' ? 'Vault com Proteção Extra' : uiLang === 'es' ? 'Vault con Protección Extra' : 'Vault with Extra Protection' %></td>
-                <td class="vkx-col"><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
-                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Depende' : 'Partial' %></span></td>
-                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Depende' : 'Partial' %></span></td>
-                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Depende' : 'Partial' %></span></td>
-              </tr>
-              <tr>
-                <td><%= uiLang === 'pt' ? 'Subsídio de Gás BNB (Gas Shield)' : uiLang === 'es' ? 'Subsidio de Gas BNB (Gas Shield)' : 'BNB Gas Sponsorship (Gas Shield)' %></td>
-                <td class="vkx-col"><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
-                <td><span class="status-cross"><i data-lucide="x"></i> <%= uiLang === 'pt' ? 'Não' : 'No' %></span></td>
-                <td><span class="status-cross"><i data-lucide="x"></i> <%= uiLang === 'pt' ? 'Não' : 'No' %></span></td>
-                <td><span class="status-cross"><i data-lucide="x"></i> <%= uiLang === 'pt' ? 'Não' : 'No' %></span></td>
-              </tr>
-              <tr>
-                <td><%= uiLang === 'pt' ? 'Rotas USDT Multichain' : uiLang === 'es' ? 'Rutas USDT Multichain' : 'Multichain USDT Routes' %></td>
-                <td class="vkx-col"><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
-                <td><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
-                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Parcial' : 'Partial' %></span></td>
-                <td><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
-              </tr>
-              <tr>
-                <td><%= uiLang === 'pt' ? 'Suporte Dedicado Local' : uiLang === 'es' ? 'Soporte Dedicado Local' : 'Local Dedicated Support' %></td>
-                <td class="vkx-col"><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim (100% BR)' : 'Yes (BR)' %></span></td>
-                <td><span class="status-cross"><i data-lucide="x"></i> <%= uiLang === 'pt' ? 'Não' : 'No' %></span></td>
-                <td><span class="status-cross"><i data-lucide="x"></i> <%= uiLang === 'pt' ? 'Não' : 'No' %></span></td>
-                <td><span class="status-cross"><i data-lucide="x"></i> <%= uiLang === 'pt' ? 'Não' : 'No' %></span></td>
-              </tr>
-              <tr>
-                <td><%= uiLang === 'pt' ? 'Experiência Simplificada' : uiLang === 'es' ? 'Experiencia Simplificada' : 'Simplified UX' %></td>
-                <td class="vkx-col"><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim (Sem jargão)' : 'Yes (No Jargon)' %></span></td>
-                <td><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
-                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Média' : 'Medium' %></span></td>
-                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Média' : 'Medium' %></span></td>
-              </tr>
-              <tr>
-                <td><%= uiLang === 'pt' ? 'Recompensas / Cashback Interno' : uiLang === 'es' ? 'Recompensas / Cashback Interno' : 'Rewards & Internal Cashback' %></td>
-                <td class="vkx-col"><span class="status-check"><i data-lucide="check"></i> <%= uiLang === 'pt' ? 'Sim' : 'Yes' %></span></td>
-                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Parcial' : 'Partial' %></span></td>
-                <td><span class="status-cross"><i data-lucide="x"></i> <%= uiLang === 'pt' ? 'Não' : 'No' %></span></td>
-                <td><span class="status-partial"><i data-lucide="minus"></i> <%= uiLang === 'pt' ? 'Parcial' : 'Partial' %></span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
 
     <!-- FAQ DE SEGURANÇA -->
     <section class="section" id="faq">
@@ -2312,139 +3193,23 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
         </div>
         
         <div class="faq-grid">
+          <% faqList.forEach(function(f, i) { %>
           <div class="faq-item reveal">
             <button class="faq-trigger">
-              <span><%= uiLang === 'pt' ? '1. O que torna a VKX Wallet a mais rápida, fácil e segura do mercado?' : uiLang === 'es' ? '1. ¿Qué hace a VKX Wallet la más rápida, fácil y segura del mercado?' : '1. What makes VKX Wallet the fastest, easiest, and most secure wallet on the market?' %></span>
+              <span><%= (i + 1) + '. ' + f.q %></span>
               <i data-lucide="chevron-down"></i>
             </button>
             <div class="faq-content">
-              <div class="faq-content-inner">
-                <%= uiLang === 'pt' 
-                  ? 'A VKX une a soberania da autocustódia com uma usabilidade focada em resolver as maiores barreiras do mercado. É a mais rápida porque integra rotas diretas de cross-chain que eliminam intermediários; a mais fácil porque possui o Gas Shield BNB para transações sem a necessidade de adquirir tokens de gás adicionais; e a mais segura porque o Vault adiciona políticas de proteção avançadas baseadas em hardware contra saques acidentais e golpes.' 
-                  : uiLang === 'es'
-                    ? 'VKX une la soberanía de la autocustodia con una usabilidad enfocada en resolver las mayores barreras del mercado. Es la más rápida porque integra rutas directas de cross-chain que eliminan intermediarios; la más fácil porque posee el Gas Shield BNB para transacciones sin la necesidad de adquirir tokens de gas adicionales; y la más segura porque el Vault añade políticas de protección avanzadas basadas en hardware contra retiros accidentales y estafas.'
-                    : 'VKX merges self-custody with a UX built to solve key blockchain barriers. It is the fastest because of integrated direct cross-chain routing; the easiest because of the BNB Gas Shield for gasless token transfers; and the safest because the Vault introduces advanced device-linked hardware security policies against unauthorized withdrawals and human errors.' %>
-              </div>
+              <div class="faq-content-inner"><%= f.a %></div>
             </div>
           </div>
-          
-          <div class="faq-item reveal">
-            <button class="faq-trigger">
-              <span><%= uiLang === 'pt' ? '2. Minha frase de recuperação (seed phrase) está protegida de verdade?' : uiLang === 'es' ? '2. ¿Mi frase de recuperación (seed phrase) está realmente protegida?' : '2. Is my recovery seed phrase truly secure?' %></span>
-              <i data-lucide="chevron-down"></i>
-            </button>
-            <div class="faq-content">
-              <div class="faq-content-inner">
-                <%= uiLang === 'pt' 
-                  ? 'Sim, a VKX Wallet é 100% de autocustódia. Suas palavras-chave nunca saem do seu aparelho e são protegidas por criptografia local. E para garantir proteção máxima contra erros, golpes e vazamentos de chaves, seus fundos armazenados no Vault contam com regras e travas de segurança ativas que reduzem o risco de saques imediatos e não autorizados, fornecendo uma camada extra de proteção.' 
-                  : uiLang === 'es'
-                    ? 'Sí, VKX Wallet es 100% autocustodial. Sus palabras clave nunca salen de su dispositivo y se protegen localmente. Y para garantizar protección máxima contra errores, estafas y fugas de llaves, sus fondos en el Vault cuentan con reglas y bloqueos de seguridad activos que reducen el riesgo de retiros inmediatos y no autorizados, ofreciendo una capa extra de protección.'
-                    : 'Yes, VKX Wallet is 100% self-custodial. Your keys never leave your device and are encrypted locally. To ensure maximum protection against mistakes and seed exposure, funds stored in the Vault feature active security rules and time-locks that prevent immediate withdrawals, giving you an extra safety net.' %>
-              </div>
-            </div>
-          </div>
-          
-          <div class="faq-item reveal">
-            <button class="faq-trigger">
-              <span><%= uiLang === 'pt' ? '3. Como funciona o Gas Shield na BNB Chain?' : uiLang === 'es' ? '3. ¿Cómo funciona el Gas Shield en la BNB Chain?' : '3. How does the Gas Shield on the BNB Chain work?' %></span>
-              <i data-lucide="chevron-down"></i>
-            </button>
-            <div class="faq-content">
-              <div class="faq-content-inner">
-                <%= uiLang === 'pt' 
-                  ? 'Se você tem saldo em USDT na BNB Chain mas não possui BNB para pagar as taxas de transferência, as carteiras comuns travam sua operação. Na VKX, o Gas Shield detecta essa ausência e subsidia o pagamento do gás da operação diretamente em tokens USDT no fluxo da transação. Você envia seus ativos sem precisar comprar BNB por fora.' 
-                  : uiLang === 'es'
-                    ? 'Si tienes saldo en USDT en BNB Chain pero no posees BNB para pagar las comisiones, las wallets comunes detienen tu operación. En VKX, Gas Shield detecta esto y subsidia el pago del gas directamente en tokens USDT en el flujo de la transacción. Envías tus activos sin tener que comprar BNB externamente.'
-                    : 'If you hold USDT on the BNB Chain but have no BNB to pay transaction fees, traditional wallets will block your transaction. With VKX Gas Shield, the app detects this and sponsors the transaction fee directly, converting it seamlessly from your token balance. You transfer assets without buying external BNB.' %>
-              </div>
-            </div>
-          </div>
-          
-          <div class="faq-item reveal">
-            <button class="faq-trigger">
-              <span><%= uiLang === 'pt' ? '4. Quais blockchains a VKX suporta hoje?' : uiLang === 'es' ? '4. ¿Qué blockchains soporta VKX hoy?' : '4. Which blockchains does VKX support today?' %></span>
-              <i data-lucide="chevron-down"></i>
-            </button>
-            <div class="faq-content">
-              <div class="faq-content-inner">
-                <%= uiLang === 'pt' 
-                  ? 'A VKX suporta hoje redes EVM como BNB Chain, Ethereum, Polygon, Arbitrum e Base, com integrações em andamento e expansão contínua para novas redes como Solana, Tron e Bitcoin.' 
-                  : uiLang === 'es'
-                    ? 'VKX soporta hoy redes EVM como BNB Chain, Ethereum, Polygon, Arbitrum y Base, con integraciones en curso y expansión continua hacia nuevas redes como Solana, Tron y Bitcoin.'
-                    : 'VKX currently supports EVM networks including BNB Chain, Ethereum, Polygon, Arbitrum, and Base, with active integrations and ongoing expansion to networks like Solana, Tron, and Bitcoin.' %>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item reveal">
-            <button class="faq-trigger">
-              <span><%= uiLang === 'pt' ? '5. Posso ter mais de uma carteira na VKX Wallet?' : uiLang === 'es' ? '5. ¿Puedo tener más de una billetera en VKX Wallet?' : '5. Can I have more than one wallet inside VKX Wallet?' %></span>
-              <i data-lucide="chevron-down"></i>
-            </button>
-            <div class="faq-content">
-              <div class="faq-content-inner">
-                <%= uiLang === 'pt' 
-                  ? 'Sim! A VKX Wallet oferece suporte completo a múltiplas contas e carteiras. Você pode criar novas carteiras ou importar chaves privadas/frases de recuperação existentes adicionais, gerenciando todas de forma totalmente separada dentro do mesmo aplicativo.' 
-                  : uiLang === 'es'
-                    ? '¡Sí! VKX Wallet ofrece soporte completo para múltiples cuentas y billeteras. Puedes generar nuevas billeteras o importar claves privadas/frases de recuperación existentes adicionales, administrándolas de forma totalmente separada dentro de la misma aplicación.'
-                    : 'Yes! VKX Wallet offers complete support for multiple accounts and wallets. You can generate new wallets or import additional existing private keys/recovery phrases, keeping them fully isolated and organized within a single app interface.' %>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item reveal">
-            <button class="faq-trigger">
-              <span><%= uiLang === 'pt' ? '6. A VKX Wallet cobra taxas sobre as operações?' : uiLang === 'es' ? '6. ¿VKX Wallet cobra comisiones por transacción?' : '6. Does VKX Wallet charge transaction fees?' %></span>
-              <i data-lucide="chevron-down"></i>
-            </button>
-            <div class="faq-content">
-              <div class="faq-content-inner">
-                <%= uiLang === 'pt' 
-                  ? 'A VKX Wallet em si não cobra taxas de download ou taxas ocultas de uso. Para o recurso Gas Shield BNB, pode haver uma taxa de conveniência muito baixa descontada diretamente do próprio token enviado para cobrir o custo da transação. As transações normais pagam apenas as taxas de rede nativas (como gás de rede) e os swaps ou operações cross-chain integradas utilizam as menores taxas de rota possíveis calculadas em tempo real.' 
-                  : uiLang === 'es'
-                    ? 'VKX Wallet no cobra tarifas de descarga ni comisiones ocultas. Para la función Gas Shield BNB, se aplica una tarifa de conveniencia muy baja descontada directamente del token enviado para cubrir el costo de red. Las transacciones comunes solo pagan las comisiones de red nativas y los swaps/transferencias cross-chain integrados emplean las comisiones de ruta más bajas posibles calculadas en tiempo real.'
-                    : 'VKX Wallet itself does not charge download fees or hidden usage fees. For the BNB Gas Shield feature, a minimal convenience fee is processed directly from the transferred token to cover network cost sponsorship. Regular transactions only pay native network gas fees, while swaps and cross-chain transfers utilize the lowest possible route fees calculated in real time.' %>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item reveal">
-            <button class="faq-trigger">
-              <span><%= uiLang === 'pt' ? '7. O que acontece se eu perder ou quebrar meu celular?' : uiLang === 'es' ? '7. ¿Qué pasa si pierdo o se rompe mi teléfono móvil?' : '7. What happens if I lose or break my mobile phone?' %></span>
-              <i data-lucide="chevron-down"></i>
-            </button>
-            <div class="faq-content">
-              <div class="faq-content-inner">
-                <%= uiLang === 'pt' 
-                  ? 'Como a VKX Wallet é de autocustódia, seus fundos estão seguros na blockchain, e não no aparelho físico. Você pode recuperar o acesso total à sua carteira em qualquer outro dispositivo compatível digitando a sua frase de recuperação (seed phrase) de 12 palavras. Recomendamos guardar essa frase em papel em um local seguro. Caso use o Vault, as configurações e políticas de segurança também se aplicam para impedir acessos não autorizados imediatos ao seu saldo.' 
-                  : uiLang === 'es'
-                    ? 'Dado que VKX Wallet es autocustodial, tus fondos están en la blockchain, no en el dispositivo físico. Puedes restaurar el acceso completo a tus activos en cualquier billetera compatible ingresando tu frase de recuperación de 12 palabras. Asegúrate de guardar esta frase escrita a mano en un lugar seguro. Si usas el Vault, los bloqueos activos seguirán vigentes para evitar retiros inmediatos no autorizados.'
-                    : 'Since VKX Wallet is fully self-custodial, your funds exist on the blockchain, not on the physical device. You can easily recover your assets on any compatible wallet software by entering your 12-word recovery seed phrase. Always write down your seed phrase on paper and store it securely. If using the Vault, security rules and locks persist on-chain to prevent unauthorized immediate access.' %>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item reveal">
-            <button class="faq-trigger">
-              <span><%= uiLang === 'pt' ? '8. A VKX Wallet é segura e auditada?' : uiLang === 'es' ? '8. ¿VKX Wallet es segura y está auditada?' : '8. Is VKX Wallet audited and secure?' %></span>
-              <i data-lucide="chevron-down"></i>
-            </button>
-            <div class="faq-content">
-              <div class="faq-content-inner">
-                <%= uiLang === 'pt' 
-                  ? 'A segurança é nosso pilar principal. Sendo de autocustódia, o código do cliente interage localmente no dispositivo. A arquitetura de segurança e os contratos inteligentes integrados passam por processos rigorosos de auditoria interna e externa. O código passa por revisões contínuas por especialistas para garantir blindagem contra ameaças emergentes.' 
-                  : uiLang === 'es'
-                    ? 'La seguridad es nuestro pilar fundamental. Al ser una billetera autocustodial, el código del cliente opera localmente. Nuestra arquitectura de seguridad y contratos inteligentes se someten a procesos de auditoría interna y revisiones constantes por profesionales para garantizar protección total contra amenazas de seguridad.'
-                    : 'Security is our core pillar. As a self-custodial wallet, client-side code interacts locally on your secure hardware enclave. The system architecture and integrated smart contracts undergo internal security audits and peer reviews. Code updates are continuously reviewed by blockchain security professionals to guarantee defense against emerging threat vectors.' %>
-              </div>
-            </div>
-          </div>
+          <% }); %>
         </div>
       </div>
     </section>
 
     <!-- ROADMAP SECTION -->
-    <section class="section" id="roadmap" style="background: rgba(5, 150, 105, 0.01);">
+    <section class="section" id="roadmap" style="background: rgb(108 92 255 / 1%);">
       <div class="container">
         <div class="section-head reveal" style="text-align: center; margin: 0 auto 48px;">
           <div class="eyebrow"><i data-lucide="milestone"></i>Roadmap</div>
@@ -2454,8 +3219,8 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 900px; margin: 0 auto;" class="reveal">
           <!-- Entregue (Últimos 4 meses) -->
-          <div style="background: #ffffff; border: 1px solid var(--line); border-radius: 20px; padding: 30px; box-shadow: var(--shadow);">
-            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(5, 150, 105, 0.08); color: var(--green); padding: 6px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px;">
+          <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 30px; box-shadow: var(--shadow);">
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgb(108 92 255 / 8%); color: var(--green); padding: 6px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px;">
               <i data-lucide="check" style="width: 14px; height: 14px;"></i>
               <%= uiLang === 'pt' ? 'Últimos 4 Meses (Entregue)' : uiLang === 'es' ? 'Últimos 4 Meses (Entregado)' : 'Last 4 Months (Delivered)' %>
             </div>
@@ -2480,7 +3245,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
           </div>
 
           <!-- Próximos Passos -->
-          <div style="background: #ffffff; border: 1px solid var(--line); border-radius: 20px; padding: 30px; box-shadow: var(--shadow);">
+          <div style="background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 30px; box-shadow: var(--shadow);">
             <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(37, 99, 235, 0.08); color: var(--blue); padding: 6px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 20px;">
               <i data-lucide="zap" style="width: 14px; height: 14px;"></i>
               <%= uiLang === 'pt' ? 'Próximos Marcos (Em Desenvolvimento)' : uiLang === 'es' ? 'Próximos Hitos (En Desarrollo)' : 'Upcoming Milestones (In Progress)' %>
@@ -2567,7 +3332,7 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
             <div class="success-icon">
               <i data-lucide="check-circle" style="width: 48px; height: 48px;"></i>
             </div>
-            <h3 style="font-family: 'Sora', sans-serif; font-size: 1.25rem; color: var(--ink); margin: 0 0 10px;"><%= uiLang === 'pt' ? 'Inscrição realizada!' : uiLang === 'es' ? '¡Suscripción realizada!' : 'Subscription successful!' %></h3>
+            <h3 style="font-family: var(--vkx-font-display); font-size: 1.25rem; color: var(--ink); margin: 0 0 10px;"><%= uiLang === 'pt' ? 'Inscrição realizada!' : uiLang === 'es' ? '¡Suscripción realizada!' : 'Subscription successful!' %></h3>
             <p style="color: var(--muted); font-size: 0.9rem; margin: 0;"><%= uiLang === 'pt' ? 'Obrigado por se inscrever. Você começará a receber nossas atualizações em breve.' : uiLang === 'es' ? 'Gracias por suscribirte. Comenzarás a recibir nuestras actualizaciones pronto.' : 'Thank you for subscribing. You will start receiving updates shortly.' %></p>
           </div>
         </div>
@@ -2583,6 +3348,9 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
         <a href="<%= officialBlogUrl %>" target="_blank" rel="noreferrer"><%= landing.btn_official_blog %></a>
         <a href="<%= officialSupportUrl %>" target="_blank" rel="noreferrer"><%= t.contact.whatsapp_label %></a>
         <a href="<%= officialPrivacyUrl %>" target="_blank" rel="noreferrer"><%= uiLang === 'pt' ? 'Privacidade' : uiLang === 'es' ? 'Privacidad' : 'Privacy' %></a>
+        <a href="<%= officialTermsUrl %>"><%= uiLang === 'pt' ? 'Termos de Uso' : uiLang === 'es' ? 'Términos de Uso' : 'Terms of Use' %></a>
+        <a href="/wallet-security"><%= uiLang === 'pt' ? 'Segurança' : uiLang === 'es' ? 'Seguridad' : 'Security' %></a>
+        <a href="https://github.com/VkxProtocol/VKX-Wallet" target="_blank" rel="noreferrer"><%= uiLang === 'pt' ? 'Código aberto' : uiLang === 'es' ? 'Código abierto' : 'Open source' %></a>
       </div>
       <div class="social-links">
         <a href="https://t.me/canalvkx" target="_blank" rel="noreferrer" title="Telegram"><i data-lucide="send" style="width: 16px; height: 16px;"></i></a>
@@ -2620,6 +3388,101 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
     syncTopbar();
     window.addEventListener('scroll', syncTopbar, { passive: true });
     
+    // Constelação de nós atrás da vitrine do produto: sugere a malha
+    // multichain sem virar enfeite pesado. Só roda quando a seção está
+    // visível e nunca quando o sistema pede menos movimento.
+    (function () {
+      const canvas = document.getElementById('proof-canvas');
+      if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const section = canvas.closest('section');
+      const ctx = canvas.getContext('2d');
+      if (!ctx || !section) return;
+
+      let nodes = [];
+      let frame = null;
+      let running = false;
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const w = section.offsetWidth;
+        const h = section.offsetHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        // Densidade proporcional à área, com teto para não pesar no celular.
+        const count = Math.min(46, Math.round((w * h) / 42000));
+        nodes = Array.from({ length: count }, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.22,
+          vy: (Math.random() - 0.5) * 0.22
+        }));
+      }
+
+      function draw() {
+        const w = canvas.width / (window.devicePixelRatio || 1);
+        const h = canvas.height / (window.devicePixelRatio || 1);
+        ctx.clearRect(0, 0, w, h);
+
+        for (const n of nodes) {
+          n.x += n.vx;
+          n.y += n.vy;
+          if (n.x < 0 || n.x > w) n.vx *= -1;
+          if (n.y < 0 || n.y > h) n.vy *= -1;
+        }
+
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const dist = Math.hypot(dx, dy);
+            if (dist > 148) continue;
+            ctx.globalAlpha = (1 - dist / 148) * 0.34;
+            ctx.strokeStyle = '#6c5cff';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+
+        ctx.globalAlpha = 0.72;
+        ctx.fillStyle = '#8b7cff';
+        for (const n of nodes) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        frame = requestAnimationFrame(draw);
+      }
+
+      function start() {
+        if (running) return;
+        running = true;
+        frame = requestAnimationFrame(draw);
+      }
+      function stop() {
+        running = false;
+        if (frame) cancelAnimationFrame(frame);
+        frame = null;
+      }
+
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+      document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(
+          (entries) => entries.forEach((e) => (e.isIntersecting ? start() : stop())),
+          { threshold: 0 }
+        ).observe(section);
+      } else {
+        start();
+      }
+    })();
+
     // Intersection Observer for fade-in animations
     const items = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -2905,3 +3768,4 @@ const landing = { ...t.landing_wallet, ...walletContent[uiLang] };
   </script>
 </body>
 </html>
+
