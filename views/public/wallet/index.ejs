@@ -370,6 +370,17 @@ const productShowcase = {
     shield_items: ['Modo cofre blindado na nuvem', 'Recuperação garantida sem semente', 'Trava de segurança por hardware', 'Sincronização segura multi-tela', 'Registro de provas de assinatura'],
     proof_one: 'Autocustódia real',
     proof_two: '9 redes em um app',
+    story_label: 'A jornada dentro do app',
+    home_title: 'Abriu o app, a carteira ja e sua.',
+    home_body: 'Sem cadastro para ver seu saldo e sem intermediario segurando suas chaves. A VKX abre direto no patrimonio: o que voce tem, em qual rede, e o que da para fazer com isso agora.',
+    bridges: [
+      'Mas, antes de qualquer coisa, o dinheiro precisa entrar.',
+      'Com saldo na carteira, ele nao precisa ficar parado.',
+      'E nada disso vive em uma rede so.',
+      'Estar em varias redes so importa se der para transitar entre elas.',
+      'Movimentar valor entre redes exige uma protecao a altura.',
+      'No fim, tudo isso precisa caber em um lugar so.'
+    ],
     nav_label: 'Produto'
   },
   en: {
@@ -412,6 +423,17 @@ const productShowcase = {
     shield_items: ['Cloud armoured vault mode', 'Guaranteed seedless recovery', 'Hardware security lock', 'Secure multi-screen sync', 'Signature proof registry'],
     proof_one: 'True self-custody',
     proof_two: '9 networks, one app',
+    story_label: 'The journey inside the app',
+    home_title: 'Open the app and the wallet is already yours.',
+    home_body: 'No sign-up to see your balance, no middleman holding your keys. VKX opens straight into your portfolio: what you hold, on which network, and what you can do with it right now.',
+    bridges: [
+      'But first, money has to come in.',
+      'With a balance in the wallet, it does not have to sit still.',
+      'And none of this lives on a single network.',
+      'Being on many networks only matters if you can move between them.',
+      'Moving value across networks demands protection to match.',
+      'In the end, all of it has to fit in one place.'
+    ],
     nav_label: 'Product'
   },
   es: {
@@ -454,6 +476,17 @@ const productShowcase = {
     shield_items: ['Modo bóveda blindada en la nube', 'Recuperación garantizada sin semilla', 'Bloqueo de seguridad por hardware', 'Sincronización segura multipantalla', 'Registro de pruebas de firma'],
     proof_one: 'Autocustodia real',
     proof_two: '9 redes en una app',
+    story_label: 'El recorrido dentro de la app',
+    home_title: 'Abres la app y la billetera ya es tuya.',
+    home_body: 'Sin registro para ver tu saldo y sin intermediario reteniendo tus claves. VKX abre directo en tu patrimonio: que tienes, en que red y que puedes hacer con ello ahora.',
+    bridges: [
+      'Pero, antes que nada, el dinero tiene que entrar.',
+      'Con saldo en la billetera, no tiene por que quedarse quieto.',
+      'Y nada de esto vive en una sola red.',
+      'Estar en varias redes solo importa si puedes transitar entre ellas.',
+      'Mover valor entre redes exige una proteccion a la altura.',
+      'Al final, todo eso tiene que caber en un solo lugar.'
+    ],
     nav_label: 'Producto'
   }
 };
@@ -819,13 +852,25 @@ const howToLd = {
     }
     
     .btn-primary {
-      background: linear-gradient(135deg, var(--green), var(--green-deep));
+      background: linear-gradient(135deg, #7b6bff 0%, #5f4ee8 100%);
       color: #fff;
-      box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.4);
+      border-color: rgb(255 255 255 / 14%);
+      letter-spacing: -.01em;
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 20%),
+        0 10px 24px -8px rgb(95 78 232 / 62%);
     }
-    
+
     .btn-primary:hover {
-      box-shadow: 0 12px 25px -3px rgba(16, 185, 129, 0.6), var(--shadow-glow);
+      background: linear-gradient(135deg, #8a7bff 0%, #6a58f2 100%);
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 24%),
+        0 16px 34px -10px rgb(95 78 232 / 74%);
+    }
+
+    .btn-primary:focus-visible {
+      outline: 2px solid #b9b0ff;
+      outline-offset: 3px;
     }
     
     .btn-secondary {
@@ -2440,17 +2485,18 @@ const howToLd = {
       position: relative;
       z-index: 1;
       border-radius: 34px;
-      transform: rotate(2deg);
+      transform: rotate(1.4deg);
       transition: transform .45s cubic-bezier(.2,.8,.2,1);
     }
 
-    .reverse .screen-card { transform: rotate(-2deg); }
+    .reverse .screen-card { transform: rotate(-1.4deg); }
     .feature-row:hover .screen-card { transform: rotate(0) translateY(-8px) scale(1.01); }
 
     .screen-card img {
       display: block;
       width: 100%;
       height: auto;
+      aspect-ratio: 589 / 1280;
       border-radius: 30px;
       border: 1px solid rgb(255 255 255 / 14%);
       box-shadow: 0 32px 80px rgb(0 0 0 / 54%);
@@ -2496,45 +2542,60 @@ const howToLd = {
       backdrop-filter: blur(12px);
     }
 
-    .capability-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-      margin-top: 26px;
+    /* Abertura do fluxo: a tela inicial deixa de ser so imagem e passa a ter
+       voz, apresentando o app antes da primeira ponte. */
+    .story-opening {
+      max-width: 680px;
+      margin: 10px auto 0;
+      text-align: center;
     }
 
-    .capability-card {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(190px, .72fr);
-      gap: 28px;
-      align-items: center;
-      min-height: 520px;
-      padding: 34px;
-      border-radius: 28px;
-      background: linear-gradient(145deg, #141621, #0b0c12);
-      border: 1px solid var(--line);
-      overflow: hidden;
-    }
-
-    .capability-card h3 {
-      margin: 12px 0;
+    .story-opening h3 {
+      margin: 12px 0 14px;
       font-family: var(--vkx-font-display);
-      font-size: clamp(1.45rem, 2.3vw, 2.1rem);
+      font-size: clamp(1.5rem, 2.6vw, 2.2rem);
       line-height: 1.12;
+      letter-spacing: -.035em;
     }
 
-    .capability-card p { color: var(--muted); line-height: 1.65; }
-    .capability-card img {
-      width: 100%;
-      max-width: 245px;
-      justify-self: end;
-      border-radius: 25px;
-      border: 1px solid rgb(255 255 255 / 12%);
-      box-shadow: 0 25px 65px rgb(0 0 0 / 48%);
-      transform: rotate(3deg) translateX(12px);
+    .story-opening p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
     }
 
-    .capability-card.shield-card img { transform: rotate(-3deg) translateX(12px); }
+    /* Fio condutor: a frase que liga um bloco ao seguinte. Ela nao repete o
+       que os blocos dizem — faz a ponte, para a pagina ser lida como uma
+       sequencia e nao como seis ilhas soltas. */
+    .story-bridge {
+      display: grid;
+      justify-items: center;
+      gap: 16px;
+      padding: 4px 0;
+      text-align: center;
+    }
+
+    .story-bridge::before,
+    .story-bridge::after {
+      content: '';
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(180deg, transparent, rgb(139 124 255 / 55%));
+    }
+
+    .story-bridge::after {
+      background: linear-gradient(180deg, rgb(139 124 255 / 55%), transparent);
+    }
+
+    .story-bridge span {
+      max-width: 540px;
+      color: #c2c6d6;
+      font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+      font-weight: 600;
+      line-height: 1.5;
+      letter-spacing: -.015em;
+      text-wrap: balance;
+    }
 
     .purchase-guide {
       margin-top: 82px;
@@ -2593,9 +2654,6 @@ const howToLd = {
 
     @media (max-width: 1050px) {
       .floating-proof { display: none; }
-      .capability-card { grid-template-columns: 1fr; }
-      .capability-card img { max-width: 230px; justify-self: center; transform: none; }
-      .capability-card.shield-card img { transform: none; }
     }
 
     @media (max-width: 820px) {
@@ -2610,9 +2668,10 @@ const howToLd = {
       .feature-row.reverse .feature-media { order: 2; min-height: auto; padding-top: 16px; }
       .feature-row .feature-copy,
       .feature-row.reverse .feature-copy { order: 1; }
-      .capability-grid { grid-template-columns: 1fr; }
-      .capability-card { min-height: 0; }
       .guide-steps { grid-template-columns: 1fr; }
+      .story-bridge { gap: 12px; }
+      .story-bridge::before,
+      .story-bridge::after { height: 30px; }
       .transak-explainer { grid-template-columns: 1fr; }
       /* No celular a tela de trás sairia da margem: fica só a da frente. */
       .screen-duo { width: min(300px, 76vw); }
@@ -2624,8 +2683,7 @@ const howToLd = {
     @media (prefers-reduced-motion: reduce) {
       .real-device,
       .screen-card,
-      .screen-duo .screen-card,
-      .capability-card img { transform: none !important; transition: none !important; }
+      .screen-duo .screen-card { transform: none !important; transition: none !important; }
       .screen-duo .screen-card.behind { display: none; }
       .wallet-hero-canvas { display: none; }
     }
@@ -2803,8 +2861,24 @@ const howToLd = {
           </div>
         </div>
 
+        <div class="story-opening reveal">
+          <span class="feature-kicker"><%= product.story_label %></span>
+          <h3><%= product.home_title %></h3>
+          <p><%= product.home_body %></p>
+        </div>
+
+        <%#
+            O FLUXO. As telas nao sao vitrine solta: cada bloco entrega o
+            visitante ao seguinte por uma frase de ligacao (product.bridges).
+            Ordem: entra na carteira -> poe dinheiro -> investe -> escolhe a
+            rede -> transita entre redes -> protege -> controla tudo.
+            Todas usam o MESMO componente (.feature-row + .screen-card), o que
+            mantem proporcao e ritmo iguais do inicio ao fim.
+        %>
         <div class="feature-showcase">
-          <%# 1. Compra em moeda local: Pix, euros, dólares e cartão. %>
+          <div class="story-bridge reveal"><span><%= product.bridges[0] %></span></div>
+
+          <%# Dinheiro entra: Pix, euros, dolares e cartao. %>
           <article class="feature-row reveal">
             <div class="feature-copy">
               <span class="feature-kicker"><%= product.eyebrow %></span>
@@ -2823,7 +2897,9 @@ const howToLd = {
             </div>
           </article>
 
-          <%# 2. Ações, ETFs e RWA tokenizados. %>
+          <div class="story-bridge reveal"><span><%= product.bridges[1] %></span></div>
+
+          <%# O saldo trabalha: acoes, ETFs e RWA tokenizados. %>
           <article class="feature-row reverse reveal">
             <div class="feature-copy">
               <span class="feature-kicker">VKX Invest</span>
@@ -2842,8 +2918,30 @@ const howToLd = {
             </div>
           </article>
 
-          <%# 3. Swap cross-chain: duas rotas reais, lado a lado. %>
+          <div class="story-bridge reveal"><span><%= product.bridges[2] %></span></div>
+
+          <%# Onde tudo isso vive: as 9 redes. %>
           <article class="feature-row reveal">
+            <div class="feature-copy">
+              <span class="feature-kicker">Multichain</span>
+              <h3><%= product.networks_title %></h3>
+              <p><%= product.networks_body %></p>
+              <div class="feature-tags">
+                <% product.networks_list.forEach((net) => { %><span><%= net %></span><% }) %>
+              </div>
+            </div>
+            <div class="feature-media">
+              <div class="screen-card">
+                <img src="<%= shot('networks') %>" alt="<%= product.networks_title %>" width="589" height="1280" loading="lazy" decoding="async" />
+                <span class="screen-proof-label"><%= product.proof %></span>
+              </div>
+            </div>
+          </article>
+
+          <div class="story-bridge reveal"><span><%= product.bridges[3] %></span></div>
+
+          <%# Transitar entre elas: duas rotas reais de swap, lado a lado. %>
+          <article class="feature-row reverse reveal">
             <div class="feature-copy">
               <span class="feature-kicker">Cross-chain</span>
               <h3><%= product.swap_title %></h3>
@@ -2855,17 +2953,39 @@ const howToLd = {
             <div class="feature-media">
               <div class="screen-duo">
                 <div class="screen-card behind">
-                  <img src="<%= shot('swapAlt') %>" alt="<%= product.swap_title %> — BNB → BTC" width="589" height="1280" loading="lazy" decoding="async" />
+                  <img src="<%= shot('swapAlt') %>" alt="<%= product.swap_title %> &mdash; BNB &rarr; BTC" width="589" height="1280" loading="lazy" decoding="async" />
                 </div>
                 <div class="screen-card front">
-                  <img src="<%= shot('swap') %>" alt="<%= product.swap_title %> — BNB → SOL" width="589" height="1280" loading="lazy" decoding="async" />
+                  <img src="<%= shot('swap') %>" alt="<%= product.swap_title %> &mdash; BNB &rarr; SOL" width="589" height="1280" loading="lazy" decoding="async" />
                   <span class="screen-proof-label"><%= product.proof %></span>
                 </div>
               </div>
             </div>
           </article>
 
-          <%# 4. Conta, carteiras vinculadas e benefícios. %>
+          <div class="story-bridge reveal"><span><%= product.bridges[4] %></span></div>
+
+          <%# A camada que sustenta o resto: VKX Shield. %>
+          <article class="feature-row reveal">
+            <div class="feature-copy">
+              <span class="feature-kicker">VKX Shield</span>
+              <h3><%= product.shield_title %></h3>
+              <p><%= product.shield_body %></p>
+              <div class="feature-tags">
+                <% product.shield_items.forEach((item) => { %><span><i data-lucide="shield-check"></i><%= item %></span><% }) %>
+              </div>
+            </div>
+            <div class="feature-media">
+              <div class="screen-card">
+                <img src="<%= shot('shield') %>" alt="<%= product.shield_title %>" width="589" height="1280" loading="lazy" decoding="async" />
+                <span class="screen-proof-label"><%= product.proof %></span>
+              </div>
+            </div>
+          </article>
+
+          <div class="story-bridge reveal"><span><%= product.bridges[5] %></span></div>
+
+          <%# Fecha o circulo: conta, carteiras vinculadas e beneficios. %>
           <article class="feature-row reverse reveal">
             <div class="feature-copy">
               <span class="feature-kicker"><%= product.availability %></span>
@@ -2881,33 +3001,6 @@ const howToLd = {
                 <span class="screen-proof-label"><%= product.proof %></span>
               </div>
             </div>
-          </article>
-        </div>
-
-        <%# Redes e segurança: as duas telas que sustentam o resto do produto. %>
-        <div class="capability-grid">
-          <article class="capability-card reveal">
-            <div>
-              <span class="feature-kicker">Multichain</span>
-              <h3><%= product.networks_title %></h3>
-              <p><%= product.networks_body %></p>
-              <div class="feature-tags">
-                <% product.networks_list.forEach((net) => { %><span><%= net %></span><% }) %>
-              </div>
-            </div>
-            <img src="<%= shot('networks') %>" alt="<%= product.networks_title %>" width="589" height="1280" loading="lazy" decoding="async" />
-          </article>
-
-          <article class="capability-card shield-card reveal">
-            <div>
-              <span class="feature-kicker">VKX Shield</span>
-              <h3><%= product.shield_title %></h3>
-              <p><%= product.shield_body %></p>
-              <div class="feature-tags">
-                <% product.shield_items.forEach((item) => { %><span><i data-lucide="shield-check"></i><%= item %></span><% }) %>
-              </div>
-            </div>
-            <img src="<%= shot('shield') %>" alt="<%= product.shield_title %>" width="589" height="1280" loading="lazy" decoding="async" />
           </article>
         </div>
 
